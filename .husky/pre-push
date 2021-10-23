@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+cd client
+npm run pre-push
+cd ..
+cd server
+npm run pre-push
