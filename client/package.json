@@ -1,0 +1,47 @@
+{
+  "name": "maya-client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc --pretty --noEmit",
+    "format": "prettier --write .",
+    "lint": "eslint . --ext ts --ext tsx --ext js",
+    "pre-commit": "echo 1&& lint-staged",
+    "pre-push": "yarn run type-check"
+  },
+  "lint-staged": {
+    "*.@(ts|tsx|js)": [
+      "yarn format",
+      "yarn lint"
+    ]
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.6.2",
+    "next": "11.1.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-hook-form": "^7.17.5",
+    "react-redux": "^7.2.5",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.30",
+    "@types/react-dom": "^17.0.10",
+    "@types/react-redux": "^7.1.20",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "autoprefixer": "^10.3.7",
+    "eslint": "8.0.1",
+    "eslint-config-next": "11.1.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.26.1",
+    "lint-staged": "^11.2.3",
+    "postcss": "^8.3.10",
+    "prettier": "^2.4.1",
+    "tailwindcss": "^2.2.17",
+    "typescript": "4.4.4"
+  }
+}
