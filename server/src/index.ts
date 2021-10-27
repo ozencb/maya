@@ -1,8 +1,8 @@
-import "reflect-metadata";
-import "dotenv/config";
+import 'reflect-metadata';
+import 'dotenv/config';
 
-import express from "express";
-import loaders from "./loaders";
+import express from 'express';
+import loaders from './loaders';
 
 (async () => {
   const port = process.env.PORT || 8888;

@@ -1,13 +1,13 @@
-import express from "express";
-import { AuthController } from "../controllers";
+import express from 'express';
+import { AuthController } from '../controllers';
 
 const router = express.Router();
 
 export default (() => {
-  router.post("/logout", AuthController.logOutController);
-  router.post("/login", AuthController.loginController);
-  router.post("/refresh-token", AuthController.refreshTokenController);
-  router.get("/user-info", AuthController.getUserInfoController);
+  router.post('/register', AuthController.register);
+  router.post('/login', AuthController.login);
+  router.post('/refresh-token', AuthController.refreshToken);
+  router.post('/logout', AuthController.logOut);
 
   return router;
 })();

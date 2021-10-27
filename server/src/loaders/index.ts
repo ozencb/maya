@@ -1,7 +1,7 @@
-import { Application } from "express";
+import { Application } from 'express';
 
-import expressLoader from "./express";
-import { initOrm } from "../lib";
+import expressLoader from './express';
+import { initOrm } from '../lib';
 
 export default async (app: Application) => {
   expressLoader(app);

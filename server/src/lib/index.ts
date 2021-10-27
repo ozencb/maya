@@ -1,1 +1,1 @@
-export * from "./orm";
+export * from './orm';

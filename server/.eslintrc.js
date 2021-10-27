@@ -1,18 +1,18 @@
 module.exports = {
   env: {
     es2021: true,
-    node: true
+    node: true,
   },
   extends: [
     'plugin:import/typescript',
     'plugin:import/errors',
     'plugin:import/warnings',
-    'prettier'
+    'prettier',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 12,
-    sourceType: 'module'
+    sourceType: 'module',
   },
   plugins: ['@typescript-eslint', 'eslint-plugin-prettier'],
   rules: {
@@ -21,8 +21,8 @@ module.exports = {
       {
         devDependencies: false,
         optionalDependencies: false,
-        peerDependencies: false
-      }
+        peerDependencies: false,
+      },
     ],
     'import/extensions': [
       'error',
@@ -31,17 +31,17 @@ module.exports = {
         js: 'never',
         jsx: 'never',
         ts: 'never',
-        tsx: 'never'
-      }
+        tsx: 'never',
+      },
     ],
-    'import/prefer-default-export': 'off'
+    'import/prefer-default-export': 'off',
   },
   settings: {
     'import/resolver': {
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        moduleDirectory: ['node_modules', 'src/']
-      }
-    }
-  }
+        moduleDirectory: ['node_modules', 'src/'],
+      },
+    },
+  },
 };

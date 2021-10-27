@@ -1,22 +1,23 @@
-import express, { Application } from "express";
-import cors from "cors";
-import helmet from "helmet";
-import compression from "compression";
-import cookieParser from "cookie-parser";
+import express, { Application } from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import compression from 'compression';
+import cookieParser from 'cookie-parser';
 
-import routes from "../routes";
+import routes from '../routes';
+import { __prod__ } from '../constants';
 
 const expressLoaders = (app: Application) => {
   app.use((_req, res, next) => {
-    res.set("Cache-Control", "private, no-cache, no-store, must-revalidate");
-    res.set("Expires", "-1");
-    res.set("Pragma", "no-cache");
+    res.set('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.set('Expires', '-1');
+    res.set('Pragma', 'no-cache');
     next();
   });
 
   app.use(cookieParser());
 
-  if (process.env.MODE === "prod") {
+  if (__prod__) {
     app.use(helmet());
   }
 
@@ -31,11 +32,11 @@ const expressLoaders = (app: Application) => {
         callback(null, true);
       },
       credentials: true,
-      methods: ["GET", "POST", "PUT", "DELETE"],
+      methods: ['GET', 'POST', 'PUT', 'DELETE'],
     })
   );
 
-  app.use("/api", routes);
+  app.use('/api', routes);
 };
 
 export default expressLoaders;

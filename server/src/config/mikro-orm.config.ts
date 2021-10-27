@@ -12,5 +12,5 @@ export default {
   entities: Object.values(entities),
   debug: process.env.APP_ENV === 'development',
   tsNode: process.env.APP_ENV === 'development',
-  metadataProvider: ReflectMetadataProvider
+  metadataProvider: ReflectMetadataProvider,
 } as Parameters<typeof MikroORM.init>[0];
