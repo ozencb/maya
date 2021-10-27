@@ -1,7 +1,7 @@
 export const success = { success: true };
 export const error = { success: false };
 
-export enum status {
+export enum Status {
   SUCCESS = 200,
   ERROR = 500,
   NOT_FOUND = 404,

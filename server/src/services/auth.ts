@@ -1,4 +1,4 @@
-import { DI } from '../lib';
+import { DB } from '../lib';
 import { compare, hash } from 'bcryptjs';
 import { User } from '../entities';
 
@@ -11,8 +11,8 @@ export const register = async ({
 }) => {
   const hashedPassword = await hash(password, 12);
 
-  DI.userRepository.persist(new User(username, hashedPassword));
-  await DI.orm.em.flush();
+  DB.userRepository.persist(new User(username, hashedPassword));
+  await DB.orm.em.flush();
 
   return true;
 };
@@ -24,7 +24,7 @@ export const login = async ({
   username: string;
   password: string;
 }) => {
-  const user = await DI.userRepository.findOne({ username });
+  const user = await DB.userRepository.findOne({ username });
 
   if (!user) throw new Error('Could not find user');
 

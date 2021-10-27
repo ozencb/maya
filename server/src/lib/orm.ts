@@ -5,18 +5,19 @@ import {
   RequestContext,
 } from '@mikro-orm/core';
 import { Application } from 'express';
+
+import { User, Log } from '../entities';
 import config from '../config/mikro-orm.config';
 
-import { User } from '../entities';
-
-const DI = {} as {
+const DB = {} as {
   orm: MikroORM;
   em: EntityManager;
   userRepository: EntityRepository<User>;
+  logRepository: EntityRepository<Log>;
 };
 
 const initOrm = async (app: Application) => {
-  DI.orm = await MikroORM.init({
+  DB.orm = await MikroORM.init({
     ...config,
     cache: { enabled: false },
     migrations: {
@@ -31,12 +32,12 @@ const initOrm = async (app: Application) => {
       emit: 'ts', // migration generation mode
     },
   });
-  DI.em = DI.orm.em;
-  DI.userRepository = DI.orm.em.getRepository(User);
+  DB.em = DB.orm.em;
+  DB.userRepository = DB.orm.em.getRepository(User);
 
   app.use((_req, _res, next) => {
-    RequestContext.create(DI.orm.em, next);
+    RequestContext.create(DB.orm.em, next);
   });
 };
 
-export { DI, initOrm };
+export { DB, initOrm };

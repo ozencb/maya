@@ -1,5 +1,5 @@
 import { promisify } from 'util';
-import { createRedisInstance } from '../lib/redis';
+import { createRedisInstance } from '../lib';
 
 const port: number = +process.env.REDIS_PORT! || 6379;
 const host: string = process.env.REDIS_HOST || '127.0.0.1';

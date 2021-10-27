@@ -2,8 +2,9 @@ import { Request, Response } from 'express';
 import { JwtPayload, verify } from 'jsonwebtoken';
 
 import Utils from '../utils';
-import { success, status, error } from '../constants';
+import { success, Status, error } from '../constants';
 import { AuthServices, UserServices } from '../services';
+import { logger } from '../lib';
 import {
   setRefreshToken,
   setEmptyRefreshToken,
@@ -17,9 +18,22 @@ export const register = async (req: Request, res: Response) => {
 
     const registeredUser = await AuthServices.register({ username, password });
 
-    res.status(status.SUCCESS).send({ ...success, data: registeredUser });
+    logger.info({
+      createdBy: username,
+      action: 'register',
+      payload: { username: req.body.username },
+    });
+
+    res.status(Status.SUCCESS).send({ ...success, data: registeredUser });
   } catch (err) {
-    res.status(status.ERROR).send({ ...error });
+    logger.warn({
+      createdBy: req.body.username,
+      action: 'register',
+      payload: { username: req.body.username },
+      error: err,
+    });
+
+    res.status(Status.ERROR).send({ ...error });
   }
 };
 
@@ -35,9 +49,22 @@ export const login = async (req: Request, res: Response) => {
     setRefreshToken(res, refreshToken);
     storeRefreshToken(loggedInUser, refreshToken);
 
-    res.status(status.SUCCESS).send({ ...success, data: { accessToken } });
+    logger.info({
+      createdBy: username,
+      action: 'login',
+      payload: { username: req.body.username },
+    });
+
+    res.status(Status.SUCCESS).send({ ...success, data: { accessToken } });
   } catch (err) {
-    res.status(status.ERROR).send({ ...error });
+    logger.warn({
+      createdBy: req.body.username,
+      action: 'login',
+      payload: { username: req.body.username },
+      error: err,
+    });
+
+    res.status(Status.ERROR).send({ ...error });
   }
 };
 
@@ -47,18 +74,16 @@ export const refreshToken = async (req: Request, res: Response) => {
 
     if (!token) {
       setEmptyRefreshToken(res);
-      return res.status(status.SUCCESS).send({ ...success });
+      return res.status(Status.SUCCESS).send({ ...success });
     }
 
     let payload: JwtPayload;
     try {
       payload = verify(token, process.env.REFRESH_TOKEN_SECRET!) as JwtPayload;
     } catch (err) {
-      console.log(err);
-
       setEmptyRefreshToken(res);
       return res
-        .status(status.UNAUTHORIZED)
+        .status(Status.UNAUTHORIZED)
         .send({ ...error, data: { accessToken: '' } });
     }
 
@@ -67,14 +92,14 @@ export const refreshToken = async (req: Request, res: Response) => {
     if (!user) {
       setEmptyRefreshToken(res);
       return res
-        .status(status.UNAUTHORIZED)
+        .status(Status.UNAUTHORIZED)
         .send({ ...error, data: { accessToken: '' } });
     }
 
     if (!(await compareRefreshTokensOnStore(user, token))) {
       setEmptyRefreshToken(res);
       return res
-        .status(status.UNAUTHORIZED)
+        .status(Status.UNAUTHORIZED)
         .send({ ...error, data: { accessToken: '' } });
     }
 
@@ -84,18 +109,29 @@ export const refreshToken = async (req: Request, res: Response) => {
     storeRefreshToken(user, refreshToken);
 
     return res
-      .status(status.SUCCESS)
+      .status(Status.SUCCESS)
       .send({ ...success, data: { accessToken } });
   } catch (err) {
-    return res.status(status.ERROR).send({ ...error });
+    logger.warn({
+      createdBy: 'system',
+      action: 'register',
+      error: err,
+    });
+
+    return res.status(Status.ERROR).send({ ...error });
   }
 };
 
 export const logOut = async (_req: Request, res: Response) => {
   try {
     setEmptyRefreshToken(res);
-    res.status(status.SUCCESS).send({ ...success, data: true });
+    res.status(Status.SUCCESS).send({ ...success, data: true });
   } catch (err) {
-    res.status(status.ERROR).send({ ...error });
+    logger.warn({
+      createdBy: 'system',
+      action: 'register',
+      error: err,
+    });
+    res.status(Status.ERROR).send({ ...error });
   }
 };
