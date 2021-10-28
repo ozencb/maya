@@ -3,6 +3,7 @@ import 'dotenv/config';
 
 import express from 'express';
 import loaders from './loaders';
+import { logger } from './lib';
 
 (async () => {
   const port = process.env.PORT || 8888;
@@ -11,8 +12,6 @@ import loaders from './loaders';
   loaders(app);
 
   app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-
-    // logger.verbose('Server is running on port %s', port);
+    logger.verbose(`Server is running on port ${port}`);
   });
 })();
