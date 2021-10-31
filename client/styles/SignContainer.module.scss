@@ -1,0 +1,11 @@
+.container {
+  @apply flex h-screen;
+
+  .sign {
+    @apply m-auto p-8 shadow-lg rounded-xl text-center bg-white;
+
+    .title {
+      @apply text-3xl font-bold text-indigo-500;
+    }
+  }
+}
