@@ -6,7 +6,7 @@ import { AuthServices } from '../../services';
 const INITIAL_STATE = {
   authenticated: false,
   loading: false,
-  info: null,
+  user: {},
   error: false,
   errorMessage: null,
 };
@@ -22,7 +22,7 @@ export const sessionReducer = createSlice({
   reducers: {
     setUser: (state, action: PayloadAction<any>) => {
       state.authenticated = true;
-      state.info = action.payload;
+      state.user = action.payload;
     },
     showLoading: (state) => {
       state.loading = true;

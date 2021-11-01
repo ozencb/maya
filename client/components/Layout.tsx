@@ -1,5 +1,8 @@
 import React from 'react';
-import { Toaster } from 'react-hot-toast';
+import { Provider } from 'react-redux';
+
+import store from '../store';
+import App from './App';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,8 +11,9 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
-      {children}
-      <Toaster />
+      <Provider store={store}>
+        <App>{children}</App>
+      </Provider>
     </>
   );
 };
