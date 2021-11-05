@@ -29,3 +29,9 @@ You must have Node, PostgreSQL, Redis, and Yarn installed. Use `dotenv.example` 
 To install all the dependencies, run `yarn install-dependencies` on root folder.
 
 For server, `cd` into `server` folder and run `yarn run db:migrate` and `yarn run start`. On a separate terminal, `cd` into `client` folder and run `yarn dev`.
+
+## Todo
+
+- [ ] Refresh token on app initialization
+- [ ] Add roles/authorities on backend for admin etc.
+- [ ] Add protected routes with user auth checks
