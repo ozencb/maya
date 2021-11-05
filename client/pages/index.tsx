@@ -5,7 +5,9 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.scss';
 import Layout from '../components/Layout';
 
-const Home: NextPage = () => {
+type HomeComponent = NextPage & { getLayout(page: ReactElement): ReactElement };
+
+const Home: HomeComponent = () => {
   return (
     <div className={styles.container}>
       <Head>

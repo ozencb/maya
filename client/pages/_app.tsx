@@ -1,20 +1,9 @@
-import type { ReactElement, ReactNode } from 'react';
 import { Provider } from 'react-redux';
-import type { NextPage } from 'next';
-import type { AppProps } from 'next/app';
 import { Toaster } from 'react-hot-toast';
+import store from '../store';
+import { AppPropsWithLayout } from '../types/layout';
 
 import '../styles/globals.scss';
-
-import store from '../store';
-
-type NextPageWithLayout = NextPage & {
-  getLayout?: (page: ReactElement) => ReactNode;
-};
-
-type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
-};
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
