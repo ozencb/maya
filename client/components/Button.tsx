@@ -1,13 +1,23 @@
 import React from 'react';
 
+import styles from '../styles/Button.module.scss';
+
 interface ButtonProps {
   children: React.ReactNode;
   onClick?(): void;
+  filled?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, onClick }) => {
+const Button: React.FC<ButtonProps> = ({
+  children,
+  onClick,
+  filled = false,
+}) => {
   return (
-    <button onClick={onClick} className={'font-bold py-2 px-4 rounded'}>
+    <button
+      onClick={onClick}
+      className={filled ? styles.filled : styles.outline}
+    >
       {children}
     </button>
   );

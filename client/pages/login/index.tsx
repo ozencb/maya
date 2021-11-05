@@ -7,7 +7,6 @@ import toast from 'react-hot-toast';
 import SignIn from '../../components/SignForm';
 import { AuthServices } from '../../services';
 import SignContainer from '../../components/SignContainer';
-import LinkButton from '../../components/LinkButton';
 import jwtManager from '../../helpers/jwt';
 import { setUser } from '../../store/reducers/session';
 import { RootState } from '../../store';
@@ -36,9 +35,8 @@ const LoginPage: NextPage = () => {
   };
 
   return (
-    <SignContainer title="Sign In">
+    <SignContainer mode="login">
       <SignIn onSubmit={onSubmit} />
-      <LinkButton href="/register" title="Don't have an account?" />
     </SignContainer>
   );
 };

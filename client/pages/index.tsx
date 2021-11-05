@@ -1,7 +1,9 @@
+import type { ReactElement } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
 import styles from '../styles/Home.module.scss';
+import Layout from '../components/Layout';
 
 const Home: NextPage = () => {
   return (
@@ -15,5 +17,7 @@ const Home: NextPage = () => {
     </div>
   );
 };
+
+Home.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
 
 export default Home;

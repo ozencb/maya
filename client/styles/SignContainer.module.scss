@@ -1,8 +1,14 @@
 .container {
-  @apply flex h-screen;
+  @apply flex h-screen w-screen justify-center items-center bg-black;
+  background-image: url('/undraw_stars.svg');
+  background-size: cover;
 
-  .sign {
-    @apply m-auto p-8 shadow-lg rounded-xl text-center bg-white;
+  .redirectLink {
+    @apply absolute top-2 right-2 text-white hover:text-blue-200;
+  }
+
+  .formContainer {
+    @apply flex flex-col gap-5 p-10 w-80 h-auto bg-white justify-center items-center rounded-lg text-center;
 
     .title {
       @apply text-3xl font-bold text-indigo-500;

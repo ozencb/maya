@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 import SignUp from '../../components/SignForm';
 import { AuthServices } from '../../services';
 import SignContainer from '../../components/SignContainer';
-import LinkButton from '../../components/LinkButton';
 import { RootState } from '../../store';
 
 const RegisterPage: NextPage = () => {
@@ -23,9 +22,8 @@ const RegisterPage: NextPage = () => {
   };
 
   return (
-    <SignContainer title="Register">
+    <SignContainer mode="register">
       <SignUp onSubmit={onSubmit} />
-      <LinkButton href="/login" title="Already registered?" />
     </SignContainer>
   );
 };

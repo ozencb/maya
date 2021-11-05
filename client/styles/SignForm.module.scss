@@ -1,0 +1,7 @@
+.container {
+  @apply flex flex-col gap-8;
+
+  .form {
+    @apply flex flex-col gap-2;
+  }
+}

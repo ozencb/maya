@@ -1,8 +1,7 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 
-import store from '../store';
 import App from './App';
+import NavBar from './NavBar';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -11,9 +10,8 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
-      <Provider store={store}>
-        <App>{children}</App>
-      </Provider>
+      <NavBar />
+      <App>{children}</App>
     </>
   );
 };

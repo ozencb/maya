@@ -4,6 +4,9 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import InputField from './Input';
 
+import styles from '../styles/SignForm.module.scss';
+import Button from './Button';
+
 const schema = yup.object().shape({
   username: yup.string().required('Username is required!'),
   password: yup
@@ -32,16 +35,25 @@ const SignForm: React.FC<SignFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(submitForm)}>
-      <InputField register={register} name="username" placeholder="Username" />
-      <InputField
-        register={register}
-        name="password"
-        placeholder="password"
-        type="password"
-      />
-      <button type="submit">Submit</button>
-    </form>
+    <div className={styles.container}>
+      <form className={styles.form}>
+        <InputField
+          register={register}
+          name="username"
+          placeholder="Username"
+        />
+        <InputField
+          register={register}
+          name="password"
+          placeholder="password"
+          type="password"
+          label="test"
+        />
+      </form>
+      <Button onClick={handleSubmit(submitForm)} filled>
+        Submit
+      </Button>
+    </div>
   );
 };
 
