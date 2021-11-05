@@ -9,7 +9,8 @@
     "lint": "eslint . --ext ts --ext js",
     "type-check": "tsc --pretty --noEmit",
     "pre-commit": "lint-staged",
-    "pre-push": "yarn run type-check"
+    "pre-push": "yarn run type-check",
+    "db:migrate": "mikro-orm migration:up"
   },
   "lint-staged": {
     "*.@(ts|js)": [
