@@ -30,7 +30,6 @@
     "react-hot-toast": "^2.1.1",
     "react-redux": "^7.2.6",
     "sass": "^1.43.4",
-    "swr": "^1.0.1",
     "yup": "^0.32.11"
   },
   "devDependencies": {
