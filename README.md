@@ -35,3 +35,7 @@ For server, `cd` into `server` folder and run `yarn run db:migrate` and `yarn ru
 - [ ] Refresh token on app initialization
 - [ ] Add roles/authorities on backend for admin etc.
 - [ ] Add protected routes with user auth checks
+- [ ] Admin page for kicking/banning users
+- [ ] Profile page for updates/settings/acc deletion
+- [ ] Themes
+- [ ] Avatars generated randomly or with seeds
