@@ -1,12 +1,13 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import toast from 'react-hot-toast';
+
 import { AuthServices } from '../services';
 import Button from './Button';
 
-interface LogOutButtonProps {
+type LogOutButtonProps = {
   children: React.ReactNode;
-}
+};
 
 const LogOutButton: React.FC<LogOutButtonProps> = ({ children }) => {
   const router = useRouter();

@@ -2,11 +2,11 @@ import React from 'react';
 
 import styles from '../styles/Button.module.scss';
 
-interface ButtonProps {
+type ButtonProps = {
   children: React.ReactNode;
   onClick?(): void;
   filled?: boolean;
-}
+};
 
 const Button: React.FC<ButtonProps> = ({
   children,

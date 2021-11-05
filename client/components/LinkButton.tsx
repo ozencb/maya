@@ -1,10 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 
-interface LinkButtonProps {
+type LinkButtonProps = {
   title: string;
   href: string;
-}
+};
 
 const LinkButton: React.FC<LinkButtonProps> = ({ title, href }) => {
   return (

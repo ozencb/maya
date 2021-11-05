@@ -3,10 +3,10 @@ import Link from 'next/link';
 
 import styles from '../styles/SignContainer.module.scss';
 
-interface SignContainerProps {
+type SignContainerProps = {
   children: React.ReactNode;
   mode: 'login' | 'register';
-}
+};
 
 const SignContainer: React.FC<SignContainerProps> = ({ children, mode }) => {
   const modes = {

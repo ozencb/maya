@@ -1,7 +1,7 @@
 import { AxiosRequestConfig, AxiosRequestHeaders, Method } from 'axios';
 import axiosInstance from '../lib/axios';
 
-interface HTTPInterface {
+interface IHttp {
   method: Method;
   url: string;
   data?: any;
@@ -12,14 +12,7 @@ interface HTTPInterface {
   params?: any;
 }
 
-const http = async ({
-  method,
-  url,
-  data,
-  options,
-  headers,
-  params,
-}: HTTPInterface) => {
+const http = async ({ method, url, data, options, headers, params }: IHttp) => {
   let response = null;
 
   const request: AxiosRequestConfig = {

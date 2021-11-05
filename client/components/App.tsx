@@ -1,8 +1,8 @@
 import React from 'react';
 
-interface AppProps {
+type AppProps = {
   children: React.ReactNode;
-}
+};
 
 const App: React.FC<AppProps> = ({ children }) => {
   return <>{children}</>;

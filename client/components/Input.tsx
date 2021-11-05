@@ -1,14 +1,15 @@
 import { UseFormRegister } from 'react-hook-form';
 
 import styles from '../styles/Input.module.scss';
-interface InputFieldProps {
+
+type InputFieldProps = {
   name: string;
   label?: string;
   register: UseFormRegister<any>;
   type?: string;
   required?: boolean;
   placeholder?: string;
-}
+};
 
 const InputField: React.FC<InputFieldProps> = ({
   name,
