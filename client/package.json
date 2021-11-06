@@ -19,8 +19,6 @@
     ]
   },
   "dependencies": {
-    "@headlessui/react": "^1.4.1",
-    "@heroicons/react": "^1.0.5",
     "@hookform/resolvers": "^2.8.2",
     "@reduxjs/toolkit": "^1.6.2",
     "@types/axios": "^0.14.0",
@@ -47,6 +45,7 @@
     "eslint-config-next": "12.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "lint-staged": "^11.2.6",
     "postcss": "^8.3.10",
     "prettier": "^2.4.1",

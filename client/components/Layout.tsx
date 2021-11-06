@@ -9,10 +9,10 @@ type LayoutProps = {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <>
+    <App>
       <NavBar />
-      <App>{children}</App>
-    </>
+      {children}
+    </App>
   );
 };
 

@@ -1,7 +1,9 @@
 .container {
-  @apply flex h-screen w-screen justify-center items-center bg-black;
+  @apply flex h-screen w-screen justify-center items-center bg-black p-20;
   background-image: url('/undraw_stars.svg');
   background-size: cover;
+  background-origin: content-box;
+  background-repeat: no-repeat;
 
   .redirectLink {
     @apply absolute top-2 right-2 text-white hover:text-blue-200;

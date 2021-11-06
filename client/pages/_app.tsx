@@ -1,5 +1,6 @@
 import { Provider } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
+
 import store from '../store';
 import { AppPropsWithLayout } from '../types/layout';
 

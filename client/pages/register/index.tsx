@@ -1,5 +1,6 @@
 import React from 'react';
 import { NextPage } from 'next';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 
@@ -22,9 +23,14 @@ const RegisterPage: NextPage = () => {
   };
 
   return (
-    <SignContainer mode="register">
-      <SignUp onSubmit={onSubmit} />
-    </SignContainer>
+    <div>
+      <Head>
+        <title>Register | Maya BoilerPlate</title>
+      </Head>
+      <SignContainer mode="register">
+        <SignUp onSubmit={onSubmit} />
+      </SignContainer>
+    </div>
   );
 };
 

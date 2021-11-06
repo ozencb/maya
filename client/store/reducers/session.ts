@@ -21,8 +21,10 @@ export const sessionReducer = createSlice({
   initialState: INITIAL_STATE,
   reducers: {
     setUser: (state, action: PayloadAction<any>) => {
-      state.authenticated = true;
       state.user = action.payload;
+    },
+    setAuthenticated: (state, action: PayloadAction<any>) => {
+      state.authenticated = action.payload;
     },
     showLoading: (state) => {
       state.loading = true;
@@ -44,8 +46,13 @@ export const sessionReducer = createSlice({
   },
 });
 
-export const { setUser, showLoading, hideLoading, setAuthError } =
-  sessionReducer.actions;
+export const {
+  setUser,
+  setAuthenticated,
+  showLoading,
+  hideLoading,
+  setAuthError,
+} = sessionReducer.actions;
 export { logOut };
 
 export default sessionReducer.reducer;

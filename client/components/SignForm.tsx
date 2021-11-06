@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -29,13 +29,17 @@ type SignFormProps = {
 };
 
 const SignForm: React.FC<SignFormProps> = ({ onSubmit }) => {
+  const [submitting, setSubmitting] = useState(false);
+
   const { register, handleSubmit } = useForm<ISignForm>({
-    mode: 'onChange',
     resolver: yupResolver(schema),
   });
 
-  const submitForm = (data: ISignForm) => {
+  const submitForm = async (data: ISignForm) => {
+    console.log(data);
+    setSubmitting(true);
     onSubmit(data);
+    setSubmitting(false);
   };
 
   return (
@@ -49,12 +53,17 @@ const SignForm: React.FC<SignFormProps> = ({ onSubmit }) => {
         <InputField
           register={register}
           name="password"
-          placeholder="password"
+          placeholder="Password"
           type="password"
-          label="test"
         />
       </form>
-      <Button onClick={handleSubmit(submitForm)} filled>
+      <Button
+        onClick={() => {
+          handleSubmit(submitForm)();
+        }}
+        disabled={submitting}
+        filled
+      >
         Submit
       </Button>
     </div>

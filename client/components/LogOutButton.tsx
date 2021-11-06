@@ -5,11 +5,7 @@ import toast from 'react-hot-toast';
 import { AuthServices } from '../services';
 import Button from './Button';
 
-type LogOutButtonProps = {
-  children: React.ReactNode;
-};
-
-const LogOutButton: React.FC<LogOutButtonProps> = ({ children }) => {
+const LogOutButton: React.FC = () => {
   const router = useRouter();
 
   const handleLogOut = async () => {
@@ -18,7 +14,8 @@ const LogOutButton: React.FC<LogOutButtonProps> = ({ children }) => {
     toast.dismiss(toastLoadingId);
     router.push('/login');
   };
-  return <Button onClick={handleLogOut}>{children}</Button>;
+
+  return <Button onClick={handleLogOut}>Log Out</Button>;
 };
 
 export default LogOutButton;

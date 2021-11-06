@@ -1,5 +1,6 @@
 import React from 'react';
 import { NextPage } from 'next';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
@@ -8,7 +9,7 @@ import SignIn from '../../components/SignForm';
 import { AuthServices } from '../../services';
 import SignContainer from '../../components/SignContainer';
 import jwtManager from '../../helpers/jwt';
-import { setUser } from '../../store/reducers/session';
+import { setAuthenticated } from '../../store/reducers/session';
 import { RootState } from '../../store';
 
 const LoginPage: NextPage = () => {
@@ -27,7 +28,7 @@ const LoginPage: NextPage = () => {
     const res = await AuthServices.logIn({ username, password });
     jwtManager.setToken(res.accessToken);
 
-    dispatch(setUser({ username }));
+    dispatch(setAuthenticated(true));
 
     toast.dismiss(toastLoadingId);
     toast.success('Logging in', { duration: 1 });
@@ -35,9 +36,14 @@ const LoginPage: NextPage = () => {
   };
 
   return (
-    <SignContainer mode="login">
-      <SignIn onSubmit={onSubmit} />
-    </SignContainer>
+    <div>
+      <Head>
+        <title>Login | Maya BoilerPlate</title>
+      </Head>
+      <SignContainer mode="login">
+        <SignIn onSubmit={onSubmit} />
+      </SignContainer>
+    </div>
   );
 };
 

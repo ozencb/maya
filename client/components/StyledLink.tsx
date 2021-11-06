@@ -1,17 +1,17 @@
 import React from 'react';
 import Link from 'next/link';
 
-type LinkButtonProps = {
+type StyledLinkProps = {
   title: string;
   href: string;
 };
 
-const LinkButton: React.FC<LinkButtonProps> = ({ title, href }) => {
+const StyledLink: React.FC<StyledLinkProps> = ({ title, href }) => {
   return (
     <Link href={href} passHref>
-      <button>{title}</button>
+      {title}
     </Link>
   );
 };
 
-export default LinkButton;
+export default StyledLink;
