@@ -18,7 +18,9 @@ const LoginPage: NextPage = () => {
   );
   const router = useRouter();
 
-  if (authenticated) router.push('/');
+  if (authenticated) {
+    router.push('/');
+  }
 
   const dispatch = useDispatch();
   const onSubmit = async (values: any) => {
@@ -26,19 +28,18 @@ const LoginPage: NextPage = () => {
 
     const { username, password } = values;
     const res = await AuthServices.logIn({ username, password });
-    jwtManager.setToken(res.accessToken);
-
-    dispatch(setAuthenticated(true));
-
-    toast.dismiss(toastLoadingId);
-    toast.success('Logging in', { duration: 1 });
-    router.push('/');
+    if (res) {
+      jwtManager.setToken(res.accessToken);
+      dispatch(setAuthenticated(true));
+      toast.dismiss(toastLoadingId);
+      toast.success('Logging in', { duration: 1 });
+    }
   };
 
   return (
     <div>
       <Head>
-        <title>Login | Maya BoilerPlate</title>
+        <title>Login | Maya</title>
       </Head>
       <SignContainer mode="login">
         <SignIn onSubmit={onSubmit} />

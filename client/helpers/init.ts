@@ -4,9 +4,15 @@ import store from '../store';
 import { setAuthenticated } from '../store/reducers/session';
 
 const initApplication = async () => {
+  console.log('intt');
+
   const res = await AuthServices.refreshToken();
-  jwtManager.setToken(res.accessToken);
-  store.dispatch(setAuthenticated(true));
+  if (res) {
+    console.log(res);
+
+    jwtManager.setToken(res.accessToken);
+    store.dispatch(setAuthenticated(true));
+  }
 };
 
 export default initApplication;
