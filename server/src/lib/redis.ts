@@ -3,11 +3,11 @@ import Redis, { RedisOptions } from 'ioredis';
 export const createRedisInstance = (options: RedisOptions) => {
   const cacheInstance = new Redis(options);
 
-  cacheInstance.on('connect', () => console.log('Connected'));
-  cacheInstance.on('ready', () => console.log('Ready'));
-  cacheInstance.on('reconnecting', () => console.log('Reconnecting'));
-  cacheInstance.on('error', () => console.log('Error'));
-  cacheInstance.on('end', () => console.log('End'));
+  cacheInstance.on('connect', () => console.log('Redis Connected'));
+  cacheInstance.on('ready', () => console.log('Redis Ready'));
+  cacheInstance.on('reconnecting', () => console.log('Redis Reconnecting'));
+  cacheInstance.on('error', () => console.log('Redis Error'));
+  cacheInstance.on('end', () => console.log('Redis End'));
 
   return cacheInstance;
 };
