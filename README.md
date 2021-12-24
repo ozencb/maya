@@ -1,7 +1,13 @@
-<h1 align="center">Maya | A fullstack boilerplate</h1>
-<div align="center">🚧 Work in progress 🚧</div>
+<h2 align="center">🚧 Work in progress 🚧</h2>
 
-Built using:
+
+Maya (Turkish word for "yeast") is a fullstack web application boilerplate. The main goal of this repo is to present a good project structure that is easy to work on and easy to scale. 
+
+### Disclaimer
+This is a work in progress and I am still learning some of the technologies I have used in this repo. So, some of the approaches you see might not be the best or might be up for debate. Feedbacks are greatly appreciated!
+
+
+### Tech Stack:
 
 - React
 - Next.js
