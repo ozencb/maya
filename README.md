@@ -14,14 +14,13 @@ This is a work in progress and I am still learning some of the technologies I ha
 - TypeScript
 - Node.js
 - Express
-- JWT
 - PG-Promise
 - PostgreSQL
 - Redux + Toolkit
+- Zod
+- JWT
 - Tailwind CSS
-- Yup
 - Helmet
-- JOI
 - Winston
 - Husky
 - Eslint

@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import InputField from './Input';
 import Button from './Button';
 
 import styles from '../styles/SignForm.module.scss';
 
-const schema = yup.object().shape({
-  username: yup
-    .string()
-    .min(4, 'Username must contain at least 4 characters')
-    .required('Username is required!'),
-  password: yup
-    .string()
-    .min(4, 'Password must contain at least 4 characters')
-    .required('Password is required!'),
+const schema = z.object({
+  username: z.string().min(4, 'Username must contain at least 4 characters'),
+  password: z.string().min(4, 'Password must contain at least 4 characters'),
 });
 
 interface ISignForm {
@@ -32,7 +26,7 @@ const SignForm: React.FC<SignFormProps> = ({ onSubmit }) => {
   const [submitting, setSubmitting] = useState(false);
 
   const { register, handleSubmit } = useForm<ISignForm>({
-    resolver: yupResolver(schema),
+    resolver: zodResolver(schema),
   });
 
   const submitForm = async (data: ISignForm) => {
