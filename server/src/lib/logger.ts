@@ -4,8 +4,8 @@ import DailyRotateFile, {
   DailyRotateFileTransportOptions,
 } from 'winston-daily-rotate-file';
 
-import { DB } from '../lib';
-import { Log } from '../entities';
+import { db } from '../lib';
+import { Log } from '../models';
 
 const logConfig = {
   logFolder: './logs/',
@@ -30,8 +30,14 @@ class PgTransport extends Transport {
       ? JSON.stringify(error, Object.getOwnPropertyNames(error))
       : null;
 
-    const log = new Log(createdBy, action, level, errorRecord, payload);
-    await DB.orm.em.persistAndFlush([log]);
+    db.logs.add({
+      createdBy,
+      createdAt: new Date(),
+      action,
+      level,
+      error: errorRecord,
+      payload,
+    } as Log);
 
     callback();
   }

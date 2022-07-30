@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { User } from '../entities';
+import { User } from '../models';
 import { __prod__ } from '../constants';
 import { get, setCacheObject } from './cache';
 

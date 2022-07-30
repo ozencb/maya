@@ -7,6 +7,7 @@ import { logger } from './lib';
 
 (async () => {
   const port = process.env.PORT || 8888;
+
   const app = express();
 
   loaders(app);
