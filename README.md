@@ -15,7 +15,7 @@ This is a work in progress and I am still learning some of the technologies I ha
 - Node.js
 - Express
 - JWT
-- MikroORM
+- PG-Promise
 - PostgreSQL
 - Redux + Toolkit
 - Tailwind CSS
@@ -34,14 +34,4 @@ You must have Node, PostgreSQL, Redis, and Yarn installed. Use `dotenv.example` 
 
 To install all the dependencies, run `yarn install-dependencies` on root folder.
 
-For server, `cd` into `server` folder and run `yarn run db:migrate` and `yarn run start`. On a separate terminal, `cd` into `client` folder and run `yarn dev`.
-
-## Todo
-
-- [x] Refresh token on app initialization
-- [ ] Add roles/authorities on backend for admin etc.
-- [ ] Add protected routes with user auth checks
-- [ ] Admin page for kicking/banning users
-- [ ] Profile page for updates/settings/acc deletion
-- [ ] Themes
-- [ ] Avatars generated randomly or with seeds
+For server, `cd` into `server` folder and run `yarn run start`. On a separate terminal, `cd` into `client` folder and run `yarn dev`.
