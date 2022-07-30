@@ -1,5 +1,5 @@
-import { DB } from '../lib';
+import { db } from '../lib';
 
 export const getDetailById = async (id: number) => {
-  return DB.userRepository.findOne({ id });
+  return db.users.findById(id);
 };

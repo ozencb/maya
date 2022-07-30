@@ -1,6 +1,5 @@
-import { DB } from '../lib';
+import { db } from '../lib';
 import { compare, hash } from 'bcryptjs';
-import { User } from '../entities';
 
 export const register = async ({
   username,
@@ -11,8 +10,7 @@ export const register = async ({
 }) => {
   const hashedPassword = await hash(password, 12);
 
-  DB.userRepository.persist(new User(username, hashedPassword));
-  await DB.orm.em.flush();
+  await db.users.add(username, hashedPassword);
 
   return true;
 };
@@ -24,7 +22,7 @@ export const login = async ({
   username: string;
   password: string;
 }) => {
-  const user = await DB.userRepository.findOne({ username });
+  const user = await db.users.findByName(username);
 
   if (!user) throw new Error('Could not find user');
 

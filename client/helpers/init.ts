@@ -4,8 +4,6 @@ import store from '../store';
 import { setAuthenticated } from '../store/reducers/session';
 
 const initApplication = async () => {
-  console.log('intt');
-
   const res = await AuthServices.refreshToken();
   if (res) {
     console.log(res);

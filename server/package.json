@@ -25,11 +25,8 @@
     ]
   },
   "dependencies": {
-    "@mikro-orm/cli": "^4.5.9",
-    "@mikro-orm/core": "^4.5.9",
-    "@mikro-orm/migrations": "^4.5.9",
-    "@mikro-orm/postgresql": "^4.5.9",
     "bcryptjs": "^2.4.3",
+    "bluebird": "^3.7.2",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
@@ -40,6 +37,7 @@
     "ioredis": "^4.28.0",
     "joi": "^17.4.2",
     "jsonwebtoken": "^8.5.1",
+    "pg-promise": "^10.11.1",
     "reflect-metadata": "^0.1.13",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.5",
@@ -47,6 +45,7 @@
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
+    "@types/bluebird": "^3.5.36",
     "@types/compression": "^1.7.2",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.12",
