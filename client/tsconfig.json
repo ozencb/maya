@@ -21,7 +21,9 @@
       "@Types/*": ["types/*"],
       "@Types": ["types"],
       "@Utils/*": ["utils/*"],
-      "@Utils": ["utils"]
+      "@Utils": ["utils"],
+      "@Common/*": ["../../common/*"],
+      "@Common": ["../../common"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -38,6 +40,7 @@
     "jsx": "preserve",
     "incremental": true
   },
+  "references": [{ "path": "../common" }],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

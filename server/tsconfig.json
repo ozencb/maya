@@ -27,7 +27,9 @@
       "@SQL/*": ["sql/*"],
       "@SQL": ["sql"],
       "@Utils/*": ["utils/*"],
-      "@Utils": ["utils"]
+      "@Utils": ["utils"],
+      "@Common/*": ["../../common/*"],
+      "@Common": ["../../common"]
     },
     "target": "es2017",
     "module": "commonjs",
@@ -51,6 +53,7 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true
   },
+  "references": [{ "path": "../common" }],
   "exclude": ["node_modules"],
   "include": ["./src/**/*.ts"]
 }
