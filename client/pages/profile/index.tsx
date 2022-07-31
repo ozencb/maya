@@ -2,7 +2,7 @@ import type { ReactElement } from 'react';
 import type { NextPage } from 'next';
 import React from 'react';
 
-import Layout from '../../components/Layout';
+import { Layout } from '@Components';
 
 type ProfileComponent = NextPage & {
   getLayout(page: ReactElement): ReactElement;

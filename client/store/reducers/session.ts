@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import inMemoryJWTManager from '../../helpers/jwt';
-import { AuthServices } from '../../services';
+import inMemoryJWTManager from '@Helpers/jwt';
+import { AuthServices } from '@Services';
 
 const INITIAL_STATE = {
   authenticated: false,

@@ -1,6 +1,6 @@
 import { IDatabase } from 'pg-promise';
-import { Log } from '../models';
-import { logs as sql } from '../sql';
+import { Log } from '@Models';
+import { logs as sql } from '@SQL';
 
 /*
  This repository mixes hard-coded and dynamic SQL, just to show how to use both.

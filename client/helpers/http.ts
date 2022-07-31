@@ -1,5 +1,5 @@
 import { AxiosRequestConfig, AxiosRequestHeaders, Method } from 'axios';
-import axiosInstance from '../lib/axios';
+import axiosInstance from '@Lib/axios';
 
 interface IHttp {
   method: Method;

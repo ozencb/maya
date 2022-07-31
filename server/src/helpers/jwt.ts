@@ -1,6 +1,6 @@
 import { Response } from 'express';
-import { User } from '../models';
-import { __prod__ } from '../constants';
+import { User } from '@Models';
+import { __prod__ } from '@Constants';
 import { get, setCacheObject } from './cache';
 
 export const setRefreshToken = (res: Response, token: string) => {

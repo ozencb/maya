@@ -1,7 +1,7 @@
 import * as promise from 'bluebird'; // best promise library today
 import pgPromise, { IInitOptions, IDatabase, IMain } from 'pg-promise'; // pg-promise core library
 
-import { IExtensions, UsersRepository, LogsRepository } from '../repositories';
+import { IExtensions, UsersRepository, LogsRepository } from '@Repositories';
 
 type ExtendedProtocol = IDatabase<IExtensions> & IExtensions;
 

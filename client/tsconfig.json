@@ -1,5 +1,28 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@Components/*": ["components/*"],
+      "@Components": ["components"],
+      "@Constants/*": ["constants/*"],
+      "@Constants": ["constants"],
+      "@Helpers/*": ["helpers/*"],
+      "@Helpers": ["helpers"],
+      "@Lib/*": ["lib/*"],
+      "@Lib": ["lib"],
+      "@Reducers/*": ["store/reducers/*"],
+      "@Reducers": ["store/reducers"],
+      "@Services/*": ["services/*"],
+      "@Services": ["services"],
+      "@Store/*": ["store/*"],
+      "@Store": ["store"],
+      "@Styles/*": ["styles/*"],
+      "@Styles": ["styles"],
+      "@Types/*": ["types/*"],
+      "@Types": ["types"],
+      "@Utils/*": ["utils/*"],
+      "@Utils": ["utils"]
+    },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

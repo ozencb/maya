@@ -3,9 +3,9 @@ import type { ReactElement } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
-import Layout from '../components/Layout';
+import { Layout } from '@Components';
 
-import styles from '../styles/Home.module.scss';
+import styles from '@Styles/Home.module.scss';
 
 type HomeComponent = NextPage & { getLayout(page: ReactElement): ReactElement };
 

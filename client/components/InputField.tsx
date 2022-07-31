@@ -1,6 +1,6 @@
 import { UseFormRegister } from 'react-hook-form';
 
-import styles from '../styles/Input.module.scss';
+import styles from '@Styles/Input.module.scss';
 
 type InputFieldProps = {
   name: string;

@@ -1,7 +1,7 @@
 import { IDatabase } from 'pg-promise';
 import { IResult } from 'pg-promise/typescript/pg-subset';
-import { User } from '../models';
-import { users as sql } from '../sql';
+import { User } from '@Models';
+import { users as sql } from '@SQL';
 
 /*
  This repository mixes hard-coded and dynamic SQL, just to show how to use both.

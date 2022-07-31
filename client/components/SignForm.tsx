@@ -3,10 +3,10 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import InputField from './Input';
+import InputField from './InputField';
 import Button from './Button';
 
-import styles from '../styles/SignForm.module.scss';
+import styles from '@Styles/SignForm.module.scss';
 
 const schema = z.object({
   username: z.string().min(4, 'Username must contain at least 4 characters'),

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
-import { RootState } from '../store';
+import { RootState } from '@Store';
 import Loading from './Loading';
 
 type AuthRouteProps = React.PropsWithChildren<{

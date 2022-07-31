@@ -1,4 +1,4 @@
-import http from '../helpers/http';
+import http from '@Helpers/http';
 
 const register = async ({
   username,

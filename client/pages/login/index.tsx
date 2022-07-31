@@ -5,12 +5,11 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 
-import SignIn from '../../components/SignForm';
-import { AuthServices } from '../../services';
-import SignContainer from '../../components/SignContainer';
-import jwtManager from '../../helpers/jwt';
-import { setAuthenticated } from '../../store/reducers/session';
-import { RootState } from '../../store';
+import { SignForm, SignContainer } from '@Components';
+import { AuthServices } from '@Services';
+import jwtManager from '@Helpers/jwt';
+import { setAuthenticated } from '@Store/reducers/session';
+import { RootState } from '@Store';
 
 const LoginPage: NextPage = () => {
   const { authenticated } = useSelector(
@@ -42,7 +41,7 @@ const LoginPage: NextPage = () => {
         <title>Login | Maya</title>
       </Head>
       <SignContainer mode="login">
-        <SignIn onSubmit={onSubmit} />
+        <SignForm onSubmit={onSubmit} />
       </SignContainer>
     </div>
   );

@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import LogOutButton from './LogOutButton';
 
-import styles from '../styles/NavBar.module.scss';
+import styles from '@Styles/NavBar.module.scss';
 
 export const NavBar = () => {
   const navigation = [

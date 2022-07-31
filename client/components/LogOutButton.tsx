@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import toast from 'react-hot-toast';
 
-import { AuthServices } from '../services';
-import { setAuthenticated } from '../store/reducers/session';
+import { AuthServices } from '@Services';
+import { setAuthenticated } from '@Reducers/session';
 import Button from './Button';
 
 const LogOutButton: React.FC = () => {

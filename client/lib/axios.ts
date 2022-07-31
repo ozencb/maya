@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import { API_URL } from '../constants';
-import jwtManager from '../helpers/jwt';
+import { API_URL } from '@Constants';
+import jwtManager from '@Helpers/jwt';
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: API_URL,

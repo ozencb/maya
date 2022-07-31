@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { JwtPayload, verify } from 'jsonwebtoken';
 
-import Utils from '../utils';
-import { success, Status, error } from '../constants';
-import { AuthServices, UserServices } from '../services';
-import { logger } from '../lib';
+import Utils from '@Utils';
+import { success, Status, error } from '@Constants';
+import { AuthServices, UserServices } from '@Services';
+import { logger } from '@Lib';
 import {
   setRefreshToken,
   setEmptyRefreshToken,

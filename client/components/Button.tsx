@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { spreadClasses } from '../utils';
+import { spreadClasses } from '@Utils';
 
-import styles from '../styles/Button.module.scss';
+import styles from '@Styles/Button.module.scss';
 
 type ButtonProps = {
   children: React.ReactNode;

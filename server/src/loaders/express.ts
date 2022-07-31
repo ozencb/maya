@@ -4,8 +4,8 @@ import helmet from 'helmet';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 
-import routes from '../routes';
-import { __prod__ } from '../constants';
+import routes from '@Routes';
+import { __prod__ } from '@Constants';
 
 const expressLoaders = (app: Application) => {
   app.use((_req, res, next) => {

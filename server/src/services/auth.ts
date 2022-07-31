@@ -1,4 +1,4 @@
-import { db } from '../lib';
+import { db } from '@Lib';
 import { compare, hash } from 'bcryptjs';
 
 export const register = async ({

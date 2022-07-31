@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { error, Status } from '../constants';
-import schemas from '../schemas';
+import { error, Status } from '@Constants';
+import schemas from '@Schemas';
 
 export default (schema: keyof typeof schemas) => {
   if (!schemas.hasOwnProperty(schema))

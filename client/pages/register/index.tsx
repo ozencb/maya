@@ -5,10 +5,9 @@ import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 
-import SignUp from '../../components/SignForm';
-import { AuthServices } from '../../services';
-import SignContainer from '../../components/SignContainer';
-import { RootState } from '../../store';
+import { SignForm, SignContainer } from '@Components';
+import { AuthServices } from '@Services';
+import { RootState } from '@Store';
 
 const RegisterPage: NextPage = () => {
   const { authenticated } = useSelector(
@@ -41,7 +40,7 @@ const RegisterPage: NextPage = () => {
         <title>Register | Maya</title>
       </Head>
       <SignContainer mode="register">
-        <SignUp onSubmit={onSubmit} />
+        <SignForm onSubmit={onSubmit} />
       </SignContainer>
     </div>
   );

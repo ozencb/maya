@@ -1,7 +1,7 @@
-import { AuthServices } from '../services';
+import { AuthServices } from '@Services';
 import jwtManager from './jwt';
-import store from '../store';
-import { setAuthenticated } from '../store/reducers/session';
+import store from '@Store';
+import { setAuthenticated } from '@Reducers/session';
 
 const initApplication = async () => {
   const res = await AuthServices.refreshToken();

@@ -4,8 +4,8 @@ import DailyRotateFile, {
   DailyRotateFileTransportOptions,
 } from 'winston-daily-rotate-file';
 
-import { db } from '../lib';
-import { Log } from '../models';
+import { db } from '@Lib';
+import { Log } from '@Models';
 
 const logConfig = {
   logFolder: './logs/',

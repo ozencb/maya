@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-import styles from '../styles/SignContainer.module.scss';
+import styles from '@Styles/SignContainer.module.scss';
 
 type SignContainerProps = {
   children: React.ReactNode;

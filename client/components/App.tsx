@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import AuthRoute from './AuthRoute';
-import initApplication from '../helpers/init';
+import initApplication from '@Helpers/init';
 
 type AppProps = {
   children: React.ReactNode;
