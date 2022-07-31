@@ -1,36 +1,6 @@
 {
+  "extends": "./tsconfig.path.json",
   "compilerOptions": {
-    "baseUrl": "./src",
-    "paths": {
-      "@Constants/*": ["constants/*"],
-      "@Constants": ["constants"],
-      "@Controllers/*": ["controllers/*"],
-      "@Controllers": ["controllers"],
-      "@Helpers/*": ["helpers/*"],
-      "@Helpers": ["helpers"],
-      "@Lib/*": ["lib/*"],
-      "@Lib": ["lib"],
-      "@Loaders/*": ["loaders/*"],
-      "@Loaders": ["loaders"],
-      "@Middlewares/*": ["middlewares/*"],
-      "@Middlewares": ["middlewares"],
-      "@Models/*": ["models/*"],
-      "@Models": ["models"],
-      "@Repositories/*": ["repositories/*"],
-      "@Repositories": ["repositories"],
-      "@Routes/*": ["routes/*"],
-      "@Routes": ["routes"],
-      "@Schemas/*": ["schemas/*"],
-      "@Schemas": ["schemas"],
-      "@Services/*": ["services/*"],
-      "@Services": ["services"],
-      "@SQL/*": ["sql/*"],
-      "@SQL": ["sql"],
-      "@Utils/*": ["utils/*"],
-      "@Utils": ["utils"],
-      "@Common/*": ["../../common/*"],
-      "@Common": ["../../common"]
-    },
     "target": "es2017",
     "module": "commonjs",
     "lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
@@ -53,7 +23,6 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true
   },
-  "references": [{ "path": "../common" }],
   "exclude": ["node_modules"],
   "include": ["./src/**/*.ts"]
 }
