@@ -31,6 +31,4 @@ This is a work in progress and I am still learning some of the technologies I ha
 
 You must have Node, PostgreSQL, Redis, and Yarn installed. Use `dotenv.example` as a template to create a `.env` file and fill-in/change all the values.
 
-To install all the dependencies, run `yarn install-dependencies` on root folder.
-
-For server, `cd` into `server` folder and run `yarn run start`. On a separate terminal, `cd` into `client` folder and run `yarn dev`.
+To install all the dependencies, run `yarn install-dependencies` on root folder. You can then run `yarn start` to start both the API server and client.
