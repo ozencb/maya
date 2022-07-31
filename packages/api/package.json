@@ -1,5 +1,5 @@
 {
-  "name": "maya-server",
+  "name": "maya-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

@@ -1,8 +1,7 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-cd client
+cd packages/client
 npm run pre-push
-cd ..
-cd server
+cd ../../api
 npm run pre-push
