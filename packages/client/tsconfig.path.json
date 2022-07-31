@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@Components/*": ["components/*"],
+      "@Components": ["components"],
+      "@Constants/*": ["constants/*"],
+      "@Constants": ["constants"],
+      "@Helpers/*": ["helpers/*"],
+      "@Helpers": ["helpers"],
+      "@Lib/*": ["lib/*"],
+      "@Lib": ["lib"],
+      "@Reducers/*": ["store/reducers/*"],
+      "@Reducers": ["store/reducers"],
+      "@Services/*": ["services/*"],
+      "@Services": ["services"],
+      "@Store/*": ["store/*"],
+      "@Store": ["store"],
+      "@Types/*": ["types/*"],
+      "@Types": ["types"],
+      "@Utils/*": ["utils/*"],
+      "@Utils": ["utils"],
+      "@Common/*": ["../../common/*"],
+      "@Common": ["../../common"]
+    }
+  }
+}

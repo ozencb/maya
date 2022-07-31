@@ -9,17 +9,17 @@ This is a work in progress and I am still learning some of the technologies I ha
 
 ### Tech Stack:
 
-- React
-- Next.js
 - TypeScript
+- React
 - Node.js
 - Express
+- tRPC
 - PG-Promise
 - PostgreSQL
 - Redux + Toolkit
+- RTK Query
 - Zod
-- JWT
-- Tailwind CSS
+- Sessions
 - Helmet
 - Winston
 - Husky
