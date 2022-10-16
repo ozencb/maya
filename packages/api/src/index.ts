@@ -10,7 +10,7 @@ import { logger } from '@Lib';
 
   const app = express();
 
-  loaders(app);
+  await loaders(app);
 
   app.listen(port, () => {
     logger.verbose(`Server is running on port ${port}`);

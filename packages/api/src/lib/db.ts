@@ -1,4 +1,3 @@
-import * as promise from 'bluebird'; // best promise library today
 import pgPromise, { IInitOptions, IDatabase, IMain } from 'pg-promise'; // pg-promise core library
 
 import { IExtensions, UsersRepository, LogsRepository } from '@Repositories';
@@ -7,9 +6,6 @@ type ExtendedProtocol = IDatabase<IExtensions> & IExtensions;
 
 // pg-promise initialization options:
 const initOptions: IInitOptions<IExtensions> = {
-  // Using a custom promise library, instead of the default ES6 Promise:
-  promiseLib: promise,
-
   // Extending the database protocol with our custom repositories;
   // API: http://vitaly-t.github.io/pg-promise/global.html#event:extend
   extend(obj: ExtendedProtocol, _dc: any) {

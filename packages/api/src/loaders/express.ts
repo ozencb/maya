@@ -5,7 +5,7 @@ import compression from 'compression';
 import cookieParser from 'cookie-parser';
 
 import routes from '@Routes';
-import { __prod__ } from '@Constants';
+import { __PROD__ } from '@Constants';
 
 const expressLoaders = (app: Application) => {
   app.use((_req, res, next) => {
@@ -17,7 +17,7 @@ const expressLoaders = (app: Application) => {
 
   app.use(cookieParser());
 
-  if (__prod__) {
+  if (__PROD__) {
     app.use(helmet());
   }
 

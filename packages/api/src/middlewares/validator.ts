@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { error, Status } from '@Constants';
+import { error, HTTPStatus } from '@Constants';
 import schemas from '@Schemas';
 
 export default (schema: keyof typeof schemas) => {
@@ -15,7 +15,7 @@ export default (schema: keyof typeof schemas) => {
     } catch (err) {
       if (err.isJoi) console.log(err);
 
-      res.status(Status.ERROR).send({ ...error, message: err.details });
+      res.status(HTTPStatus.ERROR).send({ ...error, message: err.details });
     }
   };
 };
