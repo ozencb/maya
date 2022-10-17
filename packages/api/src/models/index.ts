@@ -1,8 +1,4 @@
-export interface User {
-  id: number;
-  name: string;
-  password: string;
-}
+export * from '@Common';
 
 export interface Log {
   id: number;

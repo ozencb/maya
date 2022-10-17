@@ -2,6 +2,7 @@ import { IDatabase } from 'pg-promise';
 import { IResult } from 'pg-promise/typescript/pg-subset';
 import { User } from '@Models';
 import { users as sql } from '@SQL';
+import { getOrSetOnCache } from '@Lib';
 
 export class UsersRepository {
   constructor(private db: IDatabase<any>) {}
@@ -27,7 +28,8 @@ export class UsersRepository {
   }
 
   async all(): Promise<User[]> {
-    return this.db.any('SELECT * FROM users');
+    const query = () => this.db.any('SELECT * FROM users');
+    return getOrSetOnCache<User[]>('allUsers', query);
   }
 
   async total(): Promise<number> {

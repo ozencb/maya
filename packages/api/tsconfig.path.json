@@ -6,8 +6,6 @@
       "@Constants": ["constants"],
       "@Controllers/*": ["controllers/*"],
       "@Controllers": ["controllers"],
-      "@Helpers/*": ["helpers/*"],
-      "@Helpers": ["helpers"],
       "@Lib/*": ["lib/*"],
       "@Lib": ["lib"],
       "@Loaders/*": ["loaders/*"],
