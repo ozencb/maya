@@ -19,7 +19,9 @@
       "@Types/*": ["types/*"],
       "@Types": ["types"],
       "@Utils/*": ["utils/*"],
-      "@Utils": ["utils"]
+      "@Utils": ["utils"],
+      "@Common/*": ["../../common/*"],
+      "@Common": ["../../common"]
     }
   }
 }
