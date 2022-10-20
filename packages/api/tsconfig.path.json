@@ -26,6 +26,8 @@
       "@SQL": ["sql"],
       "@Utils/*": ["utils/*"],
       "@Utils": ["utils"],
+      "@Types/*": ["types/*"],
+      "@Types": ["types"],
       "@Common/*": ["../../common/*"],
       "@Common": ["../../common"]
     }

@@ -1,6 +1,6 @@
 import pgPromise, { IInitOptions, IDatabase, IMain } from 'pg-promise'; // pg-promise core library
 
-import { IExtensions, UsersRepository, LogsRepository } from '@Repositories';
+import { IExtensions, UserRepository, LogRepository } from '@Repositories';
 
 type ExtendedProtocol = IDatabase<IExtensions> & IExtensions;
 
@@ -9,8 +9,8 @@ const initOptions: IInitOptions<IExtensions> = {
   // Extending the database protocol with our custom repositories;
   // API: http://vitaly-t.github.io/pg-promise/global.html#event:extend
   extend(obj: ExtendedProtocol, _dc: any) {
-    obj.users = new UsersRepository(obj);
-    obj.logs = new LogsRepository(obj);
+    obj.user = new UserRepository(obj);
+    obj.log = new LogRepository(obj);
   },
 };
 

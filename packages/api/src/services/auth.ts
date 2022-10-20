@@ -1,5 +1,5 @@
 import { db } from '@Lib';
-import { hash } from 'bcryptjs';
+import { compare, hash } from 'bcryptjs';
 
 export const register = async ({
   username,
@@ -10,7 +10,23 @@ export const register = async ({
 }) => {
   const hashedPassword = await hash(password, 12);
 
-  await db.users.add(username, hashedPassword);
+  await db.user.add(username, hashedPassword);
 
   return true;
+};
+
+export const login = async ({
+  username,
+  password,
+}: {
+  username: string;
+  password: string;
+}) => {
+  const user = await db.user.findByName(username);
+  if (!user) throw new Error('Could not find user');
+
+  const isValid = await compare(password, user.password);
+  if (!isValid) throw new Error('Password is wrong');
+
+  return user;
 };

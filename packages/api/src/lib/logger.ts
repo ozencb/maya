@@ -30,7 +30,7 @@ class PgTransport extends Transport {
       ? JSON.stringify(error, Object.getOwnPropertyNames(error))
       : null;
 
-    db.logs.add({
+    db.log.add({
       createdBy,
       createdAt: new Date(),
       action,

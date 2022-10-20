@@ -17,9 +17,9 @@ const sql = (file: string): QueryFile => {
   return qf;
 };
 
-export const users = {
-  add: sql('users/add.sql'),
+export const user = {
+  add: sql('user/add.sql'),
 };
-export const logs = {
-  add: sql('logs/add.sql'),
+export const log = {
+  add: sql('log/add.sql'),
 };

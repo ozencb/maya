@@ -29,18 +29,18 @@ const options = {
   },
 } as IORedis.RedisOptions;
 
-const client = createRedisInstance(options);
+export const redisClient = createRedisInstance(options);
 
 export const getOrSetOnCache = async <T>(
   key: String,
   callback: () => Promise<T>,
   expiration: number = 600
 ): Promise<T> => {
-  const res = await client.get(key as KeyType);
+  const res = await redisClient.get(key as KeyType);
 
   if (!res) {
     const dbRes = await callback();
-    client.setex(key as KeyType, expiration, JSON.stringify(dbRes));
+    redisClient.setex(key as KeyType, expiration, JSON.stringify(dbRes));
     return dbRes;
   }
 

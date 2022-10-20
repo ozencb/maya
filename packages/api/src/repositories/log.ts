@@ -1,8 +1,8 @@
 import { IDatabase } from 'pg-promise';
 import { Log } from '@Models';
-import { logs as sql } from '@SQL';
+import { log as sql } from '@SQL';
 
-export class LogsRepository {
+export class LogRepository {
   constructor(private db: IDatabase<any>) {}
 
   async add({

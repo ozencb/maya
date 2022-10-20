@@ -21,7 +21,8 @@
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "typeRoots": ["./src/typing-stubs", "./node_modules/@types"]
   },
   "exclude": ["node_modules"],
   "include": ["./src/**/*.ts"]

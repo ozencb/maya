@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 export * from '@Common';
 
 export interface Log {

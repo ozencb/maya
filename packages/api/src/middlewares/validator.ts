@@ -10,6 +10,7 @@ export default (schema: keyof typeof schemas) => {
   return async function (req: Request, res: Response, next: NextFunction) {
     try {
       const validated = await schemas[schema].parseAsync(req.body);
+
       req.body = validated;
       next();
     } catch (err) {

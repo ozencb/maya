@@ -1,10 +1,10 @@
 <h2 align="center">🚧 Work in progress 🚧</h2>
 
 
-Maya (Turkish word for "yeast") is a fullstack web application boilerplate. The main goal of this repo is to present a good project structure that is easy to work on and easy to scale. 
+Maya (Turkish word for "yeast") is a fullstack showcase application. The main goal of this project is to present a good project structure and show how a mildly complex, production grade web application would consist of. 
 
 ### Disclaimer
-This is a work in progress and I am still learning some of the technologies I have used in this repo. Some of the approaches you see might be up for debate. Feedbacks are greatly appreciated!
+This is a work in progress. Some of the approaches you will see might be up for debate. Feedbacks are greatly appreciated!
 
 
 ### Tech Stack:
@@ -13,7 +13,8 @@ This is a work in progress and I am still learning some of the technologies I ha
 - React
 - Node.js
 - Express
-- tRPC
+- Cypress
+- Vite
 - PG-Promise
 - PostgreSQL
 - Zustand
@@ -38,4 +39,6 @@ To install all the dependencies, run `yarn install-dependencies` on root folder.
 - Docker
 - Shared types
 - Session based auth
-- 
+- Migrations
+- Integration tests
+- Unit tests

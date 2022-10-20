@@ -1,10 +1,10 @@
-import { LogsRepository } from './logs';
-import { UsersRepository } from './users';
+import { LogRepository } from './log';
+import { UserRepository } from './user';
 
 // Database Interface Extensions:
 interface IExtensions {
-  users: UsersRepository;
-  logs: LogsRepository;
+  user: UserRepository;
+  log: LogRepository;
 }
 
-export { IExtensions, UsersRepository, LogsRepository };
+export { IExtensions, UserRepository, LogRepository };
