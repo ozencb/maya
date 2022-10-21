@@ -42,3 +42,4 @@ To install all the dependencies, run `yarn install-dependencies` on root folder.
 - Migrations
 - Integration tests
 - Unit tests
+- Themes
