@@ -11,11 +11,10 @@ const generateRouteObject = (page: Page): RouteObject => ({
 
 export const AppRoutes = () => {
   const publicPages = pages.filter((page) => !page.protected);
-  const protectedPages = pages.filter((page) => page.protected);
 
   const auth = { user: 'ss' };
 
-  const routes = auth.user ? protectedPages : publicPages;
+  const routes = auth.user ? pages : publicPages;
 
   const element = useRoutes(routes.map((route) => generateRouteObject(route)));
 
