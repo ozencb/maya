@@ -40,15 +40,15 @@ export const login = async (req: Request, res: Response) => {
       req.session.userId = response.id;
     }
 
-    console.log(req.session);
-
     logger.info({
       createdBy: username,
       action: 'login',
       payload: { username: req.body.username },
     });
 
-    res.status(HTTPStatus.SUCCESS).send({ ...success, response });
+    res
+      .status(HTTPStatus.SUCCESS)
+      .send({ ...success, id: response.id, username: response.username });
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,

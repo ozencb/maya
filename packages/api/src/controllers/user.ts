@@ -6,9 +6,6 @@ import { UserService } from '@Services';
 
 export const me = async (req: Request, res: Response) => {
   try {
-    console.log('geldi');
-    console.log(req.body);
-
     const { username } = req.body;
 
     const result = await UserService.getDetailByUsername(username);

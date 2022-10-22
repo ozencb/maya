@@ -2,13 +2,15 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
+      "@Api": ["api"],
+      "@Constants": ["constants"],
       "@Elements": ["components/Elements"],
       "@Elements/*": ["components/Elements/*"],
       "@Form": ["components/Form"],
       "@Form/*": ["components/Form/*"],
       "@Layout": ["components/Layout"],
       "@Layout/*": ["components/Layout/*"],
-      "@Constants": ["constants"],
+
       "@Helpers/*": ["helpers/*"],
       "@Helpers": ["helpers"],
       "@Lib/*": ["lib/*"],

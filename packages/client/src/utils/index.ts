@@ -1,2 +1,2 @@
 export * from './css';
-export * from './lazyImport';
+export * from './namedLazyImport';

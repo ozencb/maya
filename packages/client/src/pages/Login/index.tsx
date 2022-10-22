@@ -1,13 +1,12 @@
 import { SignContainer, SignForm } from '@Form';
+import { SignFormFields } from '@Types';
+import { useLogin } from '@Api';
 
 const LoginPage: React.FC = () => {
-  const onSubmit = (e: any) => {
-    console.log(e);
-  };
-
+  const mutation = useLogin();
   return (
     <SignContainer mode="login">
-      <SignForm onSubmit={onSubmit} />
+      <SignForm onSubmit={(e) => mutation.mutate(e)} />
     </SignContainer>
   );
 };

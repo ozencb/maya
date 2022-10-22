@@ -1,7 +1,6 @@
 {
   "name": "maya-common",
   "private": true,
-  "type": "module",
   "version": "1.0.0",
   "devDependencies": {
     "typescript": "^4.8.4"

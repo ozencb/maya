@@ -27,7 +27,7 @@ const runUp = async () => {
                         created_by varchar(255),
                         action     varchar(255),
                         level      varchar(255),
-                        error      varchar(255),
+                        error      text,
                         payload    jsonb
                     );`,
   };

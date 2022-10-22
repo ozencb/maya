@@ -1,4 +1,10 @@
-import express, { Application } from 'express';
+import express, {
+  Application,
+  ErrorRequestHandler,
+  NextFunction,
+  Request,
+  Response,
+} from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
@@ -14,6 +20,21 @@ const SESSION_SECRET = process.env.SESSION_SECRET!;
 
 const expressLoaders = (app: Application) => {
   const RedisStore = connectRedis(session);
+
+  app.use(
+    (
+      err: ErrorRequestHandler,
+      req: Request,
+      res: Response,
+      next: NextFunction
+    ) => {
+      if (req.xhr) {
+        res.status(500).send({ error: 'Something failed!' });
+      } else {
+        next(err);
+      }
+    }
+  );
 
   app.use((_req, res, next) => {
     res.set('Cache-Control', 'private, no-cache, no-store, must-revalidate');
