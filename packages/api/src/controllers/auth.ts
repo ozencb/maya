@@ -8,7 +8,7 @@ export const register = async (req: Request, res: Response) => {
   try {
     const { username } = req.body;
 
-    const response = await AuthService.register(req.body);
+    await AuthService.register(req.body);
 
     logger.info({
       createdBy: username,
@@ -16,7 +16,7 @@ export const register = async (req: Request, res: Response) => {
       payload: { username: req.body.username },
     });
 
-    res.status(HTTPStatus.SUCCESS).send({ ...success, response });
+    res.status(HTTPStatus.SUCCESS).send({ ...success });
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,
@@ -46,9 +46,7 @@ export const login = async (req: Request, res: Response) => {
       payload: { username: req.body.username },
     });
 
-    res
-      .status(HTTPStatus.SUCCESS)
-      .send({ ...success, id: response.id, username: response.username });
+    res.status(HTTPStatus.SUCCESS).send({ ...success });
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,

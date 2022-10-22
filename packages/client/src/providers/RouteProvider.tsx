@@ -9,7 +9,7 @@ const LoginPage = React.lazy(() => import('@Pages/Login'));
 const RegisterPage = React.lazy(() => import('@Pages/Register'));
 const NoMatch = React.lazy(() => import('@Pages/NoMatch'));
 
-export const AppRoutes = () => {
+const RouteProvider = () => {
   const publicRoutes: RouteObject[] = [
     { path: '/', element: <HomePage /> },
     { path: '/login', element: <LoginPage /> },
@@ -30,3 +30,5 @@ export const AppRoutes = () => {
 
   return <MainLayout>{element}</MainLayout>;
 };
+
+export default RouteProvider;

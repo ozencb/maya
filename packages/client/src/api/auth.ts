@@ -1,12 +1,8 @@
-import { User } from '@Common/types';
 import http from '@Helpers/http';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { SignFormFields } from '@Types/index';
 
-export const login = ({
-  username,
-  password,
-}: SignFormFields): Promise<User[]> =>
+const login = ({ username, password }: SignFormFields) =>
   http({
     method: 'POST',
     url: 'auth/login',
@@ -16,12 +12,7 @@ export const login = ({
     },
   });
 
-export const useLogin = () => useMutation(login);
-
-export const register = ({
-  username,
-  password,
-}: SignFormFields): Promise<boolean> =>
+const register = ({ username, password }: SignFormFields) =>
   http({
     method: 'POST',
     url: 'auth/register',
@@ -31,4 +22,12 @@ export const register = ({
     },
   });
 
+const logout = () =>
+  http({
+    method: 'POST',
+    url: 'auth/logout',
+  });
+
+export const useLogin = () => useMutation(login);
 export const useRegister = () => useMutation(register);
+export const useLogout = () => useMutation(logout);
