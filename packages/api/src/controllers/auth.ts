@@ -16,7 +16,7 @@ export const register = async (req: Request, res: Response) => {
       payload: { username: req.body.username },
     });
 
-    res.status(HTTPStatus.SUCCESS).send({ ...success });
+    return res.status(HTTPStatus.SUCCESS).send({ ...success });
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,
@@ -25,7 +25,7 @@ export const register = async (req: Request, res: Response) => {
       error: err,
     });
 
-    res.status(HTTPStatus.ERROR).send({ ...error });
+    return res.status(HTTPStatus.ERROR).send({ ...error });
   }
 };
 
@@ -46,7 +46,7 @@ export const login = async (req: Request, res: Response) => {
       payload: { username: req.body.username },
     });
 
-    res.status(HTTPStatus.SUCCESS).send({ ...success });
+    return res.status(HTTPStatus.SUCCESS).send({ ...success });
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,
@@ -55,7 +55,7 @@ export const login = async (req: Request, res: Response) => {
       error: err,
     });
 
-    res.status(HTTPStatus.ERROR).send({ ...error });
+    return res.status(HTTPStatus.ERROR).send({ ...error });
   }
 };
 
@@ -72,7 +72,7 @@ export const logout = async (req: Request, res: Response) => {
       payload: { username: req.body.username },
     });
 
-    res.status(HTTPStatus.SUCCESS).send({ ...success });
+    return res.status(HTTPStatus.SUCCESS).send({ ...success });
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,
@@ -81,6 +81,6 @@ export const logout = async (req: Request, res: Response) => {
       error: err,
     });
 
-    res.status(HTTPStatus.ERROR).send({ ...error });
+    return res.status(HTTPStatus.ERROR).send({ ...error });
   }
 };

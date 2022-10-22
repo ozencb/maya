@@ -69,7 +69,8 @@ const expressLoaders = (app: Application) => {
       name: 'sid',
       secret: SESSION_SECRET,
       saveUninitialized: true,
-      resave: false,
+      resave: true,
+      rolling: true,
       store: new RedisStore({ client: redisClient }),
       cookie: {
         secure: __PROD__ ? true : false,

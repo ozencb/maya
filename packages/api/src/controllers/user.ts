@@ -6,9 +6,13 @@ import { UserService } from '@Services';
 
 export const me = async (req: Request, res: Response) => {
   try {
-    const { username } = req.body;
+    const { username } = req.session;
 
-    const result = await UserService.getDetailByUsername(username);
+    if (!username) {
+      return res.status(HTTPStatus.UNAUTHORIZED).send({ ...error });
+    }
+
+    const data = await UserService.getDetailByUsername(username);
 
     logger.info({
       createdBy: username,
@@ -16,7 +20,7 @@ export const me = async (req: Request, res: Response) => {
       payload: { username: req.body.username },
     });
 
-    res.status(HTTPStatus.SUCCESS).send({ ...success, result });
+    return res.status(HTTPStatus.SUCCESS).send({ ...success, data });
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,
@@ -25,6 +29,6 @@ export const me = async (req: Request, res: Response) => {
       error: err,
     });
 
-    res.status(HTTPStatus.ERROR).send({ ...error });
+    return res.status(HTTPStatus.ERROR).send({ ...error });
   }
 };
