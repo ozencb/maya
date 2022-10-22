@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 // named imports for React.lazy: https://github.com/facebook/react/issues/14603#issuecomment-726551598
-export function lazyImport<
+export function namedLazyImport<
   T extends React.ComponentType<any>,
   I extends { [K2 in K]: T },
   K extends keyof I
@@ -14,4 +14,4 @@ export function lazyImport<
 }
 
 // Usage
-// const { Home } = lazyImport(() => import("./Home"), "Home");
+// const { Home } = namedLazyImport(() => import("./Home"), "Home");

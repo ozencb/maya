@@ -1,12 +1,5 @@
-import { Page } from '@Types';
-
-const Home = () => {
+const Home: React.FC = () => {
   return <div>Home</div>;
 };
 
-export default {
-  title: 'Home',
-  path: '/',
-  element: Home,
-  protected: false,
-} as Page;
+export default Home;

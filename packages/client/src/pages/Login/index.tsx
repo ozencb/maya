@@ -1,13 +1,15 @@
-import { Page } from '@Types';
+import { SignContainer, SignForm } from '@Form';
 
 const LoginPage: React.FC = () => {
-  const a = '';
-  return <div>LoginPage</div>;
+  const onSubmit = (e: any) => {
+    console.log(e);
+  };
+
+  return (
+    <SignContainer mode="login">
+      <SignForm onSubmit={onSubmit} />
+    </SignContainer>
+  );
 };
 
-export default {
-  title: 'Login',
-  path: '/login',
-  element: LoginPage,
-  protected: false,
-} as Page;
+export default LoginPage;
