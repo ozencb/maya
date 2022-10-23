@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { SignContainer, SignForm } from '@Form';
 import { useLogin, useMe } from '@Api';
 import { useEffect } from 'react';
+import { Head } from '@UtilityComponents';
 
 const LoginPage: React.FC = () => {
   let navigate = useNavigate();
@@ -21,6 +22,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <>
+      <Head title="Login" />
       <p>You must log in to view the page at {from}</p>
       <SignContainer mode="login">
         <SignForm

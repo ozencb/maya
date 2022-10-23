@@ -1,5 +1,6 @@
 import { useMe, useRegister } from '@Api';
 import { SignContainer, SignForm } from '@Form';
+import { Head } from '@UtilityComponents';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,13 +15,16 @@ const RegisterPage: React.FC = () => {
   }, [mutation.isSuccess]);
 
   return (
-    <SignContainer mode="register">
-      <SignForm
-        onSubmit={(e) => {
-          mutation.mutate(e);
-        }}
-      />
-    </SignContainer>
+    <>
+      <Head title="Register" />
+      <SignContainer mode="register">
+        <SignForm
+          onSubmit={(e) => {
+            mutation.mutate(e);
+          }}
+        />
+      </SignContainer>
+    </>
   );
 };
 
