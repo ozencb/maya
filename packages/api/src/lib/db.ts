@@ -1,6 +1,12 @@
 import pgPromise, { IInitOptions, IDatabase, IMain } from 'pg-promise'; // pg-promise core library
 
-import { IExtensions, UserRepository, LogRepository } from '@Repositories';
+import {
+  IExtensions,
+  UserRepository,
+  LogRepository,
+  RoleRepository,
+  AuthorityRepository,
+} from '@Repositories';
 
 type ExtendedProtocol = IDatabase<IExtensions> & IExtensions;
 
@@ -11,6 +17,8 @@ const initOptions: IInitOptions<IExtensions> = {
   extend(obj: ExtendedProtocol, _dc: any) {
     obj.user = new UserRepository(obj);
     obj.log = new LogRepository(obj);
+    obj.role = new RoleRepository(obj);
+    obj.authority = new AuthorityRepository(obj);
   },
 };
 

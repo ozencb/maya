@@ -7,11 +7,11 @@ export type UserDetail = {
 };
 
 export enum AuthorityEnum {
-  ACCESS_ADMIN_PANEL = 'Access Admin Panel'
+  'Access Admin Panel' = 'ACCESS_ADMIN_PANEL'
 }
 
 export enum RoleEnum {
-  ADMIN = 'Admin',
-  MODERATOR = 'Moderator',
-  USER = 'User'
+  Admin = 'ADMIN',
+  Moderator = 'MODERATOR',
+  User = 'USER'
 }

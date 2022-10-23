@@ -9,10 +9,7 @@ export const register = async ({
   password: string;
 }) => {
   const hashedPassword = await hash(password, 12);
-
-  await db.user.add(username, hashedPassword);
-
-  return true;
+  return db.user.add(username, hashedPassword);
 };
 
 export const login = async ({
@@ -23,6 +20,7 @@ export const login = async ({
   password: string;
 }) => {
   const user = await db.user.findByUsername(username);
+
   if (!user) return;
 
   const isValid = await compare(password, user.password);

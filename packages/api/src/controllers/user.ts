@@ -9,6 +9,8 @@ export const me = async (req: Request, res: Response) => {
     const { username } = req.session;
 
     if (!username) {
+      req.session.destroy((_) => {});
+      res.clearCookie('sid');
       return res.status(HTTPStatus.UNAUTHORIZED).send({ ...error });
     }
 

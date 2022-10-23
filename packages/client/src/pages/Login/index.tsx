@@ -26,10 +26,7 @@ const LoginPage: React.FC = () => {
         <SignForm
           onSubmit={(e) => {
             mutation.mutate(e);
-            if (mutation.isSuccess) {
-              refetch();
-              navigate(from, { replace: true });
-            }
+            refetch();
           }}
         />
       </SignContainer>

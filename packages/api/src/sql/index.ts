@@ -31,6 +31,7 @@ export const log = {
 };
 export const role = {
   all: sql('role/all.sql'),
+  addUserRole: sql('role/addUserRole.sql'),
 };
 export const authority = {
   all: sql('authority/all.sql'),

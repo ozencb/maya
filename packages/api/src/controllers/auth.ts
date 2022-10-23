@@ -2,13 +2,15 @@ import { Request, Response } from 'express';
 
 import { success, HTTPStatus, error } from '@Constants';
 import { logger } from '@Lib';
-import { AuthService } from '@Services';
+import { AuthService, UserService } from '@Services';
+import { RoleEnum } from '@Common/types';
 
 export const register = async (req: Request, res: Response) => {
   try {
     const { username } = req.body;
 
-    await AuthService.register(req.body);
+    const createdUser = await AuthService.register(req.body);
+    await UserService.addUserRole(createdUser.id, RoleEnum.User);
 
     logger.info({
       createdBy: username,

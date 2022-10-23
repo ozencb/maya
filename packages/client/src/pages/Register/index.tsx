@@ -1,11 +1,26 @@
-import { useRegister } from '@Api';
+import { useMe, useRegister } from '@Api';
 import { SignContainer, SignForm } from '@Form';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage: React.FC = () => {
+  let navigate = useNavigate();
   const mutation = useRegister();
+
+  useEffect(() => {
+    if (mutation.isSuccess) {
+      navigate('/login', { replace: true });
+    }
+  }, [mutation.isSuccess]);
+
   return (
-    <SignContainer mode="login">
-      <SignForm onSubmit={(e) => mutation.mutate(e)} />
+    <SignContainer mode="register">
+      <SignForm
+        onSubmit={(e) => {
+          mutation.mutate(e);
+          console.log(mutation);
+        }}
+      />
     </SignContainer>
   );
 };

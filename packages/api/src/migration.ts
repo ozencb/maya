@@ -70,16 +70,16 @@ const runUp = async () => {
     insertAuthorities: (() => {
       let query = '';
       (Object.keys(AuthorityEnum) as (keyof typeof AuthorityEnum)[]).forEach(
-        (code) => {
-          query += `INSERT INTO authority(created_by, created_at, code, description) VALUES('ozencb', now(), '${code}', '${AuthorityEnum[code]}');`;
+        (authority) => {
+          query += `INSERT INTO authority(created_by, created_at, code, description) VALUES('ozencb', now(), '${AuthorityEnum[authority]}', '${authority}');`;
         }
       );
       return query;
     })(),
     insertRoles: (() => {
       let query = '';
-      (Object.keys(RoleEnum) as (keyof typeof RoleEnum)[]).forEach((code) => {
-        query += `INSERT INTO role(created_by, created_at, code, description) VALUES('ozencb', now(), '${code}', '${RoleEnum[code]}');`;
+      (Object.keys(RoleEnum) as (keyof typeof RoleEnum)[]).forEach((role) => {
+        query += `INSERT INTO role(created_by, created_at, code, description) VALUES('ozencb', now(), '${RoleEnum[role]}', '${role}');`;
       });
       return query;
     })(),

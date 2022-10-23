@@ -2,6 +2,7 @@ import { RouteObject, useRoutes } from 'react-router-dom';
 
 import { MainLayout } from '@Layout';
 import React from 'react';
+import { useMe } from '@Api';
 
 const AdminPage = React.lazy(() => import('@Pages/Admin'));
 const HomePage = React.lazy(() => import('@Pages/Home'));
@@ -10,6 +11,9 @@ const RegisterPage = React.lazy(() => import('@Pages/Register'));
 const NoMatch = React.lazy(() => import('@Pages/NoMatch'));
 
 const RouteProvider = () => {
+  const { data, status } = useMe();
+  console.log(data);
+
   const publicRoutes: RouteObject[] = [
     { path: '/', element: <HomePage /> },
     { path: '/login', element: <LoginPage /> },
