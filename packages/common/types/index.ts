@@ -3,10 +3,11 @@ export type UserDetail = {
   createdAt: Date;
   username: string;
   role: RoleEnum;
-  authority: AuthorityEnum[];
+  authorities: AuthorityEnum[];
 };
 
 export enum AuthorityEnum {
+  'Elevated Privileges' = 'ELEVATED_PRIVILEGES',
   'Access Admin Panel' = 'ACCESS_ADMIN_PANEL'
 }
 

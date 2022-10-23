@@ -16,57 +16,55 @@ const db = pgp({
 
 const runUp = async () => {
   const queries = {
-    createAppUserTable: `create table app_user
+    createAppUserTable: `CREATE TABLE app_user
                         (
-                            id         bigserial primary key,
-                            created_at timestamp default now(),
-                            username   varchar(255) not null,
-                            password   varchar(255) not null
+                            id         bigserial PRIMARY KEY,
+                            created_at timestamp DEFAULT NOW(),
+                            username   varchar(255) NOT NULL,
+                            password   varchar(255) NOT NULL
                         );`,
-    createAppUserUniqueUsernameIndex: `create unique index app_user_username_unq_idx on app_user (username);`,
-    createLogTable: `create table log
+    createAppUserUniqueUsernameIndex: `CREATE UNIQUE INDEX app_user_username_unq_idx ON app_user (username);`,
+    createLogTable: `CREATE TABLE log
                     (
-                        id         bigserial primary key,
-                        created_at timestamp default now(),
+                        id         bigserial PRIMARY KEY,
+                        created_at timestamp DEFAULT NOW(),
                         created_by varchar(255),
-                        action     varchar(255) not null,
-                        level      varchar(255) not null,
+                        action     varchar(255) NOT NULL,
+                        level      varchar(255) NOT NULL,
                         error      text,
                         payload    jsonb
                     );`,
-    createAuthorityTable: `create table authority
+    createAuthorityTable: `CREATE TABLE authority
                           (
-                              id          bigserial primary key,
-                              created_at  timestamp default now(),
+                              id          bigserial PRIMARY KEY,
+                              created_at  timestamp DEFAULT NOW(),
                               created_by  varchar(255),
-                              code        varchar(255) not null,
+                              code        varchar(255) NOT NULL,
                               description varchar(255),
-                              unique (code)
+                              UNIQUE (code)
                           );`,
-    createRoleTable: `create table role
+    createRoleTable: `CREATE TABLE role
                       (
-                          id          serial primary key,
-                          created_at  timestamp default now(),
+                          id          serial PRIMARY KEY,
+                          created_at  timestamp DEFAULT NOW(),
                           created_by  varchar(255),
-                          code        varchar(255) not null,
+                          code        varchar(255) NOT NULL,
                           description varchar(255),
-                          unique (code)
+                          UNIQUE (code)
                       );`,
-    createUserRoleTable: `
-                      create table user_role
-                      (
-                          id          serial primary key,
-                          user_id     bigint references app_user(id),
-                          role_id     int references role(id),
-                          unique (user_id)
-                      );`,
-    createRoleAuthorityTable: `
-                      create table role_authority
-                      (
-                          id               serial primary key,
-                          role_id          int references role(id),
-                          authority_id     int references authority(id)
-                      );`,
+    createUserRoleTable: `CREATE TABLE user_role
+                          (
+                              id      serial PRIMARY KEY,
+                              user_id bigint REFERENCES app_user (id) NOT NULL,
+                              role_id int REFERENCES role (id),
+                              UNIQUE (user_id)
+                          );`,
+    createRoleAuthorityTable: `CREATE TABLE role_authority
+                              (
+                                  id           serial PRIMARY KEY,
+                                  role_id      int REFERENCES role (id)      NOT NULL,
+                                  authority_id int REFERENCES authority (id) NOT NULL
+                              );`,
     insertAuthorities: (() => {
       let query = '';
       (Object.keys(AuthorityEnum) as (keyof typeof AuthorityEnum)[]).forEach(

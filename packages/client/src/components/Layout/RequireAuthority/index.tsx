@@ -1,32 +1,26 @@
-import { Navigate, useLocation } from 'react-router-dom';
+import { useMe } from '@Api';
+import { AuthorityEnum } from '@Common/types';
+import { checkAuthority } from '@Utils';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
-const RequireAuth = ({
+const RequireAuthority = ({
   children,
   requiredAuthorities,
 }: {
   children: JSX.Element;
-  requiredAuthorities: string[];
-}) => {
-  // const user = useMe();
+  requiredAuthorities: AuthorityEnum[];
+}): JSX.Element => {
+  const { data: loggedInUser } = useMe();
   let location = useLocation();
 
-  const user = {
-    authorities: ['TEST'],
-  };
+  if (!loggedInUser)
+    return <Navigate to="/" state={{ from: location }} replace />;
 
-  if (
-    !requiredAuthorities.every((authority) =>
-      user.authorities.includes(authority)
-    )
-  ) {
-    // Redirect them to the /login page, but save the current location they were
-    // trying to go to when they were redirected. This allows us to send them
-    // along to that page after they login, which is a nicer user experience
-    // than dropping them off on the home page.
-    return <Navigate to="/login" state={{ from: location }} replace />;
+  if (checkAuthority(loggedInUser.authorities, requiredAuthorities)) {
+    return children;
   }
 
-  return children;
+  return <Navigate to="/" state={{ from: location }} replace />;
 };
 
-export default RequireAuth;
+export default RequireAuthority;

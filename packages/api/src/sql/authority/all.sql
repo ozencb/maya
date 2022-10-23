@@ -1,1 +1,2 @@
-select * from authority;
+SELECT *
+FROM authority;

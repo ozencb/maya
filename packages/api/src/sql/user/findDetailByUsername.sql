@@ -1,8 +1,12 @@
-SELECT au.id, au.created_at, au.username, r.code, array_agg(a.code)
+SELECT au.id,
+       au.created_at,
+       au.username,
+       r.code            AS role,
+       ARRAY_AGG(a.code) AS authorities
 FROM app_user au
-    join user_role ur on au.id = ur.user_id
-    join role r on ur.role_id = r.id
-    left join role_authority ra on r.id = ra.role_id
-    left join authority a on ra.authority_id = a.id
+         JOIN user_role ur ON au.id = ur.user_id
+         JOIN role r ON ur.role_id = r.id
+         LEFT JOIN role_authority ra ON r.id = ra.role_id
+         LEFT JOIN authority a ON ra.authority_id = a.id
 WHERE au.username = $1
 GROUP BY au.id, au.created_at, au.username, r.code;

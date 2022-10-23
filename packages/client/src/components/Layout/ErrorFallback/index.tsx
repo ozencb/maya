@@ -1,4 +1,4 @@
-const ErrorFallback = () => {
+const ErrorFallback: React.FC = () => {
   return (
     <div role="alert">
       <h2>Ooops, something went wrong :( </h2>

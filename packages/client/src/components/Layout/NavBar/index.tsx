@@ -1,5 +1,7 @@
 import { useLogout, useMe } from '@Api';
+import { AuthorityEnum } from '@Common/types';
 import { Button } from '@Elements';
+import { checkAuthority } from '@Utils';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -15,6 +17,15 @@ const NavBar: React.FC = () => {
         <li>
           <Link to="/">Home</Link>
         </li>
+        {loggedInUser &&
+          checkAuthority(
+            loggedInUser.authorities,
+            AuthorityEnum['Access Admin Panel']
+          ) && (
+            <li>
+              <Link to="/admin">Admin</Link>
+            </li>
+          )}
       </ul>
       <ul>
         {loggedInUser && loggedInUser.username ? (
