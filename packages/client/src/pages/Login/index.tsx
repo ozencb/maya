@@ -9,7 +9,7 @@ const LoginPage: React.FC = () => {
   let location = useLocation();
 
   const mutation = useLogin();
-  const { data, refetch } = useMe();
+  const { data } = useMe();
 
   let from = location.state?.from?.pathname || '/';
 
@@ -26,7 +26,6 @@ const LoginPage: React.FC = () => {
         <SignForm
           onSubmit={(e) => {
             mutation.mutate(e);
-            refetch();
           }}
         />
       </SignContainer>

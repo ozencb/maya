@@ -7,8 +7,7 @@ import React from 'react';
 
 import { ErrorFallback } from '@Layout';
 import Routes from './RouteProvider';
-
-const queryClient = new QueryClient();
+import { queryClient } from '@Lib';
 
 const AppProvider = () => {
   return (

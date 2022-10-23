@@ -12,7 +12,6 @@ const NoMatch = React.lazy(() => import('@Pages/NoMatch'));
 
 const RouteProvider = () => {
   const { data, status } = useMe();
-  console.log(data);
 
   const publicRoutes: RouteObject[] = [
     { path: '/', element: <HomePage /> },

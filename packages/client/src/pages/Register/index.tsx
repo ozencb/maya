@@ -18,7 +18,6 @@ const RegisterPage: React.FC = () => {
       <SignForm
         onSubmit={(e) => {
           mutation.mutate(e);
-          console.log(mutation);
         }}
       />
     </SignContainer>
