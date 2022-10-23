@@ -1,8 +1,9 @@
 import { IDatabase } from 'pg-promise';
 import { IResult } from 'pg-promise/typescript/pg-subset';
-import { User } from '@Models';
+import { User } from '@Common/models';
 import { user as sql } from '@SQL';
 import { getOrSetOnCache } from '@Lib';
+import { UserDetail } from '@Common/types';
 
 export class UserRepository {
   constructor(private db: IDatabase<any>) {}
@@ -11,27 +12,28 @@ export class UserRepository {
     return this.db.one(sql.add, [username, password]);
   }
 
-  async remove(id: number): Promise<number> {
-    return this.db.result(
-      'DELETE FROM app_user WHERE id = $1',
-      +id,
-      (r: IResult) => r.rowCount
-    );
-  }
-
   async findById(id: number): Promise<User | null> {
-    return this.db.oneOrNone('SELECT * FROM app_user WHERE id = $1', +id);
+    return this.db.oneOrNone(sql.findById, +id);
   }
 
-  async findByName(username: string): Promise<User | null> {
-    return this.db.oneOrNone(
-      'SELECT * FROM app_user WHERE username = $1',
-      username
-    );
+  async findByUsername(username: string): Promise<User | null> {
+    return this.db.oneOrNone(sql.findByUsername, [username]);
+  }
+
+  async findDetailByUsername(username: string): Promise<UserDetail | null> {
+    return this.db.oneOrNone(sql.findDetailByUsername, [username]);
+  }
+
+  async findExistsByUsername(username: string): Promise<boolean> {
+    return this.db.one(sql.findExistsByUsername, [username]);
+  }
+
+  async deleteById(id: number): Promise<number> {
+    return this.db.result(sql.deleteById, +id, (r: IResult) => r.rowCount);
   }
 
   async all(): Promise<User[]> {
-    const query = () => this.db.any('SELECT * FROM app_user');
+    const query = () => this.db.any(sql.all);
     return getOrSetOnCache<User[]>('allUsers', query);
   }
 

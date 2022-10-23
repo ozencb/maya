@@ -22,11 +22,11 @@ export const login = async ({
   username: string;
   password: string;
 }) => {
-  const user = await db.user.findByName(username);
-  if (!user) throw new Error('Could not find user');
+  const user = await db.user.findByUsername(username);
+  if (!user) return;
 
   const isValid = await compare(password, user.password);
-  if (!isValid) throw new Error('Password is wrong');
+  if (!isValid) return;
 
   return user;
 };

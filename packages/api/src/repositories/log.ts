@@ -1,5 +1,5 @@
 import { IDatabase } from 'pg-promise';
-import { Log } from '@Models';
+import { Log } from '@Common/models';
 import { log as sql } from '@SQL';
 
 export class LogRepository {

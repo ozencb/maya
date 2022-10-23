@@ -12,8 +12,6 @@
       "@Loaders": ["loaders"],
       "@Middlewares/*": ["middlewares/*"],
       "@Middlewares": ["middlewares"],
-      "@Models/*": ["models/*"],
-      "@Models": ["models"],
       "@Repositories/*": ["repositories/*"],
       "@Repositories": ["repositories"],
       "@Routes/*": ["routes/*"],

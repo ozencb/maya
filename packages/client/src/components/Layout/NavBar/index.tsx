@@ -27,10 +27,6 @@ const NavBar: React.FC = () => {
     },
   ];
 
-  const test = () => {
-    console.log('aa');
-  };
-
   const funcs = [
     {
       name: 'Logout',

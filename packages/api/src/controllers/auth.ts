@@ -33,12 +33,15 @@ export const login = async (req: Request, res: Response) => {
   try {
     const { username } = req.body;
 
-    const response = await AuthService.login(req.body);
+    const user = await AuthService.login(req.body);
 
-    if (response) {
-      req.session.username = response.username;
-      req.session.userId = response.id;
-    }
+    if (!user)
+      return res
+        .status(HTTPStatus.ERROR)
+        .send({ ...error, message: 'Wrong username or password' });
+
+    req.session.username = user.username;
+    req.session.userId = user.id;
 
     logger.info({
       createdBy: username,

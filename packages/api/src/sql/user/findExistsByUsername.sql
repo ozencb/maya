@@ -1,0 +1,1 @@
+SELECT EXISTS(SELECT id FROM app_user WHERE username = $1);
