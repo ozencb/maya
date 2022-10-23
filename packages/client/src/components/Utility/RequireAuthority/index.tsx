@@ -1,21 +1,20 @@
-import { useMe } from '@Api';
+import { useHasAuthority, useMe } from '@Api';
 import { AuthorityEnum } from '@Common/types';
 import NoMatch from '@Pages/NoMatch';
-import { checkAuthority } from '@Utils';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 const RequireAuthority = ({
   children,
-  requiredAuthorities,
+  requiredAuthority,
 }: {
   children: JSX.Element;
-  requiredAuthorities: AuthorityEnum[];
+  requiredAuthority: AuthorityEnum;
 }): JSX.Element => {
-  const { data: loggedInUser } = useMe();
+  const loggedInUser = useMe();
+  const { data: hasAuthority } = useHasAuthority(requiredAuthority);
 
   if (!loggedInUser) return <NoMatch />;
 
-  if (checkAuthority(loggedInUser.authorities, requiredAuthorities)) {
+  if (hasAuthority) {
     return children;
   }
 

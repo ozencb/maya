@@ -24,6 +24,12 @@ export class UserRepository {
     return this.db.oneOrNone(sql.findDetailByUsername, [username]);
   }
 
+  async findNonSensitiveByUsername(
+    username: string
+  ): Promise<UserDetail | null> {
+    return this.db.oneOrNone(sql.findNonSensitiveByUsername, [username]);
+  }
+
   async findExistsByUsername(username: string): Promise<boolean> {
     return this.db.one(sql.findExistsByUsername, [username]);
   }

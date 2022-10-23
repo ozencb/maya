@@ -89,3 +89,30 @@ export const logout = async (req: Request, res: Response) => {
     return res.status(HTTPStatus.ERROR).send({ ...error });
   }
 };
+
+export const hasAuthority = async (req: Request, res: Response) => {
+  try {
+    const { username, userId } = req.session;
+
+    if (!userId) return res.status(HTTPStatus.ERROR).send({ ...error });
+
+    const data = await AuthService.hasAuthority(userId, req.body.authority);
+
+    logger.info({
+      createdBy: username,
+      action: 'register',
+      payload: { username: req.body.username },
+    });
+
+    return res.status(HTTPStatus.SUCCESS).send({ ...success, data });
+  } catch (err) {
+    logger.warn({
+      createdBy: req.body.username,
+      action: 'register',
+      payload: { username: req.body.username },
+      error: err,
+    });
+
+    return res.status(HTTPStatus.ERROR).send({ ...error });
+  }
+};

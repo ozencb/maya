@@ -25,6 +25,7 @@ export const user = {
   findByUsername: sql('user/findByUsername.sql'),
   findDetailByUsername: sql('user/findDetailByUsername.sql'),
   findExistsByUsername: sql('user/findExistsByUsername.sql'),
+  findNonSensitiveByUsername: sql('user/findNonSensitiveByUsername.sql'),
 };
 export const log = {
   add: sql('log/add.sql'),
@@ -35,4 +36,5 @@ export const role = {
 };
 export const authority = {
   all: sql('authority/all.sql'),
+  hasAuthority: sql('authority/hasAuthority.sql'),
 };

@@ -14,7 +14,7 @@ export const me = async (req: Request, res: Response) => {
       return res.status(HTTPStatus.UNAUTHORIZED).send({ ...error });
     }
 
-    const data = await UserService.getDetailByUsername(username);
+    const data = await UserService.getNonSensitiveByUsername(username);
 
     logger.info({
       createdBy: username,

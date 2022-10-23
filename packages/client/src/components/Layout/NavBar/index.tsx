@@ -1,15 +1,18 @@
-import { useLogout, useMe } from '@Api';
-import { AuthorityEnum } from '@Common/types';
-import { Button } from '@Elements';
-import { checkAuthority } from '@Utils';
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import { useHasAuthority, useLogout, useMe } from '@Api';
+import { AuthorityEnum } from '@Common/types';
+import { Button } from '@Elements';
 
 import styles from './styles.module.scss';
 
 const NavBar: React.FC = () => {
   const logout = useLogout();
   const { data: loggedInUser } = useMe();
+  const { data: hasAuthority } = useHasAuthority(
+    AuthorityEnum['Access Admin Panel']
+  );
 
   return (
     <nav className={styles.container}>
@@ -17,15 +20,11 @@ const NavBar: React.FC = () => {
         <li>
           <Link to="/">Home</Link>
         </li>
-        {loggedInUser &&
-          checkAuthority(
-            loggedInUser.authorities,
-            AuthorityEnum['Access Admin Panel']
-          ) && (
-            <li>
-              <Link to="/admin">Admin</Link>
-            </li>
-          )}
+        {hasAuthority && (
+          <li>
+            <Link to="/admin">Admin</Link>
+          </li>
+        )}
       </ul>
       <ul>
         {loggedInUser && loggedInUser.username ? (
