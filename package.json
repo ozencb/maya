@@ -1,0 +1,38 @@
+{
+  "name": "maya",
+  "version": "1.0.0",
+  "description": "A PERN + friends boilerplate app",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ozencb/maya.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ozencb/maya/issues"
+  },
+  "homepage": "https://github.com/Ozencb/maya#readme",
+  "scripts": {
+    "start": "concurrently \"wsrun --parallel start\"",
+    "install-dependencies": "yarn && cd packages/api && yarn && cd ../client && yarn && cd ../common && yarn",
+    "pre-commit": "cd packages/api && yarn pre-commit && cd ../../client && yarn pre-commit",
+    "pre-push": "cd packages/api && yarn pre-push && cd ../../client && yarn pre-push",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn pre-commit",
+      "pre-push": "yarn pre-push"
+    }
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "husky": "^7.0.4",
+    "wsrun": "^5.2.0"
+  }
+}

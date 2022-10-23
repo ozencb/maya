@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@Api": ["api"],
+      "@Elements": ["components/Elements"],
+      "@Form": ["components/Form"],
+      "@Layout": ["components/Layout"],
+      "@UtilityComponents": ["components/Utility"],
+      "@Constants": ["constants"],
+      "@Helpers": ["helpers"],
+      "@Lib": ["lib"],
+      "@Pages/*": ["pages/*"],
+      "@Pages": ["pages"],
+      "@Providers": ["providers"],
+      "@Store": ["store"],
+      "@Types": ["types"],
+      "@Utils": ["utils"],
+      "@Common/*": ["../../common/*"],
+      "@Common": ["../../common"]
+    }
+  }
+}

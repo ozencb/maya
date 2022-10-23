@@ -1,0 +1,17 @@
+#Server
+PORT=4000
+APP_ENV=development
+
+#DB
+DB_HOST=127.0.0.1
+DB_USER=user
+DB_PASSWORD=password
+DB_NAME=mayadb
+DB_PORT=5432
+
+#Redis
+REDIS_HOST=127.0.0.1
+REDIS_PORT=6379
+
+#Secrets
+SESSION_SECRET=supersecret1
