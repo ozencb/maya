@@ -6,6 +6,7 @@
       "@Elements": ["components/Elements"],
       "@Form": ["components/Form"],
       "@Layout": ["components/Layout"],
+      "@UtilityComponents": ["components/Utility"],
       "@Constants": ["constants"],
       "@Helpers": ["helpers"],
       "@Lib": ["lib"],

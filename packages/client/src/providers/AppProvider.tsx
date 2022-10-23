@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { BrowserRouter as Router } from 'react-router-dom';
 import React from 'react';
 
-import { ErrorFallback } from '@Layout';
+import { ErrorFallback } from '@UtilityComponents';
 import Routes from './RouteProvider';
 import { queryClient } from '@Lib';
 

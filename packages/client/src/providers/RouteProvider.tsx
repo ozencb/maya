@@ -3,7 +3,7 @@ import { RouteObject, useRoutes } from 'react-router-dom';
 import { MainLayout } from '@Layout';
 import React from 'react';
 import { useMe } from '@Api';
-import { RequireAuthority } from '@Layout';
+import { RequireAuthority } from '@UtilityComponents';
 import { AuthorityEnum } from '@Common/types';
 
 const AdminPage = React.lazy(() => import('@Pages/Admin'));
