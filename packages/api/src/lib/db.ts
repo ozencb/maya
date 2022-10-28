@@ -7,6 +7,7 @@ import {
   RoleRepository,
   AuthorityRepository,
 } from '@Repositories';
+import { __PROD__ } from '@Constants';
 
 type ExtendedProtocol = IDatabase<IExtensions> & IExtensions;
 
@@ -19,6 +20,9 @@ const initOptions: IInitOptions<IExtensions> = {
     obj.log = new LogRepository(obj);
     obj.role = new RoleRepository(obj);
     obj.authority = new AuthorityRepository(obj);
+  },
+  query(e) {
+    if (!__PROD__) console.log(e.query);
   },
 };
 
