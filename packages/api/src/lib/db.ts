@@ -1,4 +1,5 @@
 import pgPromise, { IInitOptions, IDatabase, IMain } from 'pg-promise'; // pg-promise core library
+import chalk from 'chalk';
 
 import {
   IExtensions,
@@ -22,7 +23,7 @@ const initOptions: IInitOptions<IExtensions> = {
     obj.authority = new AuthorityRepository(obj);
   },
   query(e) {
-    if (!__PROD__) console.log(e.query);
+    if (!__PROD__) console.log(chalk.cyan(e.query));
   },
 };
 

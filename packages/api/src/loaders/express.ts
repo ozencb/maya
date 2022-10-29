@@ -71,7 +71,7 @@ const expressLoaders = (app: Application) => {
       saveUninitialized: true,
       resave: true,
       rolling: true,
-      store: new RedisStore({ client: redisClient }),
+      store: new RedisStore({ client: redisClient as any }),
       cookie: {
         secure: __PROD__ ? true : false,
         httpOnly: __PROD__ ? true : false,
