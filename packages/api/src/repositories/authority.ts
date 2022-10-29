@@ -9,7 +9,10 @@ export class AuthorityRepository {
 
   async all(): Promise<Role[]> {
     const query = () => this.db.any(sql.all);
-    return getOrSetOnCache<Role[]>('authorities', query);
+    return getOrSetOnCache<Role[]>({
+      key: 'authorities',
+      callback: query,
+    });
   }
 
   async hasAuthority(

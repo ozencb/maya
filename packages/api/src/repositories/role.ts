@@ -13,6 +13,6 @@ export class RoleRepository {
 
   async all(): Promise<Role[]> {
     const query = () => this.db.any(sql.all);
-    return getOrSetOnCache<Role[]>('roles', query);
+    return getOrSetOnCache<Role[]>({ key: 'roles', callback: query });
   }
 }

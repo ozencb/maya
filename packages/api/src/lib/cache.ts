@@ -31,17 +31,31 @@ const options = {
 
 export const redisClient = createRedisInstance(options);
 
-export const getOrSetOnCache = async <T>(
-  key: String,
-  callback: () => Promise<T>,
-  expiration: number = 600
-): Promise<T> => {
+export const getOrSetOnCache = async <T>({
+  key,
+  callback,
+  expiration = 600,
+  refreshOnBackground = true,
+}: {
+  key: String;
+  callback: () => Promise<T>;
+  expiration?: number;
+  refreshOnBackground?: boolean;
+}): Promise<T> => {
   const res = await redisClient.get(key as KeyType);
 
   if (!res) {
     const dbRes = await callback();
     redisClient.setex(key as KeyType, expiration, JSON.stringify(dbRes));
     return dbRes;
+  } else if (refreshOnBackground) {
+    (async () => {
+      redisClient.setex(
+        key as KeyType,
+        expiration,
+        JSON.stringify(await callback())
+      );
+    })();
   }
 
   return JSON.parse(res);
