@@ -50,7 +50,7 @@
     "lint-staged": "^11.2.6",
     "prettier": "^2.4.1",
     "shared": "workspace:*",
-    "typescript": "^4.6.4",
+    "typescript": "^4.8.4",
     "vite": "^3.0.0"
   }
 }
