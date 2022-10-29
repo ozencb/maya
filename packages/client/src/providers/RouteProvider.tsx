@@ -26,7 +26,7 @@ const RouteProvider = () => {
       path: '/admin',
       element: (
         <RequireAuthority
-          requiredAuthorities={[AuthorityEnum['Access Admin Panel']]}
+          requiredAuthority={AuthorityEnum['Access Admin Panel']}
         >
           <AdminPage />
         </RequireAuthority>
