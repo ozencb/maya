@@ -9,7 +9,7 @@ export const getAll = async (req: Request, res: Response) => {
     const data = UserService.getAll();
 
     logger.info({
-      createdBy: 'test',
+      createdBy: req.session.username,
       action: 'allUsers',
       payload: req.body,
     });
@@ -17,7 +17,7 @@ export const getAll = async (req: Request, res: Response) => {
     return res.status(HTTPStatus.SUCCESS).send({ ...success, data });
   } catch (err) {
     logger.warn({
-      createdBy: req.body.username,
+      createdBy: req.session.username,
       action: 'allUsers',
       payload: req.body,
       error: err,
@@ -29,12 +29,12 @@ export const getAll = async (req: Request, res: Response) => {
 
 export const me = async (req: Request, res: Response) => {
   try {
-    const username = req.session.username!;
-
-    const data = await UserService.getNonSensitiveByUsername(username);
+    const data = await UserService.getNonSensitiveByUsername(
+      req.session.username!
+    );
 
     logger.info({
-      createdBy: username,
+      createdBy: req.session.username,
       action: 'me',
       payload: req.body,
     });
@@ -42,7 +42,7 @@ export const me = async (req: Request, res: Response) => {
     return res.status(HTTPStatus.SUCCESS).send({ ...success, data });
   } catch (err) {
     logger.warn({
-      createdBy: req.body.username,
+      createdBy: req.session.username,
       action: 'me',
       payload: req.body,
       error: err,

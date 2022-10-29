@@ -6,12 +6,10 @@ import { AdminService } from '@Services';
 
 export const getAllAdmins = async (req: Request, res: Response) => {
   try {
-    const { username } = req.session;
-
     const data = await AdminService.getAllAdmins();
 
     logger.info({
-      createdBy: username,
+      createdBy: req.session.username,
       action: 'getAllAdmins',
       payload: { username: req.body.username },
     });
@@ -19,7 +17,7 @@ export const getAllAdmins = async (req: Request, res: Response) => {
     return res.status(HTTPStatus.SUCCESS).send({ ...success, data });
   } catch (err) {
     logger.warn({
-      createdBy: req.body.username,
+      createdBy: req.session.username,
       action: 'getAllAdmins',
       payload: { username: req.body.username },
       error: err,

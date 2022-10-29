@@ -12,16 +12,16 @@ import { queryClient } from '@Lib';
 const AppProvider = () => {
   return (
     <React.Suspense fallback={<div>loading</div>}>
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
           <HelmetProvider>
             {process.env.NODE_ENV !== 'test' && <ReactQueryDevtools />}
             <Router>
               <Routes />
             </Router>
           </HelmetProvider>
-        </QueryClientProvider>
-      </ErrorBoundary>
+        </ErrorBoundary>
+      </QueryClientProvider>
     </React.Suspense>
   );
 };

@@ -1,8 +1,15 @@
-const ErrorFallback: React.FC = () => {
+import { FallbackProps } from 'react-error-boundary';
+
+const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (
     <div role="alert">
       <h2>Ooops, something went wrong :( </h2>
-      <button onClick={() => window.location.assign(window.location.origin)}>
+      <pre>{error.message}</pre>
+      <button
+        onClick={() => {
+          resetErrorBoundary();
+        }}
+      >
         Refresh
       </button>
     </div>

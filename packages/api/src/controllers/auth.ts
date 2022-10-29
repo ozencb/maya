@@ -66,23 +66,21 @@ export const login = async (req: Request, res: Response) => {
 
 export const logout = async (req: Request, res: Response) => {
   try {
-    const { username } = req.body;
-
     req.session.destroy((_) => {});
     res.clearCookie('sid');
 
     logger.info({
-      createdBy: username,
+      createdBy: req.session.username!,
       action: 'logout',
-      payload: { username: req.body.username },
+      payload: req.body,
     });
 
     return res.status(HTTPStatus.SUCCESS).send({ ...success });
   } catch (err) {
     logger.warn({
-      createdBy: req.body.username,
+      createdBy: req.session.username!,
       action: 'logout',
-      payload: { username: req.body.username },
+      payload: req.body,
       error: err,
     });
 
@@ -100,16 +98,16 @@ export const hasAuthority = async (req: Request, res: Response) => {
 
     logger.info({
       createdBy: username,
-      action: 'register',
-      payload: { username: req.body.username },
+      action: 'hasAuthority',
+      payload: req.body,
     });
 
     return res.status(HTTPStatus.SUCCESS).send({ ...success, data });
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,
-      action: 'register',
-      payload: { username: req.body.username },
+      action: 'hasAuthority',
+      payload: req.body,
       error: err,
     });
 

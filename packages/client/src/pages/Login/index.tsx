@@ -12,7 +12,7 @@ const LoginPage: React.FC = () => {
   const mutation = useLogin();
   const { data } = useMe();
 
-  let from = location.state?.from?.pathname || '/';
+  const from = location.state?.from?.pathname || '/';
 
   useEffect(() => {
     if (data?.username) {
@@ -23,7 +23,6 @@ const LoginPage: React.FC = () => {
   return (
     <>
       <Head title="Login" />
-      <p>You must log in to view the page at {from}</p>
       <SignContainer mode="login">
         <SignForm
           onSubmit={(e) => {
