@@ -5,8 +5,6 @@ import { useHasAuthority, useLogout, useMe } from '@Api';
 import { AuthorityEnum } from '@Common/types';
 import { Button } from '@Elements';
 
-import styles from './styles.module.scss';
-
 const NavBar: React.FC = () => {
   const logout = useLogout();
   const { data: loggedInUser } = useMe();
@@ -15,8 +13,8 @@ const NavBar: React.FC = () => {
   );
 
   return (
-    <nav className={styles.container}>
-      <ul>
+    <nav className="flex flex-row justify-between p-2">
+      <ul className="flex flex-row gap-2">
         <li>
           <Link to="/">Home</Link>
         </li>

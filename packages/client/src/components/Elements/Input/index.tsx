@@ -1,7 +1,5 @@
 import { UseFormRegister } from 'react-hook-form';
 
-import styles from './styles.module.scss';
-
 type InputProps = {
   name: string;
   label?: string;
@@ -19,14 +17,9 @@ const Input: React.FC<InputProps> = ({
   type,
   placeholder,
 }) => (
-  <div className={styles.input}>
-    {label && (
-      <label htmlFor={name} className={styles.label}>
-        {label}
-      </label>
-    )}
+  <div>
+    {label && <label htmlFor={name}>{label}</label>}
     <input
-      className={styles.field}
       {...register(name, { required })}
       type={type}
       placeholder={placeholder}

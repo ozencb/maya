@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import styles from './styles.module.scss';
-
 type SignContainerProps = {
   children: React.ReactNode;
   mode: 'login' | 'register';
@@ -23,13 +21,13 @@ const SignContainer: React.FC<SignContainerProps> = ({ children, mode }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.redirectLink}>
+    <div>
+      <div>
         <Link to={modes[mode].redirect}>{modes[mode].question}</Link>
       </div>
 
-      <div className={styles.formContainer}>
-        {<h1 className={styles.title}>{modes[mode].title}</h1>}
+      <div>
+        {<h1>{modes[mode].title}</h1>}
         {children}
       </div>
     </div>

@@ -5,8 +5,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Input, Button } from '@Elements';
 import { signSchema } from '@Common/schemas';
 
-import styles from './styles.module.scss';
-
 interface ISignForm {
   username: string;
   password: string;
@@ -30,8 +28,8 @@ const SignForm: React.FC<SignFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <form className={styles.form}>
+    <div>
+      <form>
         <Input register={register} name="username" placeholder="Username" />
         <Input
           register={register}
