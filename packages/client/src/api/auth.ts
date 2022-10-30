@@ -47,7 +47,13 @@ export const useLogin = () =>
       queryClient.invalidateQueries(['hasAuthority']);
     },
   });
-export const useRegister = () => useMutation(register);
+export const useRegister = () =>
+  useMutation(register, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['me']);
+      queryClient.invalidateQueries(['hasAuthority']);
+    },
+  });
 export const useLogout = () =>
   useMutation(logout, {
     onSuccess: () => {

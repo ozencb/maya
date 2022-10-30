@@ -12,6 +12,16 @@ export const register = async (req: Request, res: Response) => {
     const createdUser = await AuthService.register(req.body);
     await UserService.addUserRole(createdUser.id, RoleEnum.User);
 
+    const user = await AuthService.login(req.body);
+
+    if (!user)
+      return res
+        .status(HTTPStatus.ERROR)
+        .send({ ...error, message: 'Wrong username or password' });
+
+    req.session.username = user.username;
+    req.session.userId = user.id;
+
     logger.info({
       createdBy: username,
       action: 'register',
