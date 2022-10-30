@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Input, Button } from '@Elements';
+import { Button } from '@Elements';
 import { signSchema } from '@Common/schemas';
+import Input from '../Input';
 
 interface ISignForm {
   username: string;

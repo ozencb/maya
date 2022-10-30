@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { useHasAuthority, useLogout, useMe } from '@Api';
 import { AuthorityEnum } from '@Common/types';
-import { Button } from '@Elements';
+import { Avatar, Button, DropdownMenu } from '@Elements';
 
 const NavBar: React.FC = () => {
   const logout = useLogout();
@@ -24,9 +24,26 @@ const NavBar: React.FC = () => {
           </li>
         )}
       </ul>
+
       <ul>
         {loggedInUser && loggedInUser.username ? (
-          <Button onClick={logout.mutate}>Logout</Button>
+          <DropdownMenu.Menu
+            trigger={
+              <Avatar
+                src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80"
+                alt="test"
+                fallback="AC"
+              />
+            }
+          >
+            <DropdownMenu.Item>{loggedInUser.username}</DropdownMenu.Item>
+            <DropdownMenu.Separator />
+            <DropdownMenu.Item>
+              <Button onClick={logout.mutate} size="small">
+                Logout
+              </Button>
+            </DropdownMenu.Item>
+          </DropdownMenu.Menu>
         ) : (
           <Link to="/login">Login</Link>
         )}
