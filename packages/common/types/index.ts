@@ -1,7 +1,9 @@
-export type UserDetail = {
-  id: number;
+import { User } from '../models';
+
+export type UserNonSensitive = Omit<User, 'password'>;
+
+export type UserDetail = UserNonSensitive & {
   createdAt: Date;
-  username: string;
   role: RoleEnum;
   authorities: AuthorityEnum[];
 };

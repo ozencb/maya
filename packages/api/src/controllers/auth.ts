@@ -65,12 +65,13 @@ export const login = async (req: Request, res: Response) => {
 };
 
 export const logout = async (req: Request, res: Response) => {
+  const username = req.session.username;
   try {
     req.session.destroy((_) => {});
     res.clearCookie('sid');
 
     logger.info({
-      createdBy: req.session.username!,
+      createdBy: username,
       action: 'logout',
       payload: req.body,
     });
@@ -78,7 +79,7 @@ export const logout = async (req: Request, res: Response) => {
     return res.status(HTTPStatus.SUCCESS).send({ ...success });
   } catch (err) {
     logger.warn({
-      createdBy: req.session.username!,
+      createdBy: username,
       action: 'logout',
       payload: req.body,
       error: err,

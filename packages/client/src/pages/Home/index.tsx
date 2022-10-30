@@ -4,7 +4,7 @@ const Home: React.FC = () => {
   return (
     <div>
       <Head title="Home" />
-      Home
+      <div className="text-3xl font-bold underline">Home</div>
     </div>
   );
 };

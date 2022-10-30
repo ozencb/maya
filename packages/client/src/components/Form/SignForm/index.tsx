@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Input, Button } from '@Elements';
+import { Button } from '@Elements';
 import { signSchema } from '@Common/schemas';
-
-import styles from './styles.module.scss';
+import Input from '../Input';
 
 interface ISignForm {
   username: string;
@@ -30,8 +29,8 @@ const SignForm: React.FC<SignFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <form className={styles.form}>
+    <div>
+      <form>
         <Input register={register} name="username" placeholder="Username" />
         <Input
           register={register}

@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { UserDetail } from '@Common/types';
+import { UserNonSensitive } from '@Common/types';
 import { http } from '@Helpers';
 
-export const me = (): Promise<UserDetail> =>
+export const me = (): Promise<UserNonSensitive> =>
   http({ method: 'GET', url: 'user/me' });
 
 export const useMe = () =>

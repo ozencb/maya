@@ -1,4 +1,5 @@
+import Avatar from './Avatar';
 import Button from './Button';
-import Input from './Input';
+import * as DropdownMenu from './DropdownMenu';
 
-export { Button, Input };
+export { Avatar, DropdownMenu, Button };
