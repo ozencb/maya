@@ -1,11 +1,11 @@
 import { Head } from '@UtilityComponents';
 
-const AdminPage: React.FC = () => {
+const AdminPage = (): JSX.Element => {
   return (
-    <div>
+    <>
       <Head title="Admin" />
-      AdminPage
-    </div>
+      <div className="text-3xl font-bold underline">Admin Panel</div>
+    </>
   );
 };
 

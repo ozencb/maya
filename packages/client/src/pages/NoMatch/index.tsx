@@ -1,12 +1,14 @@
 import { Head } from '@UtilityComponents';
 
-const NoMatch: React.FC = () => {
+const NoMatchPage = (): JSX.Element => {
   return (
-    <div>
+    <>
       <Head title="404" />
-      404
-    </div>
+      <div className="text-3xl font-bold underline flex-1 flex justify-center items-center">
+        404
+      </div>
+    </>
   );
 };
 
-export default NoMatch;
+export default NoMatchPage;

@@ -8,17 +8,16 @@ import { AuthorityEnum } from '@Common/types';
 
 const AdminPage = React.lazy(() => import('@Pages/Admin'));
 const HomePage = React.lazy(() => import('@Pages/Home'));
-const LoginPage = React.lazy(() => import('@Pages/Login'));
-const RegisterPage = React.lazy(() => import('@Pages/Register'));
+const SignPage = React.lazy(() => import('@Pages/Sign'));
 const NoMatch = React.lazy(() => import('@Pages/NoMatch'));
+const ProfilePage = React.lazy(() => import('@Pages/Profile'));
 
 const RouteProvider = () => {
   const { data: loggedInUser } = useMe();
 
   const publicRoutes: RouteObject[] = [
     { path: '/', element: <HomePage /> },
-    { path: '/login', element: <LoginPage /> },
-    { path: '/register', element: <RegisterPage /> },
+    { path: '/sign', element: <SignPage /> },
     { path: '*', element: <NoMatch /> },
   ];
   const protectedRoutes: RouteObject[] = [
@@ -32,6 +31,7 @@ const RouteProvider = () => {
         </RequireAuthority>
       ),
     },
+    { path: '/profile', element: <ProfilePage /> },
   ];
 
   const routes = loggedInUser

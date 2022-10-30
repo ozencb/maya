@@ -6,12 +6,12 @@ type Props = {
   children: ReactNode;
 };
 
-const MainLayout: React.FC<Props> = ({ children }) => {
+const MainLayout = ({ children }: Props): JSX.Element => {
   return (
-    <div>
+    <div className="flex flex-col h-screen">
       <Head />
       <NavBar />
-      <div>{children}</div>
+      <div className="flex flex-col flex-1 p-4">{children}</div>
     </div>
   );
 };

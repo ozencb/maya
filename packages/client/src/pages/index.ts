@@ -1,8 +1,13 @@
 import AdminPage from './Admin';
 import HomePage from './Home';
-import LoginPage from './Login';
-import NoMatch from './NoMatch';
-import RegisterPage from './Register';
+import SignPage from './Sign';
+import NoMatchPage from './NoMatch';
+import ProfilePage from './Profile';
 
-export default [AdminPage, HomePage, LoginPage, NoMatch, RegisterPage];
-export { AdminPage, HomePage, LoginPage, NoMatch, RegisterPage };
+export {
+  AdminPage,
+  HomePage,
+  SignPage,
+  NoMatchPage as NoMatch,
+  ProfilePage as Profile,
+};

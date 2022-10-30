@@ -1,4 +1,4 @@
-import SignContainer from './SignContainer';
+import FormInput from './FormInput';
 import SignForm from './SignForm';
 
-export { SignContainer, SignForm };
+export { FormInput, SignForm };

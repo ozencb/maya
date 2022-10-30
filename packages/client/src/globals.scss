@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-  background-color: gray;
+  @apply font-mono bg-zinc-900 text-slate-100;
 }

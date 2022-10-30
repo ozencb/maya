@@ -1,6 +1,6 @@
 import { useHasAuthority, useMe } from '@Api';
 import { AuthorityEnum } from '@Common/types';
-import NoMatch from '@Pages/NoMatch';
+import NoMatchPage from '@Pages/NoMatch';
 
 const RequireAuthority = ({
   children,
@@ -12,13 +12,13 @@ const RequireAuthority = ({
   const loggedInUser = useMe();
   const { data: hasAuthority } = useHasAuthority(requiredAuthority);
 
-  if (!loggedInUser) return <NoMatch />;
+  if (!loggedInUser) return <NoMatchPage />;
 
   if (hasAuthority) {
     return children;
   }
 
-  return <NoMatch />;
+  return <NoMatchPage />;
 };
 
 export default RequireAuthority;

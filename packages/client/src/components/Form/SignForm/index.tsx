@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Button } from '@Elements';
 import { signSchema } from '@Common/schemas';
-import Input from '../Input';
+import { FormInput } from '..';
 
 interface ISignForm {
   username: string;
   password: string;
 }
 
-type SignFormProps = {
+type Props = {
   onSubmit(data: ISignForm): void;
 };
 
-const SignForm: React.FC<SignFormProps> = ({ onSubmit }) => {
+const SignForm = ({ onSubmit }: Props): JSX.Element => {
   const [submitting, setSubmitting] = useState(false);
 
   const { register, handleSubmit } = useForm<ISignForm>({
@@ -29,22 +29,28 @@ const SignForm: React.FC<SignFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <div>
-      <form>
-        <Input register={register} name="username" placeholder="Username" />
-        <Input
+    <div className="flex flex-col gap-4">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit(submitForm)();
+        }}
+        className="flex flex-col gap-2"
+      >
+        <FormInput register={register} name="username" label="Username" />
+        <FormInput
           register={register}
           name="password"
-          placeholder="Password"
           type="password"
+          label="Password"
         />
+        <input type="submit" hidden />
       </form>
       <Button
         onClick={() => {
           handleSubmit(submitForm)();
         }}
         disabled={submitting}
-        filled
       >
         Submit
       </Button>

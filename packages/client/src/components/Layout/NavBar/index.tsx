@@ -1,11 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { useHasAuthority, useLogout, useMe } from '@Api';
 import { AuthorityEnum } from '@Common/types';
-import { Avatar, Button, DropdownMenu } from '@Elements';
+import { Avatar, DropdownMenu } from '@Elements';
 
-const NavBar: React.FC = () => {
+const NavBar = (): JSX.Element => {
+  const { pathname } = useLocation();
+
   const logout = useLogout();
   const { data: loggedInUser } = useMe();
   const { data: hasAuthority } = useHasAuthority(
@@ -13,16 +14,11 @@ const NavBar: React.FC = () => {
   );
 
   return (
-    <nav className="flex flex-row justify-between p-2">
+    <nav className="flex flex-row justify-between items-center px-4 pt-1 h-12 select-none">
       <ul className="flex flex-row gap-2">
         <li>
           <Link to="/">Home</Link>
         </li>
-        {hasAuthority && (
-          <li>
-            <Link to="/admin">Admin</Link>
-          </li>
-        )}
       </ul>
 
       <ul>
@@ -30,22 +26,29 @@ const NavBar: React.FC = () => {
           <DropdownMenu.Menu
             trigger={
               <Avatar
-                src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80"
                 alt="test"
-                fallback="AC"
+                fallback={loggedInUser.username}
+                size="small"
               />
             }
           >
-            <DropdownMenu.Item>{loggedInUser.username}</DropdownMenu.Item>
-            <DropdownMenu.Separator />
             <DropdownMenu.Item>
-              <Button onClick={logout.mutate} size="small">
-                Logout
-              </Button>
+              <Link to="/profile">{loggedInUser.username}</Link>
+            </DropdownMenu.Item>
+
+            <DropdownMenu.Separator />
+
+            {hasAuthority && (
+              <DropdownMenu.Item>
+                <Link to="/admin">Admin Panel</Link>
+              </DropdownMenu.Item>
+            )}
+            <DropdownMenu.Item onClick={logout.mutate}>
+              Logout
             </DropdownMenu.Item>
           </DropdownMenu.Menu>
         ) : (
-          <Link to="/login">Login</Link>
+          pathname !== '/sign' && <Link to="/sign">Sign In</Link>
         )}
       </ul>
     </nav>

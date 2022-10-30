@@ -10,10 +10,10 @@ const Content = ({ children, ...props }: Props) => {
     <DropdownMenuPrimitive.Portal>
       <DropdownMenuPrimitive.Content
         {...props}
-        className="w-60 bg-white rounded-md p-1"
+        className="flex flex-col gap-1 w-60 rounded-md p-1 bg-zinc-700"
       >
         {children}
-        <DropdownMenuPrimitive.Arrow className="fill-white" />
+        <DropdownMenuPrimitive.Arrow className="fill-zinc-700" />
       </DropdownMenuPrimitive.Content>
     </DropdownMenuPrimitive.Portal>
   );
