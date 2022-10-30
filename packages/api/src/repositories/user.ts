@@ -3,7 +3,7 @@ import { IResult } from 'pg-promise/typescript/pg-subset';
 import { User } from '@Common/models';
 import { user as sql } from '@SQL';
 import { getOrSetOnCache } from '@Lib';
-import { UserDetail } from '@Common/types';
+import { UserDetail, UserNonSensitive } from '@Common/types';
 
 export class UserRepository {
   constructor(private db: IDatabase<any>) {}
@@ -26,8 +26,8 @@ export class UserRepository {
 
   async findNonSensitiveByUsername(
     username: string
-  ): Promise<UserDetail | null> {
-    return this.db.oneOrNone(sql.findNonSensitiveByUsername, [username]);
+  ): Promise<UserNonSensitive> {
+    return this.db.one(sql.findNonSensitiveByUsername, [username]);
   }
 
   async findExistsByUsername(username: string): Promise<boolean> {
