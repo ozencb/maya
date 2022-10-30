@@ -13,6 +13,9 @@ const login = ({ username, password }: SignFormFields) =>
       username,
       password,
     },
+    options: {
+      showMessageNotification: true,
+    },
   });
 
 const register = ({ username, password }: SignFormFields) =>
@@ -23,12 +26,18 @@ const register = ({ username, password }: SignFormFields) =>
       username,
       password,
     },
+    options: {
+      showMessageNotification: true,
+    },
   });
 
 const logout = () =>
   http({
     method: 'POST',
     url: 'auth/logout',
+    options: {
+      showMessageNotification: true,
+    },
   });
 
 const hasAuthority = (authority: AuthorityEnum): Promise<boolean> =>

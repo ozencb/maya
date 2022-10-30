@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { BrowserRouter as Router } from 'react-router-dom';
 import React from 'react';
 
-import { ErrorFallback } from '@UtilityComponents';
+import { ErrorFallback, Notifications } from '@UtilityComponents';
 import Routes from './RouteProvider';
 import { queryClient } from '@Lib';
 
@@ -16,6 +16,7 @@ const AppProvider = () => {
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <HelmetProvider>
             {process.env.NODE_ENV !== 'test' && <ReactQueryDevtools />}
+            <Notifications />
             <Router>
               <Routes />
             </Router>

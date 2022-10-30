@@ -18,7 +18,12 @@ export default (requiredAuth: AuthorityEnum) => {
       );
 
       if (!hasAuthority) {
-        return res.status(HTTPStatus.UNAUTHORIZED).send({ ...error });
+        return res
+          .status(HTTPStatus.UNAUTHORIZED)
+          .send({
+            ...error,
+            message: 'You are not authorized for this action!',
+          });
       }
 
       return next();

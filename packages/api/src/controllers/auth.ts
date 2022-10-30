@@ -28,7 +28,9 @@ export const register = async (req: Request, res: Response) => {
       payload: { username: req.body.username },
     });
 
-    return res.status(HTTPStatus.SUCCESS).send({ ...success });
+    return res
+      .status(HTTPStatus.SUCCESS)
+      .send({ ...success, message: 'Succesfully registered!' });
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,
@@ -61,7 +63,9 @@ export const login = async (req: Request, res: Response) => {
       payload: { username: req.body.username },
     });
 
-    return res.status(HTTPStatus.SUCCESS).send({ ...success });
+    return res
+      .status(HTTPStatus.SUCCESS)
+      .send({ ...success, message: 'Successfully logged in!' });
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,
@@ -86,7 +90,9 @@ export const logout = async (req: Request, res: Response) => {
       payload: req.body,
     });
 
-    return res.status(HTTPStatus.SUCCESS).send({ ...success });
+    return res
+      .status(HTTPStatus.SUCCESS)
+      .send({ ...success, message: 'Successfully logged out!' });
   } catch (err) {
     logger.warn({
       createdBy: username,
@@ -113,7 +119,11 @@ export const hasAuthority = async (req: Request, res: Response) => {
       payload: req.body,
     });
 
-    return res.status(HTTPStatus.SUCCESS).send({ ...success, data });
+    return res.status(HTTPStatus.SUCCESS).send({
+      ...success,
+      message: 'You are not authorized for this action!',
+      data,
+    });
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,

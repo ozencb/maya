@@ -1,6 +1,7 @@
+import toast from 'react-hot-toast/headless';
+
 import { API_URL } from '@Constants';
 import axios, {
-  AxiosError,
   AxiosInstance,
   AxiosRequestConfig,
   AxiosRequestHeaders,
@@ -18,15 +19,13 @@ interface IHttp {
   url: string;
   data?: any;
   options?: {
-    showMessageNotification: string;
+    showMessageNotification: boolean;
   };
   headers?: AxiosRequestHeaders;
   params?: any;
 }
 
 const http = async ({ method, url, data, options, headers, params }: IHttp) => {
-  let response = null;
-
   const request: AxiosRequestConfig = {
     method,
     url,
@@ -37,18 +36,22 @@ const http = async ({ method, url, data, options, headers, params }: IHttp) => {
   };
 
   try {
-    response = await axiosInstance.request(request);
+    const response = await axiosInstance.request(request);
+
+    if (
+      options &&
+      options.showMessageNotification &&
+      response &&
+      response.data.message
+    ) {
+      toast.success(response.data.message);
+    }
+    return response && response.data?.data;
   } catch (err: any) {
-    if (err.response) {
-      console.log(err.response.status);
+    if (err.response.data.message) {
+      toast.error(err.response.data.message);
     }
   }
-
-  if (options && options.showMessageNotification) {
-    // show success
-  }
-
-  return response && response.data?.data;
 };
 
 export default http;
