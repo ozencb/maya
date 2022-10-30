@@ -17,7 +17,6 @@ This is a work in progress. Some of the approaches you will see might be up for 
 - Vite
 - PG-Promise
 - PostgreSQL
-- Zustand
 - React-query
 - Zod
 - Sessions
