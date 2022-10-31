@@ -52,22 +52,22 @@ const hasAuthority = (authority: AuthorityEnum): Promise<boolean> =>
 export const useLogin = () =>
   useMutation(login, {
     onSuccess: () => {
-      queryClient.invalidateQueries(['me']);
-      queryClient.invalidateQueries(['hasAuthority']);
+      queryClient.resetQueries(['me']);
+      queryClient.resetQueries(['hasAuthority']);
     },
   });
 export const useRegister = () =>
   useMutation(register, {
     onSuccess: () => {
-      queryClient.invalidateQueries(['me']);
-      queryClient.invalidateQueries(['hasAuthority']);
+      queryClient.resetQueries(['me']);
+      queryClient.resetQueries(['hasAuthority']);
     },
   });
 export const useLogout = () =>
   useMutation(logout, {
     onSuccess: () => {
-      queryClient.invalidateQueries(['me']);
-      queryClient.invalidateQueries(['hasAuthority']);
+      queryClient.resetQueries(['me']);
+      queryClient.resetQueries(['hasAuthority']);
     },
   });
 
