@@ -37,8 +37,6 @@ const Notifications = () => {
           }
         };
 
-        console.log(t);
-
         return (
           <div
             key={t.id}
