@@ -14,7 +14,7 @@ import connectRedis from 'connect-redis';
 
 import routes from '@Routes';
 import { ONE_DAY_IN_MS, __PROD__ } from '@Constants';
-import { redisClient } from '@Lib';
+import { cache } from '@Lib';
 
 const SESSION_SECRET = process.env.SESSION_SECRET!;
 
@@ -71,7 +71,7 @@ const expressLoaders = (app: Application) => {
       saveUninitialized: true,
       resave: true,
       rolling: true,
-      store: new RedisStore({ client: redisClient as any }),
+      store: new RedisStore({ client: cache.redisClient as any }),
       cookie: {
         secure: __PROD__ ? true : false,
         httpOnly: __PROD__ ? true : false,
