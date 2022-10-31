@@ -12,6 +12,20 @@ import { __PROD__ } from '@Constants';
 
 type ExtendedProtocol = IDatabase<IExtensions> & IExtensions;
 
+function camelizeColumns(data: any) {
+  const tmp = data[0];
+  for (const prop in tmp) {
+    const camel = pgPromise.utils.camelize(prop);
+    if (!(camel in tmp)) {
+      for (let i = 0; i < data.length; i++) {
+        const d = data[i];
+        d[camel] = d[prop];
+        delete d[prop];
+      }
+    }
+  }
+}
+
 // pg-promise initialization options:
 const initOptions: IInitOptions<IExtensions> = {
   // Extending the database protocol with our custom repositories;
@@ -24,6 +38,9 @@ const initOptions: IInitOptions<IExtensions> = {
   },
   query(e) {
     if (!__PROD__) console.log(chalk.cyan(e.query));
+  },
+  receive(data, _result, _e) {
+    camelizeColumns(data);
   },
 };
 
