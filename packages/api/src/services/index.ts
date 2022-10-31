@@ -1,5 +1,4 @@
-import * as AdminService from './admin';
-import * as AuthService from './auth';
-import * as UserService from './user';
-
-export { AdminService, AuthService, UserService };
+export * as AdminService from './admin';
+export * as AuthService from './auth';
+export * as RoleService from './role';
+export * as UserService from './user';

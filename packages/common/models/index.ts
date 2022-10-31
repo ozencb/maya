@@ -31,3 +31,10 @@ export type Role = {
   code: RoleEnum;
   description: string;
 };
+
+export type UserRole = {
+  username: string;
+  userId: number;
+  role: string;
+  roleDescription: string;
+};

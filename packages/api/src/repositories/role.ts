@@ -1,5 +1,5 @@
 import { IDatabase } from 'pg-promise';
-import { Role } from '@Common/models';
+import { Role, UserRole } from '@Common/models';
 import { RoleEnum } from '@Common/types';
 import { role as sql } from '@SQL';
 import { cache } from '@Lib';
@@ -12,7 +12,12 @@ export class RoleRepository {
   }
 
   async all(): Promise<Role[]> {
-    const query = () => this.db.any(sql.all);
-    return cache.getOrSetOnCache<Role[]>({ key: 'roles', callback: query });
+    const callback = () => this.db.any(sql.all);
+    return cache.getOrSetOnCache<Role[]>({ key: 'roles', callback });
+  }
+
+  async userRoles(): Promise<UserRole[]> {
+    const callback = () => this.db.any(sql.userRoles);
+    return cache.getOrSetOnCache<UserRole[]>({ key: 'userRoles', callback });
   }
 }
