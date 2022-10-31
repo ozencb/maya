@@ -8,10 +8,10 @@ export class AuthorityRepository {
   constructor(private db: IDatabase<any>) {}
 
   async all(): Promise<Role[]> {
-    const query = () => this.db.any(sql.all);
+    const callback = () => this.db.any(sql.all);
     return cache.getOrSetOnCache<Role[]>({
       key: 'authorities',
-      callback: query,
+      callback,
     });
   }
 

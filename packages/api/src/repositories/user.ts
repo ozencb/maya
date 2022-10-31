@@ -39,8 +39,8 @@ export class UserRepository {
   }
 
   async all(): Promise<User[]> {
-    const query = () => this.db.any(sql.all);
-    return cache.getOrSetOnCache<User[]>({ key: 'users', callback: query });
+    const callback = () => this.db.any(sql.all);
+    return cache.getOrSetOnCache<User[]>({ key: 'users', callback });
   }
 
   async total(): Promise<number> {
