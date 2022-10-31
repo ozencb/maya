@@ -1,7 +1,7 @@
 import { IDatabase } from 'pg-promise';
 import { Role } from '@Common/models';
 import { authority as sql } from '@SQL';
-import { getOrSetOnCache } from '@Lib';
+import { cache } from '@Lib';
 import { AuthorityEnum } from '@Common/types';
 
 export class AuthorityRepository {
@@ -9,7 +9,7 @@ export class AuthorityRepository {
 
   async all(): Promise<Role[]> {
     const query = () => this.db.any(sql.all);
-    return getOrSetOnCache<Role[]>({
+    return cache.getOrSetOnCache<Role[]>({
       key: 'authorities',
       callback: query,
     });

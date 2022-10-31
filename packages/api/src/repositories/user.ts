@@ -2,7 +2,7 @@ import { IDatabase } from 'pg-promise';
 import { IResult } from 'pg-promise/typescript/pg-subset';
 import { User } from '@Common/models';
 import { user as sql } from '@SQL';
-import { getOrSetOnCache } from '@Lib';
+import { cache } from '@Lib';
 import { UserDetail, UserNonSensitive } from '@Common/types';
 
 export class UserRepository {
@@ -40,7 +40,7 @@ export class UserRepository {
 
   async all(): Promise<User[]> {
     const query = () => this.db.any(sql.all);
-    return getOrSetOnCache<User[]>({ key: 'users', callback: query });
+    return cache.getOrSetOnCache<User[]>({ key: 'users', callback: query });
   }
 
   async total(): Promise<number> {
