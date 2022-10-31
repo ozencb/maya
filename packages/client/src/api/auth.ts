@@ -72,4 +72,6 @@ export const useLogout = () =>
   });
 
 export const useHasAuthority = (requiredAuthority: AuthorityEnum) =>
-  useQuery(['hasAuthority'], () => hasAuthority(requiredAuthority));
+  useQuery(['hasAuthority'], () => hasAuthority(requiredAuthority), {
+    enabled: !!queryClient.getQueryData(['me']),
+  });
