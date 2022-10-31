@@ -23,7 +23,7 @@ const Notifications = () => {
 
   return (
     <div
-      className="fixed top-2 right-2"
+      className="fixed bottom-4 right-4"
       onMouseEnter={startPause}
       onMouseLeave={endPause}
     >
