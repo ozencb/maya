@@ -60,3 +60,14 @@ export const getOrSetOnCache = async <T>({
 
   return JSON.parse(res);
 };
+
+export const deleteKey = (key: string) => redisClient.del(key);
+
+export const deleteKeyByWildCard = (key: string, callback?: () => {}) => {
+  redisClient.keys(key, (_, rows) => {
+    rows.forEach((row) => {
+      redisClient.del(row);
+    });
+  });
+  if (callback) callback();
+};
