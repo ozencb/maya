@@ -1,4 +1,3 @@
-import { User } from '@Common/models';
-import { UserService } from '@Services';
+import { db } from '@Lib';
 
-export const getAllAdmins = async (): Promise<User[]> => UserService.getAll();
+export const getUserCount = async (): Promise<number> => db.user.total();

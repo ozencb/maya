@@ -4,7 +4,7 @@ import { AdminController } from '@Controllers';
 const router = express.Router();
 
 export default (() => {
-  router.get('/all-admins', AdminController.getAllAdmins);
+  router.get('/user-count', AdminController.getUserCount);
 
   return router;
 })();

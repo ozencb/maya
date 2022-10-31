@@ -4,13 +4,13 @@ import { success, HTTPStatus, error } from '@Constants';
 import { logger } from '@Lib';
 import { AdminService } from '@Services';
 
-export const getAllAdmins = async (req: Request, res: Response) => {
+export const getUserCount = async (req: Request, res: Response) => {
   try {
-    const data = await AdminService.getAllAdmins();
+    const data = await AdminService.getUserCount();
 
     logger.info({
       createdBy: req.session.username,
-      action: 'getAllAdmins',
+      action: 'getUserCount',
       payload: { username: req.body.username },
     });
 
@@ -18,7 +18,7 @@ export const getAllAdmins = async (req: Request, res: Response) => {
   } catch (err) {
     logger.warn({
       createdBy: req.session.username,
-      action: 'getAllAdmins',
+      action: 'getUserCount',
       payload: { username: req.body.username },
       error: err,
     });
