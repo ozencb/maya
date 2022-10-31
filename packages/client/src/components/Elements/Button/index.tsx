@@ -17,7 +17,7 @@ const Button = ({
   size = 'normal',
 }: Props): JSX.Element => {
   const classes = {
-    base: 'focus:outline-none focus:ring-2 transition ease-in-out duration-300',
+    base: 'w-full focus:outline-none focus:ring-2 transition ease-in-out duration-300',
     size: {
       small: 'px-2 py-1 text-sm',
       normal: 'px-4 py-2',
