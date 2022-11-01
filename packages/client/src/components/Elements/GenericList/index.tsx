@@ -1,4 +1,6 @@
-type Props<T> = {
+import { ElementBaseProps } from '@Types';
+
+type Props<T> = ElementBaseProps<HTMLDivElement> & {
   data: T[] | undefined;
   renderItem: (item: T) => JSX.Element;
   extractor: (item: T) => string | number;
@@ -8,9 +10,11 @@ const GenericList = <T extends unknown>({
   data,
   renderItem,
   extractor,
+  style,
+  className,
 }: Props<T>) =>
   data ? (
-    <div>
+    <div className={className?.toString()} style={style}>
       {data.map((item) => (
         <div key={extractor(item)}>{renderItem(item)}</div>
       ))}

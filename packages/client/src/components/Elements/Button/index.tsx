@@ -1,7 +1,7 @@
-import { ElementSize, ElementSizeMap } from '@Types';
+import { ElementBaseProps, ElementSize, ElementSizeMap } from '@Types';
 import classnames from 'classnames';
 
-type Props = {
+type Props = ElementBaseProps<HTMLButtonElement> & {
   children: string;
   onClick?(): void;
   disabled?: boolean;
@@ -11,6 +11,8 @@ type Props = {
 
 const Button = ({
   children,
+  style,
+  className,
   onClick,
   disabled = false,
   type = 'primary',
@@ -41,8 +43,10 @@ const Button = ({
       className={classnames(
         classes.base,
         classes.size[size],
-        classes.type[type]
+        classes.type[type],
+        className?.toString()
       )}
+      style={style}
     >
       {children}
     </button>
