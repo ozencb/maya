@@ -9,18 +9,20 @@ export const register = async (req: Request, res: Response) => {
   try {
     const { username } = req.body;
 
+    const userExists = await UserService.userExists(username);
+
+    if (userExists)
+      return res
+        .status(HTTPStatus.ERROR)
+        .send({ ...error, message: 'This username is taken.' });
+
     const createdUser = await AuthService.register(req.body);
     await UserService.addUserRole(createdUser.id, RoleEnum.User);
 
     const user = await AuthService.login(req.body);
 
-    if (!user)
-      return res
-        .status(HTTPStatus.ERROR)
-        .send({ ...error, message: 'Wrong username or password' });
-
-    req.session.username = user.username;
-    req.session.userId = user.id;
+    req.session.username = user!.username;
+    req.session.userId = user!.id;
 
     logger.info({
       createdBy: username,

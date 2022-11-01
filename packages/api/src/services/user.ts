@@ -8,3 +8,6 @@ export const getNonSensitiveByUsername = (username: string) =>
 
 export const addUserRole = (userId: number, userRole: RoleEnum) =>
   db.role.addUserRole(userId, userRole);
+
+export const userExists = (username: string) =>
+  db.user.findExistsByUsername(username);

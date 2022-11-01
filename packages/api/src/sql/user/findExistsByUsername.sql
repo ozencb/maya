@@ -1,1 +1,1 @@
-SELECT EXISTS(SELECT id FROM app_user WHERE username = $1);
+SELECT EXISTS(SELECT id FROM app_user WHERE username = $1) AS exists;

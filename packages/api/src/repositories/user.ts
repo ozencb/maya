@@ -31,7 +31,7 @@ export class UserRepository {
   }
 
   async findExistsByUsername(username: string): Promise<boolean> {
-    return this.db.one(sql.findExistsByUsername, [username]);
+    return (await this.db.one(sql.findExistsByUsername, [username])).exists;
   }
 
   async deleteById(id: number): Promise<number> {
