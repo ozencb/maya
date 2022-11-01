@@ -773,6 +773,11 @@
     "@types/connect" "*"
     "@types/node" "*"
 
+"@types/callsite@^1.0.31":
+  version "1.0.31"
+  resolved "https://registry.yarnpkg.com/@types/callsite/-/callsite-1.0.31.tgz#55cfc887088d67f0310fcb20bd9100bb7146d2fc"
+  integrity sha512-jrKmIHhuZVGUpOR1s4TgY9BTt/Eh9CFCjHVZ2FsrKmHSo3J/vpl6EpK08SfMLrX2IY1ZEFA+BPRTJQGg4xIHsA==
+
 "@types/compression@^1.7.2":
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/@types/compression/-/compression-1.7.2.tgz#7cc1cdb01b4730eea284615a68fc70a2cdfd5e71"
@@ -1377,6 +1382,11 @@ call-bind@^1.0.0, call-bind@^1.0.2:
   dependencies:
     function-bind "^1.1.1"
     get-intrinsic "^1.0.2"
+
+callsite@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/callsite/-/callsite-1.0.0.tgz#280398e5d664bd74038b6f0905153e6e8af1bc20"
+  integrity sha512-0vdNRFXn5q+dtOqjfFtmtlI9N2eVZ7LMyEV2iKC5mEEFvSg/69Ml6b/WU2qF8W1nLRa0wiSrDT3Y5jOHZCwKPQ==
 
 callsites@^3.0.0:
   version "3.1.0"

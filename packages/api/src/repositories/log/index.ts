@@ -1,6 +1,6 @@
 import { IDatabase } from 'pg-promise';
 import { Log } from '@Common/models';
-import { log as sql } from '@SQL';
+import { sqlFileResolver as sql } from '@Utils';
 
 export class LogRepository {
   constructor(private db: IDatabase<any>) {}
@@ -13,7 +13,7 @@ export class LogRepository {
     error,
     payload,
   }: Log): Promise<Log> {
-    return this.db.one(sql.add, [
+    return this.db.one(sql('add'), [
       createdAt,
       createdBy,
       action,
