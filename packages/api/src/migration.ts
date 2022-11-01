@@ -81,6 +81,12 @@ const runUp = async () => {
       });
       return query;
     })(),
+    insertAdminUser: `INSERT INTO app_user(username, password)
+                      VALUES ('admin', '$2a$12$fzfV2aK1AdbiaHy2EJ3S/edizlxrh2SqiTqbkuts1vQNPbcWZAzeG');
+                      INSERT INTO user_role(user_id, role_id)
+                      VALUES ((SELECT id FROM app_user WHERE username = 'admin'), (SELECT id FROM role WHERE code = 'ADMIN'));
+                      INSERT INTO role_authority(role_id, authority_id)
+                      VALUES ((SELECT id FROM role WHERE code = 'ADMIN'), (SELECT id FROM authority WHERE code = 'ELEVATED_PRIVILEGES'));`,
   };
 
   return db.task(async (t) => {
