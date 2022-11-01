@@ -7,12 +7,9 @@ import { Head } from '@UtilityComponents';
 import { Button } from '@Elements';
 
 type Mode = 'login' | 'register';
-type Props = {
-  initialMode?: Mode;
-};
 
-const SignPage = ({ initialMode = 'login' }: Props) => {
-  const [mode, setMode] = useState<Mode>(initialMode);
+const SignPage = () => {
+  const [mode, setMode] = useState<Mode>('register');
 
   let navigate = useNavigate();
   let location = useLocation();
