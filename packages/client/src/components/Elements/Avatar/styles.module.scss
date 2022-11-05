@@ -1,0 +1,41 @@
+.container {
+  display: inline-flex;
+  overflow: hidden;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9999px;
+  user-select: none;
+
+  .small {
+    width: 2rem;
+    height: 2rem;
+  }
+  .normal {
+    width: 3rem;
+    height: 3rem;
+  }
+  .large {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 9999px;
+  }
+
+  .fallback {
+    display: flex;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    line-height: 1rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+}

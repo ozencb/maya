@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .content {
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    flex: 1 1 0%;
+  }
+}

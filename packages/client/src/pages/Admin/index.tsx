@@ -9,9 +9,8 @@ const AdminPage = (): JSX.Element => {
   return (
     <>
       <Head title="Admin" />
-      <div className="text-3xl font-bold underline">Admin Panel</div>
-      <div className="mt-4">Total users: {userCount}</div>
-      <div className="mt-4">
+      <div>Total users: {userCount}</div>
+      <div>
         <GenericList
           data={userRoles}
           extractor={({ userId }) => userId}

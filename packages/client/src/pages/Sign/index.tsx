@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import { Head } from '@UtilityComponents';
 import { Button } from '@Elements';
 
+import styles from './styles.module.scss';
+
 type Mode = 'login' | 'register';
 
 const SignPage = () => {
@@ -43,9 +45,9 @@ const SignPage = () => {
   return (
     <>
       <Head title="Sign" />
-      <div className="flex-1 flex flex-col gap-2 justify-center items-center">
-        <div className="flex flex-col gap-6 h-fit w-auto p-6 bg-zinc-800 rounded-md">
-          <h1 className="text-center text-lg">{modes[mode].title}</h1>
+      <div className={styles.container}>
+        <div className={styles.form}>
+          <h1 className={styles.header}>{modes[mode].title}</h1>
           <SignForm
             onSubmit={(e) => {
               modes[mode].method.mutate(e);

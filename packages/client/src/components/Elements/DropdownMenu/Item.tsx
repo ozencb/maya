@@ -1,12 +1,14 @@
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 import { ReactNode } from 'react';
 
+import styles from './styles.module.scss';
+
 type ChildrenProps = {
   children: ReactNode | string;
 };
 
 const RightSlot = ({ children }: ChildrenProps) => {
-  return <div className="ml-5 pl-5 text-gray-500">{children}</div>;
+  return <div className={styles.rightSlot}>{children}</div>;
 };
 
 type ItemProps = ChildrenProps & {
@@ -16,10 +18,7 @@ type ItemProps = ChildrenProps & {
 
 const Item = ({ children, rightSlot, onClick }: ItemProps) => {
   return (
-    <DropdownMenuPrimitive.Item
-      onClick={onClick}
-      className="text-sm leading-4 text-violet-400 rounded-sm flex items-center py-1 pl-2 relative select-none cursor-pointer focus:outline-none"
-    >
+    <DropdownMenuPrimitive.Item onClick={onClick} className={styles.item}>
       {children} {rightSlot && <RightSlot>{rightSlot}</RightSlot>}
     </DropdownMenuPrimitive.Item>
   );

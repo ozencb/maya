@@ -1,12 +1,12 @@
 import { Head } from '@UtilityComponents';
 
+import styles from './styles.module.scss';
+
 const NoMatchPage = (): JSX.Element => {
   return (
     <>
       <Head title="404" />
-      <div className="text-3xl font-bold underline flex-1 flex justify-center items-center">
-        404
-      </div>
+      <div className={styles.container}>404</div>
     </>
   );
 };

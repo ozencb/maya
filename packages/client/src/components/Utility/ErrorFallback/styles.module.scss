@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+
+  .errorContainer {
+    display: flex;
+    padding: 1.5rem;
+    flex-direction: column;
+    justify-content: center;
+    width: auto;
+    border-radius: 0.375rem;
+    gap: 1.5rem;
+
+    .message {
+      color: #fecaca;
+      font-size: 0.75rem;
+      line-height: 1rem;
+    }
+  }
+}

@@ -1,7 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'normalize.css';
+
+:root {
+  --text-color: rgb(241 245 249);
+  --bg-color: rgb(39 39 42);
+}
 
 body {
-  @apply font-mono bg-zinc-900 text-slate-100;
+  font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
+  color: var(--text-color);
+  background-color: var(--bg-color);
 }

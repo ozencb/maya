@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.25rem;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 3rem;
+  user-select: none;
+
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+}

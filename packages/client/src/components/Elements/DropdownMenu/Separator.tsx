@@ -1,7 +1,9 @@
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 
+import styles from './styles.module.scss';
+
 const Separator = () => (
-  <DropdownMenuPrimitive.Separator className="bg-violet-400 h-px m-1" />
+  <DropdownMenuPrimitive.Separator className={styles.separator} />
 );
 
 export default Separator;

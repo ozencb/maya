@@ -6,6 +6,8 @@ import { Button } from '@Elements';
 import { signSchema } from '@Common/schemas';
 import { FormInput } from '..';
 
+import styles from './styles.module.scss';
+
 interface ISignForm {
   username: string;
   password: string;
@@ -29,13 +31,13 @@ const SignForm = ({ onSubmit }: Props): JSX.Element => {
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className={styles.container}>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit(submitForm)();
         }}
-        className="flex flex-col gap-2"
+        className={styles.form}
       >
         <FormInput register={register} name="username" label="Username" />
         <FormInput

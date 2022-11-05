@@ -1,5 +1,7 @@
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 
+import styles from './styles.module.scss';
+
 type Props = {
   children: any;
   props?: any;
@@ -8,12 +10,9 @@ type Props = {
 const Content = ({ children, ...props }: Props) => {
   return (
     <DropdownMenuPrimitive.Portal>
-      <DropdownMenuPrimitive.Content
-        {...props}
-        className="flex flex-col gap-1 w-60 rounded-md p-1 bg-zinc-700"
-      >
+      <DropdownMenuPrimitive.Content {...props} className={styles.content}>
         {children}
-        <DropdownMenuPrimitive.Arrow className="fill-zinc-700" />
+        <DropdownMenuPrimitive.Arrow />
       </DropdownMenuPrimitive.Content>
     </DropdownMenuPrimitive.Portal>
   );

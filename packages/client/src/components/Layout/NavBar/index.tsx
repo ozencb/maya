@@ -4,6 +4,8 @@ import { useHasAuthority, useLogout, useMe } from '@Api';
 import { AuthorityEnum } from '@Common/types';
 import { Avatar, DropdownMenu } from '@Elements';
 
+import styles from './styles.module.scss';
+
 const NavBar = (): JSX.Element => {
   const { pathname } = useLocation();
 
@@ -14,8 +16,8 @@ const NavBar = (): JSX.Element => {
   );
 
   return (
-    <nav className="flex flex-row justify-between items-center px-4 pt-1 h-12 select-none">
-      <ul className="flex flex-row gap-2">
+    <nav className={styles.container}>
+      <ul className={styles.navbar}>
         <li>
           <Link to="/">Home</Link>
         </li>

@@ -1,10 +1,12 @@
 import { Head } from '@UtilityComponents';
 
+import styles from './styles.module.scss';
+
 const HomePage = (): JSX.Element => {
   return (
     <>
       <Head title="Home" />
-      <div className="text-3xl font-bold underline">Home</div>
+      <div className={styles.header}>Home</div>
     </>
   );
 };

@@ -2,6 +2,8 @@ import * as LabelPrimitive from '@radix-ui/react-label';
 import { UseFormRegister } from 'react-hook-form';
 import classnames from 'classnames';
 
+import styles from './styles.module.scss';
+
 type Props = {
   name: string;
   label?: string;
@@ -21,19 +23,9 @@ const FormInput = ({
   placeholder,
   orientation = 'vertical',
 }: Props): JSX.Element => (
-  <div
-    className={classnames(
-      'flex gap-2 ',
-      orientation === 'vertical'
-        ? 'flex-row items-center'
-        : 'flex-col justify-center'
-    )}
-  >
+  <div className={classnames(styles.container, styles[orientation])}>
     {label && (
-      <LabelPrimitive.Root
-        htmlFor={name}
-        className="text-md font-medium text-white select-none"
-      >
+      <LabelPrimitive.Root htmlFor={name} className={styles.label}>
         {label}
       </LabelPrimitive.Root>
     )}
@@ -43,7 +35,7 @@ const FormInput = ({
       {...register(name, { required })}
       type={type}
       placeholder={placeholder}
-      className="w-60 inline-flex items-center justify-center rounded-sm px-2 h-8 text-sm leading-4 text-black focus:outline-none focus-within:ring-2 focus-within:ring-violet-400"
+      className={styles.input}
     />
   </div>
 );

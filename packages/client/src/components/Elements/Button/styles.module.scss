@@ -1,0 +1,19 @@
+.base {
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+}
+
+.small {
+  padding: 0.5rem 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.normal {
+  padding: 1rem 0.5rem;
+}
+
+.large {
+  padding: 2rem 0.75rem;
+}

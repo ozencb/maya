@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/Ozencb/maya#readme",
   "scripts": {
-    "start": "concurrently \"wsrun --parallel start\"",
+    "start": "concurrently \"wsrun -x maya-common --parallel start\"",
     "install-dependencies": "yarn && cd packages/api && yarn && cd ../client && yarn && cd ../common && yarn",
     "pre-commit": "cd packages/api && yarn pre-commit && cd ../../client && yarn pre-commit",
     "pre-push": "cd packages/api && yarn pre-push && cd ../../client && yarn pre-push",
