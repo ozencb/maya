@@ -7,6 +7,7 @@ import { Head } from '@UtilityComponents';
 import { Button } from '@Elements';
 
 import styles from './styles.module.scss';
+import classNames from 'classnames';
 
 type Mode = 'login' | 'register';
 
@@ -45,7 +46,7 @@ const SignPage = () => {
   return (
     <>
       <Head title="Sign" />
-      <div className={styles.container}>
+      <div className={classNames(styles.container, 'no-select')}>
         <div className={styles.form}>
           <h1 className={styles.header}>{modes[mode].title}</h1>
           <SignForm

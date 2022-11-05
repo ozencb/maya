@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import {
   Cross2Icon,
   ExclamationTriangleIcon,
@@ -42,7 +42,7 @@ const Notifications = () => {
           <div
             key={t.id}
             ref={ref}
-            className={classnames(
+            className={classNames(
               styles.notification,
               t.visible && styles.visible
             )}

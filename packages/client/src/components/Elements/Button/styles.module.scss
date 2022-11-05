@@ -2,18 +2,36 @@
   transition-duration: 300ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
+  font-weight: 500;
+  color: var(--text-color);
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
 }
 
 .small {
-  padding: 0.5rem 0.25rem;
+  padding: 0.1rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
 
 .normal {
-  padding: 1rem 0.5rem;
+  padding: 0.5rem 0.25rem;
 }
 
 .large {
-  padding: 2rem 0.75rem;
+  padding: 1rem 0.5rem;
+}
+.primary {
+  background-color: var(--accent-color);
+}
+.secondary {
+  background-color: var(--bg-color-neutral);
+  color: var(--bg-color);
+}
+.danger {
+  background-color: var(--danger-color);
+}
+.text {
+  background-color: unset;
 }

@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { useHasAuthority, useLogout, useMe } from '@Api';
 import { AuthorityEnum } from '@Common/types';
@@ -8,6 +8,7 @@ import styles from './styles.module.scss';
 
 const NavBar = (): JSX.Element => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const logout = useLogout();
   const { data: loggedInUser } = useMe();
@@ -17,13 +18,11 @@ const NavBar = (): JSX.Element => {
 
   return (
     <nav className={styles.container}>
-      <ul className={styles.navbar}>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-      </ul>
+      <div>
+        <Link to="/">Home</Link>
+      </div>
 
-      <ul>
+      <div>
         {loggedInUser && loggedInUser.username ? (
           <DropdownMenu.Menu
             trigger={
@@ -52,7 +51,7 @@ const NavBar = (): JSX.Element => {
         ) : (
           pathname !== '/sign' && <Link to="/sign">Sign In</Link>
         )}
-      </ul>
+      </div>
     </nav>
   );
 };

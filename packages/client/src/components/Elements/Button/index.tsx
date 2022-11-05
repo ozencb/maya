@@ -1,5 +1,5 @@
 import { ElementBaseProps, ElementSize, ElementSizeMap } from '@Types';
-import classnames from 'classnames';
+import classNames from 'classnames';
 
 import styles from './styles.module.scss';
 
@@ -24,7 +24,7 @@ const Button = ({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={classnames(
+      className={classNames(
         styles.base,
         styles[type],
         styles[size],

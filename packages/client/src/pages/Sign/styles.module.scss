@@ -7,10 +7,12 @@
   gap: 0.5rem;
 
   .form {
+    background-color: var(--bg-color-accent);
     display: flex;
     padding: 1.5rem;
     flex-direction: column;
     width: auto;
+    min-width: 20rem;
     border-radius: 0.375rem;
     gap: 1.5rem;
 

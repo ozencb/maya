@@ -1,6 +1,6 @@
 import * as LabelPrimitive from '@radix-ui/react-label';
 import { UseFormRegister } from 'react-hook-form';
-import classnames from 'classnames';
+import classNames from 'classnames';
 
 import styles from './styles.module.scss';
 
@@ -23,7 +23,7 @@ const FormInput = ({
   placeholder,
   orientation = 'vertical',
 }: Props): JSX.Element => (
-  <div className={classnames(styles.container, styles[orientation])}>
+  <div className={classNames(styles.container, styles[orientation])}>
     {label && (
       <LabelPrimitive.Root htmlFor={name} className={styles.label}>
         {label}

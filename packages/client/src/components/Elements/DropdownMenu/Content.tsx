@@ -12,7 +12,7 @@ const Content = ({ children, ...props }: Props) => {
     <DropdownMenuPrimitive.Portal>
       <DropdownMenuPrimitive.Content {...props} className={styles.content}>
         {children}
-        <DropdownMenuPrimitive.Arrow />
+        <DropdownMenuPrimitive.Arrow className={styles.arrow} />
       </DropdownMenuPrimitive.Content>
     </DropdownMenuPrimitive.Portal>
   );

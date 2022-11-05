@@ -1,11 +1,13 @@
 .container {
   display: flex;
   gap: 0.5rem;
+  min-width: 20rem;
 
   .label {
     color: #ffffff;
     font-weight: 500;
     user-select: none;
+    min-width: 25%;
   }
 
   .input {
@@ -19,7 +21,13 @@
     justify-content: center;
     align-items: center;
     height: 2rem;
+    width: 100%;
     border-radius: 0.125rem;
+    outline: none;
+
+    &:focus {
+      border: 3px solid var(--accent-color);
+    }
   }
 }
 
@@ -28,7 +36,7 @@
   align-items: center;
 }
 
-.vertical {
+.horizontal {
   flex-direction: column;
   justify-content: center;
 }

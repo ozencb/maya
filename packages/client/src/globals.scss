@@ -1,13 +1,39 @@
 @import 'normalize.css';
 
 :root {
-  --text-color: rgb(241 245 249);
-  --bg-color: rgb(39 39 42);
+  --text-color: #f1f5f9;
+  --bg-color: rgb(24 24 27);
+  --bg-color-accent: rgb(39 39 42);
+  --bg-color-neutral: rgb(212 212 216);
+  --accent-color: #673ab7;
+  --danger-color: rgb(225 29 72);
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 body {
-  font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-    monospace;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: var(--text-color);
   background-color: var(--bg-color);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.no-select {
+  user-select: none;
 }

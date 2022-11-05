@@ -6,7 +6,9 @@ const HomePage = (): JSX.Element => {
   return (
     <>
       <Head title="Home" />
-      <div className={styles.header}>Home</div>
+      <div className={styles.container}>
+        <div className={styles.header}>Home</div>
+      </div>
     </>
   );
 };
