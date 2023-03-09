@@ -11,11 +11,18 @@ import styles from './styles.module.scss';
 
 type Mode = 'login' | 'register';
 
+const useLogin = () =>
+  trpc.auth.login.useMutation({
+    onSuccess: () => {
+      inva;
+    },
+  });
+
 const SignPage = () => {
   const [mode, setMode] = useState<Mode>('register');
 
-  let navigate = useNavigate();
-  let location = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const { data } = trpc.user.me.useQuery();
 
@@ -23,22 +30,22 @@ const SignPage = () => {
     login: {
       title: 'Log In',
       question: "Don't have an account?",
-      method: trpc.auth.login,
+      method: trpc.auth.login.useMutation(),
     },
     register: {
       title: 'Sign Up',
       question: 'Already have an account?',
-      method: trpc.auth.register,
+      method: trpc.auth.register.useMutation(),
     },
   };
 
   const from = location.state?.from?.pathname || '/';
 
   useEffect(() => {
-    if (data?.data.username) {
+    if (data?.username) {
       navigate(from, { replace: true });
     }
-  }, [data]);
+  }, [data, from, navigate]);
 
   return (
     <>
@@ -48,7 +55,7 @@ const SignPage = () => {
           <h1 className={styles.header}>{modes[mode].title}</h1>
           <SignForm
             onSubmit={(e) => {
-              modes[mode].method.useMutation(e.username, e.password);
+              modes[mode].method.mutate(e);
             }}
           />
         </div>
