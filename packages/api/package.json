@@ -11,7 +11,8 @@
     "pre-commit": "lint-staged",
     "pre-push": "yarn run type-check",
     "migrate:up": "ts-node -r tsconfig-paths/register src/migration.ts up",
-    "migrate:down": "ts-node -r tsconfig-paths/register src/migration.ts down"
+    "migrate:down": "ts-node -r tsconfig-paths/register src/migration.ts down",
+    "migrate:reset": "ts-node -r tsconfig-paths/register src/migration.ts reset"
   },
   "lint-staged": {
     "*.@(ts|js)": [

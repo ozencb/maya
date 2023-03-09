@@ -12,6 +12,8 @@ import styles from './styles.module.scss';
 type Mode = 'login' | 'register';
 
 const SignPage = () => {
+  const cache = trpc.useContext();
+
   const [mode, setMode] = useState<Mode>('register');
 
   const navigate = useNavigate();
@@ -23,12 +25,22 @@ const SignPage = () => {
     login: {
       title: 'Log In',
       question: "Don't have an account?",
-      method: trpc.auth.login.useMutation(),
+      method: trpc.auth.login.useMutation({
+        onSuccess: () => {
+          cache.auth.invalidate();
+          cache.user.invalidate();
+        },
+      }),
     },
     register: {
       title: 'Sign Up',
       question: 'Already have an account?',
-      method: trpc.auth.register.useMutation(),
+      method: trpc.auth.register.useMutation({
+        onSuccess: () => {
+          cache.auth.invalidate();
+          cache.user.invalidate();
+        },
+      }),
     },
   };
 

@@ -1,15 +1,19 @@
 import { AdminController } from '@Controllers';
-import { trpcRouter } from '@Lib';
+import { publicProcedure, trpcRouter } from '@Lib';
 
-import { requireAutharization } from '@Middlewares';
+import {
+  autharizationMiddleware,
+  authenticationMiddleware,
+} from '@Middlewares';
 
-const autharizationProcedure = requireAutharization('ACCESS_ADMIN_PANEL');
-//const authenticationProcedure = requireAuthentication;
-
-//authenticationProcedure.use(autharizationProcedure);
+const protetectedProcedure = publicProcedure.use(
+  authenticationMiddleware.unstable_pipe(
+    autharizationMiddleware('ACCESS_ADMIN_PANEL')
+  )
+);
 
 export default trpcRouter({
-  userCount: autharizationProcedure.query(({ ctx }) =>
+  userCount: protetectedProcedure.query(({ ctx }) =>
     AdminController.getUserCount(ctx)
   ),
 });

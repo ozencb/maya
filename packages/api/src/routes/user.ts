@@ -1,8 +1,8 @@
 import { UserController } from '@Controllers';
-import { trpcRouter } from '@Lib';
-import { requireAuthentication } from '@Middlewares';
+import { publicProcedure, trpcRouter } from '@Lib';
+import { authenticationMiddleware } from '@Middlewares';
 
-const procedure = requireAuthentication;
+const procedure = publicProcedure.use(authenticationMiddleware);
 
 export default trpcRouter({
   all: procedure.query(({ ctx }) => UserController.getAll(ctx)),

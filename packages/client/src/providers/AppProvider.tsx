@@ -20,6 +20,8 @@ const AppProvider = ({ children }: Props) => {
       queries: {
         refetchOnMount: false,
         refetchOnWindowFocus: false,
+        refetchInterval: false,
+        retry: false,
         onError: (err) => {
           const { message } = (err as any).shape;
           const { notifyClient } = (err as any).shape.data;

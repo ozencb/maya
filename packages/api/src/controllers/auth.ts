@@ -40,6 +40,8 @@ export const register = async ({ req }: ExpressContext) => {
       error: err,
     });
 
+    console.log(err);
+
     throw err;
   }
 };
@@ -91,8 +93,6 @@ export const logout = async ({ req, res }: ExpressContext) => {
       action: 'logout',
       payload: req.body,
     });
-
-    console.log(req.body, 'eee');
 
     return 'Successfully logged out!';
   } catch (err) {

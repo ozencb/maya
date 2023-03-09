@@ -8,13 +8,13 @@ export type UserDetail = UserNonSensitive & {
   authorities: Authorities[];
 };
 
-const AuthorityEnum = {
+export const AuthorityEnum = {
   'Elevated Privileges': 'ELEVATED_PRIVILEGES',
   'Access Admin Panel': 'ACCESS_ADMIN_PANEL',
 } as const;
 export type Authorities = typeof AuthorityEnum[keyof typeof AuthorityEnum];
 
-const RoleEnum = {
+export const RoleEnum = {
   Admin: 'ADMIN',
   Moderator: 'MODERATOR',
   User: 'USER',

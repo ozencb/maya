@@ -6,11 +6,18 @@ import { trpc } from '@Lib';
 import styles from './styles.module.scss';
 
 const NavBar = (): JSX.Element => {
+  const cache = trpc.useContext();
+
   const { pathname } = useLocation();
 
-  const { mutate: logout } = trpc.auth.logout.useMutation();
-
   const { data: loggedInUser } = trpc.user.me.useQuery();
+  const { mutate: logout } = trpc.auth.logout.useMutation({
+    onSuccess: () => {
+      cache.auth.invalidate();
+      cache.user.invalidate();
+    },
+  });
+
   const { data: hasAuthority } =
     trpc.auth.hasAuthority.useQuery('ACCESS_ADMIN_PANEL');
 
@@ -42,7 +49,9 @@ const NavBar = (): JSX.Element => {
                 <Link to="/admin">Admin Panel</Link>
               </DropdownMenu.Item>
             )}
-            <DropdownMenu.Item onClick={logout}>Logout</DropdownMenu.Item>
+            <DropdownMenu.Item onClick={() => logout()}>
+              Logout
+            </DropdownMenu.Item>
           </DropdownMenu.Menu>
         ) : (
           pathname !== '/sign' && <Link to="/sign">Sign In</Link>

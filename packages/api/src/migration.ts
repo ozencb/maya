@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import pgPromise, { IMain } from 'pg-promise';
-import { Authorities, Roles } from '@Types';
+import { AuthorityEnum, RoleEnum } from '@Types';
 
 /* Helper script for setting up a fresh db  */
 
@@ -125,6 +125,10 @@ const runDown = async () => {
         break;
       case 'down':
         await runDown();
+        break;
+      case 'reset':
+        await runDown();
+        await runUp();
         break;
     }
   }
