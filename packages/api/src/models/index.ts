@@ -1,4 +1,4 @@
-import { AuthorityEnum, RoleEnum } from '..';
+import { AuthorityEnum, RoleEnum } from '@Types';
 
 export type User = {
   id: number;

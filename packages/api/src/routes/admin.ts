@@ -1,10 +1,18 @@
-import express from 'express';
 import { AdminController } from '@Controllers';
+import { trpcRouter } from '@Lib';
 
-const router = express.Router();
+import { AuthorityEnum } from '@Types';
+import { requireAutharization } from '@Middlewares';
 
-export default (() => {
-  router.get('/user-count', AdminController.getUserCount);
+const autharizationProcedure = requireAutharization(
+  AuthorityEnum['Access Admin Panel']
+);
+//const authenticationProcedure = requireAuthentication;
 
-  return router;
-})();
+//authenticationProcedure.use(autharizationProcedure);
+
+export default trpcRouter({
+  userCount: autharizationProcedure.query(({ ctx }) =>
+    AdminController.getUserCount(ctx)
+  ),
+});

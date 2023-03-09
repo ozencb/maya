@@ -7,14 +7,13 @@
       "@Lib": ["lib"],
       "@Loaders": ["loaders"],
       "@Middlewares": ["middlewares"],
+      "@Models": ["models"],
       "@Repositories": ["repositories"],
       "@Routes": ["routes"],
       "@Schemas": ["schemas"],
       "@Services": ["services"],
       "@Utils": ["utils"],
-      "@Types": ["types"],
-      "@Common/*": ["../../common/*"],
-      "@Common": ["../../common"]
+      "@Types": ["types"]
     }
   }
 }

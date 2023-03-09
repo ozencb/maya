@@ -1,6 +1,6 @@
 import { compare, hash } from 'bcryptjs';
 
-import { AuthorityEnum } from '@Common/types';
+import { AuthorityEnum } from '@Types';
 import { db } from '@Lib';
 
 export const register = async ({

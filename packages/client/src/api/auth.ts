@@ -3,7 +3,6 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { http } from '@Helpers';
 import { SignFormFields } from '@Types';
 import { queryClient } from '@Lib';
-import { AuthorityEnum } from '@Common/types';
 
 const login = ({ username, password }: SignFormFields) =>
   http({
@@ -40,7 +39,7 @@ const logout = () =>
     },
   });
 
-const hasAuthority = (authority: AuthorityEnum): Promise<boolean> =>
+const hasAuthority = (authority: unknown): Promise<boolean> =>
   http({
     method: 'GET',
     url: 'auth/has-authority',
@@ -71,7 +70,7 @@ export const useLogout = () =>
     },
   });
 
-export const useHasAuthority = (requiredAuthority: AuthorityEnum) =>
+export const useHasAuthority = (requiredAuthority: unknown) =>
   useQuery(['hasAuthority'], () => hasAuthority(requiredAuthority), {
     enabled: !!queryClient.getQueryData(['me']),
   });

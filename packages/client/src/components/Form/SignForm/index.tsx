@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Button } from '@Elements';
-import { signSchema } from '@Common/schemas';
+import { signSchema } from '@Schemas';
 import { FormInput } from '..';
 
 import styles from './styles.module.scss';

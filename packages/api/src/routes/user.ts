@@ -1,11 +1,10 @@
-import express from 'express';
 import { UserController } from '@Controllers';
+import { trpcRouter } from '@Lib';
+import { requireAuthentication } from '@Middlewares';
 
-const router = express.Router();
+const procedure = requireAuthentication;
 
-export default (() => {
-  router.get('/all', UserController.getAll);
-  router.get('/me', UserController.me);
-
-  return router;
-})();
+export default trpcRouter({
+  all: procedure.query(({ ctx }) => UserController.getAll(ctx)),
+  me: procedure.query(({ ctx }) => UserController.me(ctx)),
+});

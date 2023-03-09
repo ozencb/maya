@@ -1,10 +1,9 @@
-import { Request, Response } from 'express';
-
-import { success, HTTPStatus, error } from '@Constants';
-import { logger } from '@Lib';
+import { success } from '@Constants';
+import { ExpressContext, logger } from '@Lib';
 import { RoleService } from '@Services';
+import { TRPCError } from '@trpc/server';
 
-export const getAllRoles = async (req: Request, res: Response) => {
+export const getAllRoles = async ({ req }: ExpressContext) => {
   try {
     const data = await RoleService.getAllRoles();
 
@@ -14,7 +13,7 @@ export const getAllRoles = async (req: Request, res: Response) => {
       payload: { username: req.body.username },
     });
 
-    return res.status(HTTPStatus.SUCCESS).send({ ...success, data });
+    return { ...success, data };
   } catch (err) {
     logger.warn({
       createdBy: req.session.username,
@@ -23,11 +22,14 @@ export const getAllRoles = async (req: Request, res: Response) => {
       error: err,
     });
 
-    return res.status(HTTPStatus.ERROR).send({ ...error });
+    throw new TRPCError({
+      code: 'INTERNAL_SERVER_ERROR',
+      message: err,
+    });
   }
 };
 
-export const getUserRoles = async (req: Request, res: Response) => {
+export const getUserRoles = async ({ req }: ExpressContext) => {
   try {
     const data = await RoleService.getUserRoles();
 
@@ -37,7 +39,7 @@ export const getUserRoles = async (req: Request, res: Response) => {
       payload: { username: req.body.username },
     });
 
-    return res.status(HTTPStatus.SUCCESS).send({ ...success, data });
+    return { ...success, data };
   } catch (err) {
     logger.warn({
       createdBy: req.session.username,
@@ -46,6 +48,9 @@ export const getUserRoles = async (req: Request, res: Response) => {
       error: err,
     });
 
-    return res.status(HTTPStatus.ERROR).send({ ...error });
+    throw new TRPCError({
+      code: 'INTERNAL_SERVER_ERROR',
+      message: err,
+    });
   }
 };

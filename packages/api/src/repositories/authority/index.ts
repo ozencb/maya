@@ -1,8 +1,8 @@
 import { IDatabase } from 'pg-promise';
-import { Role } from '@Common/models';
+import { Role } from '@Models';
 import { sqlFileResolver as sql } from '@Utils';
 import { cache } from '@Lib';
-import { AuthorityEnum } from '@Common/types';
+import { AuthorityEnum } from '@Types';
 
 export class AuthorityRepository {
   constructor(private db: IDatabase<any>) {}

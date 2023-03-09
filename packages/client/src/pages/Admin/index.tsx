@@ -1,5 +1,6 @@
 import { useRoles, useUserCount, useUserRoles } from '@Api';
 import { GenericList } from '@Elements';
+import { trpc } from '@Lib';
 import { Head } from '@UtilityComponents';
 
 const AdminPage = (): JSX.Element => {

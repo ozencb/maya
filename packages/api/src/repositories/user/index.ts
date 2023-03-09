@@ -1,9 +1,9 @@
 import { IDatabase } from 'pg-promise';
 import { IResult } from 'pg-promise/typescript/pg-subset';
-import { User } from '@Common/models';
+import { User } from '@Models';
 import { sqlFileResolver as sql } from '@Utils';
 import { cache } from '@Lib';
-import { UserDetail, UserNonSensitive } from '@Common/types';
+import { UserDetail, UserNonSensitive } from '@Types';
 
 export class UserRepository {
   constructor(private db: IDatabase<any>) {}

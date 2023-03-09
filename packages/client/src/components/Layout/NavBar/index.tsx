@@ -1,20 +1,16 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { useHasAuthority, useLogout, useMe } from '@Api';
-import { AuthorityEnum } from '@Common/types';
 import { Avatar, DropdownMenu } from '@Elements';
 
 import styles from './styles.module.scss';
 
 const NavBar = (): JSX.Element => {
   const { pathname } = useLocation();
-  const navigate = useNavigate();
 
   const logout = useLogout();
   const { data: loggedInUser } = useMe();
-  const { data: hasAuthority } = useHasAuthority(
-    AuthorityEnum['Access Admin Panel']
-  );
+  const { data: hasAuthority } = useHasAuthority('Access Admin Panel');
 
   return (
     <nav className={styles.container}>

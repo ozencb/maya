@@ -4,7 +4,6 @@ import { MainLayout } from '@Layout';
 import React from 'react';
 import { useMe } from '@Api';
 import { RequireAuthority } from '@UtilityComponents';
-import { AuthorityEnum } from '@Common/types';
 
 const AdminPage = React.lazy(() => import('@Pages/Admin'));
 const HomePage = React.lazy(() => import('@Pages/Home'));
@@ -24,9 +23,7 @@ const RouteProvider = () => {
     {
       path: '/admin',
       element: (
-        <RequireAuthority
-          requiredAuthority={AuthorityEnum['Access Admin Panel']}
-        >
+        <RequireAuthority requiredAuthority="Access Admin Panel">
           <AdminPage />
         </RequireAuthority>
       ),

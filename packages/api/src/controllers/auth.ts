@@ -1,20 +1,21 @@
-import { Request, Response } from 'express';
+import { TRPCError } from '@trpc/server';
 
-import { success, HTTPStatus, error } from '@Constants';
-import { logger } from '@Lib';
+import { success } from '@Constants';
+import { ExpressContext, logger } from '@Lib';
 import { AuthService, UserService } from '@Services';
-import { RoleEnum } from '@Common/types';
+import { RoleEnum } from '@Types';
 
-export const register = async (req: Request, res: Response) => {
+export const register = async ({ req }: ExpressContext) => {
   try {
     const { username } = req.body;
 
     const userExists = await UserService.userExists(username);
 
     if (userExists)
-      return res
-        .status(HTTPStatus.ERROR)
-        .send({ ...error, message: 'This username is taken.' });
+      throw new TRPCError({
+        code: 'CONFLICT',
+        message: 'This username is taken.',
+      });
 
     const createdUser = await AuthService.register(req.body);
     await UserService.addUserRole(createdUser.id, RoleEnum.User);
@@ -30,9 +31,7 @@ export const register = async (req: Request, res: Response) => {
       payload: { username: req.body.username },
     });
 
-    return res
-      .status(HTTPStatus.SUCCESS)
-      .send({ ...success, message: 'Succesfully registered!' });
+    return { ...success, message: 'Succesfully registered!' };
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,
@@ -41,20 +40,24 @@ export const register = async (req: Request, res: Response) => {
       error: err,
     });
 
-    return res.status(HTTPStatus.ERROR).send({ ...error });
+    throw new TRPCError({
+      code: 'INTERNAL_SERVER_ERROR',
+      message: err,
+    });
   }
 };
 
-export const login = async (req: Request, res: Response) => {
+export const login = async ({ req }: ExpressContext) => {
   try {
     const { username } = req.body;
 
     const user = await AuthService.login(req.body);
 
     if (!user)
-      return res
-        .status(HTTPStatus.ERROR)
-        .send({ ...error, message: 'Wrong username or password' });
+      throw new TRPCError({
+        code: 'FORBIDDEN',
+        message: 'Wrong username or password',
+      });
 
     req.session.username = user.username;
     req.session.userId = user.id;
@@ -65,9 +68,7 @@ export const login = async (req: Request, res: Response) => {
       payload: { username: req.body.username },
     });
 
-    return res
-      .status(HTTPStatus.SUCCESS)
-      .send({ ...success, message: 'Successfully logged in!' });
+    return { ...success, message: 'Successfully logged in!' };
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,
@@ -76,11 +77,14 @@ export const login = async (req: Request, res: Response) => {
       error: err,
     });
 
-    return res.status(HTTPStatus.ERROR).send({ ...error });
+    throw new TRPCError({
+      code: 'INTERNAL_SERVER_ERROR',
+      message: err,
+    });
   }
 };
 
-export const logout = async (req: Request, res: Response) => {
+export const logout = async ({ req, res }: ExpressContext) => {
   const username = req.session.username;
   try {
     req.session.destroy((_) => {});
@@ -92,9 +96,7 @@ export const logout = async (req: Request, res: Response) => {
       payload: req.body,
     });
 
-    return res
-      .status(HTTPStatus.SUCCESS)
-      .send({ ...success, message: 'Successfully logged out!' });
+    return { ...success, message: 'Successfully logged out!' };
   } catch (err) {
     logger.warn({
       createdBy: username,
@@ -103,15 +105,22 @@ export const logout = async (req: Request, res: Response) => {
       error: err,
     });
 
-    return res.status(HTTPStatus.ERROR).send({ ...error });
+    throw new TRPCError({
+      code: 'BAD_REQUEST',
+      message: err,
+    });
   }
 };
 
-export const hasAuthority = async (req: Request, res: Response) => {
+export const hasAuthority = async ({ req }: ExpressContext) => {
   try {
     const { username, userId } = req.session;
 
-    if (!userId) return res.status(HTTPStatus.ERROR).send({ ...error });
+    if (!userId)
+      throw new TRPCError({
+        code: 'BAD_REQUEST',
+        message: 'No user',
+      });
 
     const data = await AuthService.hasAuthority(userId, req.body.authority);
 
@@ -121,11 +130,11 @@ export const hasAuthority = async (req: Request, res: Response) => {
       payload: req.body,
     });
 
-    return res.status(HTTPStatus.SUCCESS).send({
+    return {
       ...success,
       message: 'You are not authorized for this action!',
       data,
-    });
+    };
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,
@@ -134,6 +143,9 @@ export const hasAuthority = async (req: Request, res: Response) => {
       error: err,
     });
 
-    return res.status(HTTPStatus.ERROR).send({ ...error });
+    throw new TRPCError({
+      code: 'BAD_REQUEST',
+      message: err,
+    });
   }
 };

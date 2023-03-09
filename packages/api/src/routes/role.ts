@@ -1,11 +1,9 @@
-import express from 'express';
 import { RoleController } from '@Controllers';
+import { trpcRouter, publicProcedure } from '@Lib';
 
-const router = express.Router();
-
-export default (() => {
-  router.get('/all', RoleController.getAllRoles);
-  router.get('/user-roles', RoleController.getUserRoles);
-
-  return router;
-})();
+export default trpcRouter({
+  all: publicProcedure.query(({ ctx }) => RoleController.getAllRoles(ctx)),
+  userRoles: publicProcedure.query(({ ctx }) =>
+    RoleController.getUserRoles(ctx)
+  ),
+});

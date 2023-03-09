@@ -1,4 +1,4 @@
-import { RoleEnum } from '@Common/types';
+import { RoleEnum } from '@Types';
 import { db } from '@Lib';
 
 export const getAll = () => db.user.all();

@@ -1,5 +1,5 @@
 import { useHasAuthority, useMe } from '@Api';
-import { AuthorityEnum } from '@Common/types';
+
 import NoMatchPage from '@Pages/NoMatch';
 
 const RequireAuthority = ({
@@ -7,7 +7,7 @@ const RequireAuthority = ({
   requiredAuthority,
 }: {
   children: JSX.Element;
-  requiredAuthority: AuthorityEnum;
+  requiredAuthority: string;
 }): JSX.Element => {
   const loggedInUser = useMe();
   const { data: hasAuthority } = useHasAuthority(requiredAuthority);

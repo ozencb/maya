@@ -1,5 +1,5 @@
 import { IDatabase } from 'pg-promise';
-import { Log } from '@Common/models';
+import { Log } from '@Models';
 import { sqlFileResolver as sql } from '@Utils';
 
 export class LogRepository {

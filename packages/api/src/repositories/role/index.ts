@@ -1,6 +1,6 @@
 import { IDatabase } from 'pg-promise';
-import { Role, UserRole } from '@Common/models';
-import { RoleEnum } from '@Common/types';
+import { Role, UserRole } from '@Models';
+import { RoleEnum } from '@Types';
 import { cache } from '@Lib';
 import { sqlFileResolver as sql } from '@Utils';
 

@@ -13,11 +13,10 @@
       "@Pages/*": ["pages/*"],
       "@Pages": ["pages"],
       "@Providers": ["providers"],
+      "@Schemas": ["schemas"],
       "@Store": ["store"],
       "@Types": ["types"],
-      "@Utils": ["utils"],
-      "@Common/*": ["../../common/*"],
-      "@Common": ["../../common"]
+      "@Utils": ["utils"]
     }
   }
 }

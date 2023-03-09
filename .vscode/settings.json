@@ -1,7 +1,3 @@
 {
-  "eslint.workingDirectories": [
-    "packages/api",
-    "packages/client",
-    "packages/common"
-  ]
+  "eslint.workingDirectories": ["packages/api", "packages/client"]
 }

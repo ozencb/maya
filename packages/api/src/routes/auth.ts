@@ -1,14 +1,16 @@
-import express from 'express';
 import { AuthController } from '@Controllers';
-import { validator } from '@Middlewares';
+import { trpcRouter, publicProcedure } from '@Lib';
+import schemas from '@Schemas';
 
-const router = express.Router();
-
-export default (() => {
-  router.post('/register', validator('register'), AuthController.register);
-  router.post('/login', validator('login'), AuthController.login);
-  router.post('/logout', AuthController.logout);
-  router.get('/has-authority', AuthController.hasAuthority);
-
-  return router;
-})();
+export default trpcRouter({
+  register: publicProcedure
+    .input(schemas.register)
+    .mutation(({ ctx }) => AuthController.register(ctx)),
+  login: publicProcedure
+    .input(schemas.login)
+    .mutation(({ ctx }) => AuthController.login(ctx)),
+  logout: publicProcedure.mutation(({ ctx }) => AuthController.logout(ctx)),
+  hasAuthority: publicProcedure.query(({ ctx }) =>
+    AuthController.hasAuthority(ctx)
+  ),
+});

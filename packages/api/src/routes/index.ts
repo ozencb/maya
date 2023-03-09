@@ -1,22 +1,28 @@
-import { AuthorityEnum } from '@Common/types';
-import { requireAutharization, requireAuthentication } from '@Middlewares';
-import express from 'express';
+import { Application } from 'express';
+import * as trpcExpress from '@trpc/server/adapters/express';
 
+import { createContext, t } from '@Lib';
 import AdminRouter from './admin';
 import AuthRouter from './auth';
-import RoleRouter from './role';
-import UserRouter from './user';
 
-const router = express.Router();
+/* const appRouter = trpcRouter({
+  admin: AdminRouter,
+  auth: AuthRouter,
+  role: RoleRouter,
+  user: UserRouter,
+}); */
 
-router.use(
-  '/admin',
-  requireAuthentication,
-  requireAutharization(AuthorityEnum['Access Admin Panel']),
-  AdminRouter
-);
-router.use('/auth', AuthRouter);
-router.use('/role', RoleRouter);
-router.use('/user', requireAuthentication, UserRouter);
+const appRouter = t.mergeRouters(AdminRouter, AuthRouter);
+export type AppRouter = typeof appRouter;
 
-export default router;
+const addTrpcRouters = (app: Application) => {
+  app.use(
+    '/api/trpc',
+    trpcExpress.createExpressMiddleware({
+      router: appRouter,
+      createContext,
+    })
+  );
+};
+
+export default addTrpcRouters;
