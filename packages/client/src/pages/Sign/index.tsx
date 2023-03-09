@@ -1,13 +1,13 @@
 import { useLocation, useNavigate } from 'react-router-dom';
+import classNames from 'classnames';
 
 import { SignForm } from '@Form';
-import { useLogin, useMe, useRegister } from '@Api';
 import { useEffect, useState } from 'react';
 import { Head } from '@UtilityComponents';
 import { Button } from '@Elements';
+import { trpc } from '@Lib';
 
 import styles from './styles.module.scss';
-import classNames from 'classnames';
 
 type Mode = 'login' | 'register';
 
@@ -17,28 +17,25 @@ const SignPage = () => {
   let navigate = useNavigate();
   let location = useLocation();
 
-  const login = useLogin();
-  const register = useRegister();
-
-  const { data } = useMe();
+  const { data } = trpc.user.me.useQuery();
 
   const modes = {
     login: {
       title: 'Log In',
       question: "Don't have an account?",
-      method: login,
+      method: trpc.auth.login,
     },
     register: {
       title: 'Sign Up',
       question: 'Already have an account?',
-      method: register,
+      method: trpc.auth.register,
     },
   };
 
   const from = location.state?.from?.pathname || '/';
 
   useEffect(() => {
-    if (data?.username) {
+    if (data?.data.username) {
       navigate(from, { replace: true });
     }
   }, [data]);
@@ -51,7 +48,7 @@ const SignPage = () => {
           <h1 className={styles.header}>{modes[mode].title}</h1>
           <SignForm
             onSubmit={(e) => {
-              modes[mode].method.mutate(e);
+              modes[mode].method.useMutation(e.username, e.password);
             }}
           />
         </div>

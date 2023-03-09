@@ -1,3 +1,4 @@
 import AppProvider from './AppProvider';
+import RouteProvider from './RouteProvider';
 
-export { AppProvider };
+export { AppProvider, RouteProvider };

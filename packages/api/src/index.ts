@@ -5,8 +5,6 @@ import express from 'express';
 import loaders from '@Loaders';
 import { logger } from '@Lib';
 
-import { AppRouter } from '@Routes';
-
 (async () => {
   const port = process.env.PORT || 8888;
 

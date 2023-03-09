@@ -8,7 +8,6 @@
       "@Layout": ["components/Layout"],
       "@UtilityComponents": ["components/Utility"],
       "@Constants": ["constants"],
-      "@Helpers": ["helpers"],
       "@Lib": ["lib"],
       "@Pages/*": ["pages/*"],
       "@Pages": ["pages"],
@@ -16,7 +15,8 @@
       "@Schemas": ["schemas"],
       "@Store": ["store"],
       "@Types": ["types"],
-      "@Utils": ["utils"]
+      "@Utils": ["utils"],
+      "@Server/*": ["../../api/src/*"]
     }
   }
 }

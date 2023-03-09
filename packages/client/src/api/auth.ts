@@ -1,69 +1,21 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-
-import { http } from '@Helpers';
-import { SignFormFields } from '@Types';
-import { queryClient } from '@Lib';
-
-const login = ({ username, password }: SignFormFields) =>
-  http({
-    method: 'POST',
-    url: 'auth/login',
-    data: {
-      username,
-      password,
-    },
-    options: {
-      showMessageNotification: true,
-    },
-  });
-
-const register = ({ username, password }: SignFormFields) =>
-  http({
-    method: 'POST',
-    url: 'auth/register',
-    data: {
-      username,
-      password,
-    },
-    options: {
-      showMessageNotification: true,
-    },
-  });
-
-const logout = () =>
-  http({
-    method: 'POST',
-    url: 'auth/logout',
-    options: {
-      showMessageNotification: true,
-    },
-  });
-
-const hasAuthority = (authority: unknown): Promise<boolean> =>
-  http({
-    method: 'GET',
-    url: 'auth/has-authority',
-    data: {
-      authority,
-    },
-  });
+import { queryClient, trpc } from '@Lib';
 
 export const useLogin = () =>
-  useMutation(login, {
+  trpc.auth.login.useMutation({
     onSuccess: () => {
       queryClient.resetQueries(['me']);
       queryClient.resetQueries(['hasAuthority']);
     },
   });
 export const useRegister = () =>
-  useMutation(register, {
+  trpc.auth.register.useMutation({
     onSuccess: () => {
       queryClient.resetQueries(['me']);
       queryClient.resetQueries(['hasAuthority']);
     },
   });
 export const useLogout = () =>
-  useMutation(logout, {
+  trpc.auth.logout.useMutation({
     onSuccess: () => {
       queryClient.resetQueries(['me']);
       queryClient.resetQueries(['hasAuthority']);
@@ -71,6 +23,11 @@ export const useLogout = () =>
   });
 
 export const useHasAuthority = (requiredAuthority: unknown) =>
-  useQuery(['hasAuthority'], () => hasAuthority(requiredAuthority), {
-    enabled: !!queryClient.getQueryData(['me']),
-  });
+  trpc.auth.hasAuthority
+    .useQuery
+    /*   ['hasAuthority'],
+    () => hasAuthority(requiredAuthority),
+    {
+      enabled: !!queryClient.getQueryData(['me']),
+    } */
+    ();
