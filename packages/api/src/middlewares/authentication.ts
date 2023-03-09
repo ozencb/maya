@@ -1,4 +1,4 @@
-import { TRPCError } from '@trpc/server';
+import { APIError } from '@Utils';
 import { trpcMiddleware } from '@Lib';
 
 export default trpcMiddleware(({ ctx, next }) => {
@@ -8,16 +8,13 @@ export default trpcMiddleware(({ ctx, next }) => {
     if (!username) {
       ctx.req.session.destroy((_) => {});
       ctx.res.clearCookie('sid');
-      throw new TRPCError({
-        code: 'BAD_REQUEST',
+      throw new APIError({
+        code: 'UNAUTHORIZED',
       });
     }
 
     return next({ ctx });
   } catch (err) {
-    throw new TRPCError({
-      code: 'INTERNAL_SERVER_ERROR',
-      message: err.details,
-    });
+    throw err;
   }
 });

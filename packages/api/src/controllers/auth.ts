@@ -1,5 +1,3 @@
-import { TRPCError } from '@trpc/server';
-
 import { ExpressContext, logger } from '@Lib';
 import { AuthService, UserService } from '@Services';
 import { APIError } from '@Utils';
@@ -40,8 +38,6 @@ export const register = async ({ req }: ExpressContext) => {
       error: err,
     });
 
-    console.log(err);
-
     throw err;
   }
 };
@@ -53,9 +49,10 @@ export const login = async ({ req }: ExpressContext) => {
     const user = await AuthService.login(req.body);
 
     if (!user)
-      throw new TRPCError({
+      throw new APIError({
         code: 'FORBIDDEN',
         message: 'Wrong username or password',
+        notifyClient: true,
       });
 
     req.session.username = user.username;
@@ -76,9 +73,7 @@ export const login = async ({ req }: ExpressContext) => {
       error: err,
     });
 
-    throw new TRPCError({
-      code: 'INTERNAL_SERVER_ERROR',
-    });
+    throw err;
   }
 };
 
@@ -103,10 +98,7 @@ export const logout = async ({ req, res }: ExpressContext) => {
       error: err,
     });
 
-    throw new TRPCError({
-      code: 'BAD_REQUEST',
-      message: err,
-    });
+    throw err;
   }
 };
 
@@ -115,7 +107,7 @@ export const hasAuthority = async ({ req }: ExpressContext) => {
     const { username, userId } = req.session;
 
     if (!userId)
-      throw new TRPCError({
+      throw new APIError({
         code: 'BAD_REQUEST',
         message: 'No user',
       });
@@ -140,9 +132,6 @@ export const hasAuthority = async ({ req }: ExpressContext) => {
       error: err,
     });
 
-    throw new TRPCError({
-      code: 'BAD_REQUEST',
-      message: err,
-    });
+    throw err;
   }
 };

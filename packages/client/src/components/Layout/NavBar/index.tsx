@@ -13,8 +13,8 @@ const NavBar = (): JSX.Element => {
   const { data: loggedInUser } = trpc.user.me.useQuery();
   const { mutate: logout } = trpc.auth.logout.useMutation({
     onSuccess: () => {
-      cache.auth.invalidate();
-      cache.user.invalidate();
+      cache.auth.hasAuthority.reset();
+      cache.user.me.reset();
     },
   });
 

@@ -1,6 +1,5 @@
 import { ExpressContext, logger } from '@Lib';
 import { UserService } from '@Services';
-import { TRPCError } from '@trpc/server';
 
 export const getAll = async ({ req }: ExpressContext) => {
   try {
@@ -21,9 +20,7 @@ export const getAll = async ({ req }: ExpressContext) => {
       error: err,
     });
 
-    throw new TRPCError({
-      code: 'INTERNAL_SERVER_ERROR',
-    });
+    throw err;
   }
 };
 
@@ -48,8 +45,6 @@ export const me = async ({ req }: ExpressContext) => {
       error: err,
     });
 
-    throw new TRPCError({
-      code: 'INTERNAL_SERVER_ERROR',
-    });
+    throw err;
   }
 };

@@ -3,7 +3,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { HelmetProvider } from 'react-helmet-async';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { httpLink } from '@trpc/client';
+import { httpLink, loggerLink } from '@trpc/client';
 
 import { ErrorFallback, Notifications } from '@UtilityComponents';
 
@@ -18,10 +18,6 @@ const AppProvider = ({ children }: Props) => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        refetchOnMount: false,
-        refetchOnWindowFocus: false,
-        refetchInterval: false,
-        retry: false,
         onError: (err) => {
           const { message } = (err as any).shape;
           const { notifyClient } = (err as any).shape.data;
@@ -46,7 +42,7 @@ const AppProvider = ({ children }: Props) => {
 
   const trpcClient = trpc.createClient({
     links: [
-      // loggerLink(),
+      loggerLink(),
       httpLink({
         url: 'http://localhost:4000/api/trpc',
         fetch(url, options) {

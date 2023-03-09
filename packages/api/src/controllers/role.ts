@@ -1,6 +1,5 @@
 import { ExpressContext, logger } from '@Lib';
 import { RoleService } from '@Services';
-import { TRPCError } from '@trpc/server';
 
 export const getAllRoles = async ({ req }: ExpressContext) => {
   try {
@@ -21,9 +20,7 @@ export const getAllRoles = async ({ req }: ExpressContext) => {
       error: err,
     });
 
-    throw new TRPCError({
-      code: 'INTERNAL_SERVER_ERROR',
-    });
+    throw err;
   }
 };
 
@@ -46,8 +43,6 @@ export const getUserRoles = async ({ req }: ExpressContext) => {
       error: err,
     });
 
-    throw new TRPCError({
-      code: 'INTERNAL_SERVER_ERROR',
-    });
+    throw err;
   }
 };

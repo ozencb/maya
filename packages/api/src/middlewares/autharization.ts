@@ -1,4 +1,4 @@
-import { TRPCError } from '@trpc/server';
+import { APIError } from '@Utils';
 import { Authorities } from '@Types';
 import { db, trpcMiddleware } from '@Lib';
 
@@ -8,7 +8,7 @@ export default (requiredAuth: Authorities) =>
       const { userId } = ctx.req.session;
 
       if (!userId) {
-        throw new TRPCError({
+        throw new APIError({
           code: 'UNAUTHORIZED',
         });
       }
@@ -19,16 +19,13 @@ export default (requiredAuth: Authorities) =>
       );
 
       if (!hasAuthority) {
-        throw new TRPCError({
+        throw new APIError({
           code: 'UNAUTHORIZED',
         });
       }
 
       return next({ ctx });
     } catch (err) {
-      throw new TRPCError({
-        code: 'BAD_REQUEST',
-        message: err.details,
-      });
+      throw err;
     }
   });

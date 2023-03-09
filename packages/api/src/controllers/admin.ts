@@ -1,6 +1,5 @@
 import { ExpressContext, logger } from '@Lib';
 import { AdminService } from '@Services';
-import { TRPCError } from '@trpc/server';
 
 export const getUserCount = async ({ req }: ExpressContext) => {
   try {
@@ -21,8 +20,6 @@ export const getUserCount = async ({ req }: ExpressContext) => {
       error: err,
     });
 
-    throw new TRPCError({
-      code: 'INTERNAL_SERVER_ERROR',
-    });
+    throw err;
   }
 };
