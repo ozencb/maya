@@ -713,10 +713,10 @@
   dependencies:
     remove-accents "0.4.2"
 
-"@tanstack/query-core@4.14.3":
-  version "4.14.3"
-  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.14.3.tgz#9ab6763b61d5e491816483f3aeed771c1fbd657b"
-  integrity sha512-1OrxZk5jSKAjTIDgH/OHa6GfVpgGDVbCVf3KHQjXLFdutK4PSSXQIyX7I1HvBR3mYKyvFPo6yXKNG7QrkwUj9g==
+"@tanstack/query-core@4.26.1":
+  version "4.26.1"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.26.1.tgz#7a441086c4d3d79e1d156c0a355bd3567213626e"
+  integrity sha512-Zrx2pVQUP4ndnsu6+K/m8zerXSVY8QM+YSbxA1/jbBY21GeCd5oKfYl92oXPK0hPEUtoNuunIdiq0ZMqLos+Zg==
 
 "@tanstack/react-query-devtools@^4.12.0":
   version "4.14.3"
@@ -727,13 +727,28 @@
     superjson "^1.10.0"
     use-sync-external-store "^1.2.0"
 
-"@tanstack/react-query@^4.12.0":
-  version "4.14.3"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.14.3.tgz#3bafea000480463de35721c742265730e2973550"
-  integrity sha512-PP7DEFsOMl/JaGQr1B4IeGN3lqHrC5EpG+AgG03OlVIOQMtXNhb0N66Nt1pdrladvzYsKD20L3O3550rBzgLtg==
+"@tanstack/react-query@^4.26.1":
+  version "4.26.1"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.26.1.tgz#d254f6b7b297b5ae4204c84e6622506e5ec77d09"
+  integrity sha512-i3dnz4TOARGIXrXQ5P7S25Zfi4noii/bxhcwPurh2nrf5EUCcAt/95TB2HSmMweUBx206yIMWUMEQ7ptd6zwDg==
   dependencies:
-    "@tanstack/query-core" "4.14.3"
+    "@tanstack/query-core" "4.26.1"
     use-sync-external-store "^1.2.0"
+
+"@trpc/client@^10.14.1":
+  version "10.14.1"
+  resolved "https://registry.yarnpkg.com/@trpc/client/-/client-10.14.1.tgz#e30a5c1b7ef17c331f9b35e3401126d6a7b55699"
+  integrity sha512-cmaRWpDV+uVuyIeaJ8zMiuOzkQlZc9QaArQwvSnCfyYRkFUhWffKVnjZOT88/qAjgJzeYLwdM/I69+ydSmjJQQ==
+
+"@trpc/react-query@^10.14.1":
+  version "10.14.1"
+  resolved "https://registry.yarnpkg.com/@trpc/react-query/-/react-query-10.14.1.tgz#468ebb88de749ed4ff37ce2904819330c70f8cf4"
+  integrity sha512-lwMGndGSdC1HxQpAPOWAtv3bOPtlG2GE6vO69i9U7yuaDwZ08MGkDANE9tqI7t2MZdb8U2yWPbPcs6L5cctVbw==
+
+"@trpc/server@^10.14.1":
+  version "10.14.1"
+  resolved "https://registry.yarnpkg.com/@trpc/server/-/server-10.14.1.tgz#923ca6bd23e111052c718a138b3b66969192dd31"
+  integrity sha512-+xF2j4PITHI2+At7oDnu7clbvG7cn+lZQLJKrIKfJKssAwq8XQ7x39QF4CUd1Ix0TbjSrLwFoCj2lx9jbaSYnQ==
 
 "@tsconfig/node10@^1.0.7":
   version "1.0.9"
@@ -4929,7 +4944,7 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zod@^3.17.10, zod@^3.19.1:
+zod@^3.17.10:
   version "3.19.1"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.19.1.tgz#112f074a97b50bfc4772d4ad1576814bd8ac4473"
   integrity sha512-LYjZsEDhCdYET9ikFu6dVPGp2YH9DegXjdJToSzD9rO6fy4qiRYFoyEYwps88OseJlPyl2NOe2iJuhEhL7IpEA==

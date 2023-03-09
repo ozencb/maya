@@ -1,30 +1,28 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 
 import { Button } from '@Elements';
-import { signSchema } from '@Common/schemas';
+import { signSchema } from '@Schemas';
 import { FormInput } from '..';
 
 import styles from './styles.module.scss';
 
-interface ISignForm {
-  username: string;
-  password: string;
-}
+type SignForm = z.TypeOf<typeof signSchema>;
 
 type Props = {
-  onSubmit(data: ISignForm): void;
+  onSubmit(data: SignForm): void;
 };
 
 const SignForm = ({ onSubmit }: Props): JSX.Element => {
   const [submitting, setSubmitting] = useState(false);
 
-  const { register, handleSubmit } = useForm<ISignForm>({
+  const { register, handleSubmit } = useForm<SignForm>({
     resolver: zodResolver(signSchema),
   });
 
-  const submitForm = async (data: ISignForm) => {
+  const submitForm = async (data: SignForm) => {
     setSubmitting(true);
     onSubmit(data);
     setSubmitting(false);

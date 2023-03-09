@@ -1,4 +1,4 @@
-import { AuthorityEnum, RoleEnum } from '..';
+import { Authorities, Roles } from '@Types';
 
 export type User = {
   id: number;
@@ -20,7 +20,7 @@ export type Authority = {
   id: number;
   createdAt: Date;
   createdBy: string;
-  code: AuthorityEnum;
+  code: Authorities;
   description: string;
 };
 
@@ -28,7 +28,7 @@ export type Role = {
   id: number;
   createdAt: Date;
   createdBy: string;
-  code: RoleEnum;
+  code: Roles;
   description: string;
 };
 

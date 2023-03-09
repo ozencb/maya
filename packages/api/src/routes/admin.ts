@@ -1,10 +1,19 @@
-import express from 'express';
 import { AdminController } from '@Controllers';
+import { publicProcedure, trpcRouter } from '@Lib';
 
-const router = express.Router();
+import {
+  autharizationMiddleware,
+  authenticationMiddleware,
+} from '@Middlewares';
 
-export default (() => {
-  router.get('/user-count', AdminController.getUserCount);
+const protetectedProcedure = publicProcedure.use(
+  authenticationMiddleware.unstable_pipe(
+    autharizationMiddleware('ACCESS_ADMIN_PANEL')
+  )
+);
 
-  return router;
-})();
+export default trpcRouter({
+  userCount: protetectedProcedure.query(({ ctx }) =>
+    AdminController.getUserCount(ctx)
+  ),
+});

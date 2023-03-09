@@ -5,7 +5,7 @@ import DailyRotateFile, {
 } from 'winston-daily-rotate-file';
 
 import { db } from '@Lib';
-import { Log } from '@Common/models';
+import { Log } from '@Models';
 
 const logConfig = {
   logFolder: './logs/',

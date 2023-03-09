@@ -1,3 +1,3 @@
-import queryClient from './queryClient';
+import { trpc } from './trpc';
 
-export { queryClient };
+export { trpc };

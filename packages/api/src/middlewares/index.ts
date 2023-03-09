@@ -1,5 +1,4 @@
-import requireAutharization from './autharization';
-import requireAuthentication from './authentication';
-import validator from './validator';
+import autharizationMiddleware from './autharization';
+import authenticationMiddleware from './authentication';
 
-export { requireAutharization, requireAuthentication, validator };
+export { autharizationMiddleware, authenticationMiddleware };

@@ -1,20 +1,25 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-import { useHasAuthority, useLogout, useMe } from '@Api';
-import { AuthorityEnum } from '@Common/types';
 import { Avatar, DropdownMenu } from '@Elements';
+import { trpc } from '@Lib';
 
 import styles from './styles.module.scss';
 
 const NavBar = (): JSX.Element => {
-  const { pathname } = useLocation();
-  const navigate = useNavigate();
+  const cache = trpc.useContext();
 
-  const logout = useLogout();
-  const { data: loggedInUser } = useMe();
-  const { data: hasAuthority } = useHasAuthority(
-    AuthorityEnum['Access Admin Panel']
-  );
+  const { pathname } = useLocation();
+
+  const { data: loggedInUser } = trpc.user.me.useQuery();
+  const { mutate: logout } = trpc.auth.logout.useMutation({
+    onSuccess: () => {
+      cache.auth.hasAuthority.reset();
+      cache.user.me.reset();
+    },
+  });
+
+  const { data: hasAuthority } =
+    trpc.auth.hasAuthority.useQuery('ACCESS_ADMIN_PANEL');
 
   return (
     <nav className={styles.container}>
@@ -44,7 +49,7 @@ const NavBar = (): JSX.Element => {
                 <Link to="/admin">Admin Panel</Link>
               </DropdownMenu.Item>
             )}
-            <DropdownMenu.Item onClick={logout.mutate}>
+            <DropdownMenu.Item onClick={() => logout()}>
               Logout
             </DropdownMenu.Item>
           </DropdownMenu.Menu>

@@ -1,15 +1,16 @@
-import { NextFunction, Request, Response } from 'express';
-import { error, HTTPStatus } from '@Constants';
-import { AuthorityEnum } from '@Common/types';
-import { db } from '@Lib';
+import { APIError } from '@Utils';
+import { Authorities } from '@Types';
+import { db, trpcMiddleware } from '@Lib';
 
-export default (requiredAuth: AuthorityEnum) => {
-  return async (req: Request, res: Response, next: NextFunction) => {
+export default (requiredAuth: Authorities) =>
+  trpcMiddleware(async ({ ctx, next }) => {
     try {
-      const { userId } = req.session;
+      const { userId } = ctx.req.session;
 
       if (!userId) {
-        return res.status(HTTPStatus.UNAUTHORIZED).send({ ...error });
+        throw new APIError({
+          code: 'UNAUTHORIZED',
+        });
       }
 
       const hasAuthority = await db.authority.hasAuthority(
@@ -18,21 +19,13 @@ export default (requiredAuth: AuthorityEnum) => {
       );
 
       if (!hasAuthority) {
-        return res
-          .status(HTTPStatus.UNAUTHORIZED)
-          .send({
-            ...error,
-            message: 'You are not authorized for this action!',
-          });
+        throw new APIError({
+          code: 'UNAUTHORIZED',
+        });
       }
 
-      return next();
+      return next({ ctx });
     } catch (err) {
-      if (err.isJoi) console.log(err);
-
-      return res
-        .status(HTTPStatus.ERROR)
-        .send({ ...error, message: err.details });
+      throw err;
     }
-  };
-};
+  });

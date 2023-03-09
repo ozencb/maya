@@ -1,6 +1,6 @@
 import * as AvatarPrimitive from '@radix-ui/react-avatar';
 import classNames from 'classnames';
-import { ElementSize, ElementSizeMap } from '@Types';
+import { ElementSize } from '@Types';
 
 import styles from './styles.module.scss';
 

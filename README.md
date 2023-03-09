@@ -11,14 +11,14 @@ This is a work in progress. Some of the approaches you will see might be up for 
 
 - TypeScript
 - React
+- tRPC
 - Node.js
 - Express
-- Cypress
-- Vite
+- Zod
+- React-Query
 - PG-Promise
 - PostgreSQL
-- React-query
-- Zod
+- Vite
 - Sessions
 - Helmet
 - Winston

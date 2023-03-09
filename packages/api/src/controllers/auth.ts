@@ -1,23 +1,22 @@
-import { Request, Response } from 'express';
-
-import { success, HTTPStatus, error } from '@Constants';
-import { logger } from '@Lib';
+import { ExpressContext, logger } from '@Lib';
 import { AuthService, UserService } from '@Services';
-import { RoleEnum } from '@Common/types';
+import { APIError } from '@Utils';
 
-export const register = async (req: Request, res: Response) => {
+export const register = async ({ req }: ExpressContext) => {
   try {
     const { username } = req.body;
 
     const userExists = await UserService.userExists(username);
 
     if (userExists)
-      return res
-        .status(HTTPStatus.ERROR)
-        .send({ ...error, message: 'This username is taken.' });
+      throw new APIError({
+        code: 'CONFLICT',
+        message: 'This username is taken.',
+        notifyClient: true,
+      });
 
     const createdUser = await AuthService.register(req.body);
-    await UserService.addUserRole(createdUser.id, RoleEnum.User);
+    await UserService.addUserRole(createdUser.id, 'USER');
 
     const user = await AuthService.login(req.body);
 
@@ -30,9 +29,7 @@ export const register = async (req: Request, res: Response) => {
       payload: { username: req.body.username },
     });
 
-    return res
-      .status(HTTPStatus.SUCCESS)
-      .send({ ...success, message: 'Succesfully registered!' });
+    return 'Succesfully registered!';
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,
@@ -41,20 +38,22 @@ export const register = async (req: Request, res: Response) => {
       error: err,
     });
 
-    return res.status(HTTPStatus.ERROR).send({ ...error });
+    throw err;
   }
 };
 
-export const login = async (req: Request, res: Response) => {
+export const login = async ({ req }: ExpressContext) => {
   try {
     const { username } = req.body;
 
     const user = await AuthService.login(req.body);
 
     if (!user)
-      return res
-        .status(HTTPStatus.ERROR)
-        .send({ ...error, message: 'Wrong username or password' });
+      throw new APIError({
+        code: 'FORBIDDEN',
+        message: 'Wrong username or password',
+        notifyClient: true,
+      });
 
     req.session.username = user.username;
     req.session.userId = user.id;
@@ -65,9 +64,7 @@ export const login = async (req: Request, res: Response) => {
       payload: { username: req.body.username },
     });
 
-    return res
-      .status(HTTPStatus.SUCCESS)
-      .send({ ...success, message: 'Successfully logged in!' });
+    return 'Successfully logged in!';
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,
@@ -76,11 +73,11 @@ export const login = async (req: Request, res: Response) => {
       error: err,
     });
 
-    return res.status(HTTPStatus.ERROR).send({ ...error });
+    throw err;
   }
 };
 
-export const logout = async (req: Request, res: Response) => {
+export const logout = async ({ req, res }: ExpressContext) => {
   const username = req.session.username;
   try {
     req.session.destroy((_) => {});
@@ -92,9 +89,7 @@ export const logout = async (req: Request, res: Response) => {
       payload: req.body,
     });
 
-    return res
-      .status(HTTPStatus.SUCCESS)
-      .send({ ...success, message: 'Successfully logged out!' });
+    return 'Successfully logged out!';
   } catch (err) {
     logger.warn({
       createdBy: username,
@@ -103,17 +98,24 @@ export const logout = async (req: Request, res: Response) => {
       error: err,
     });
 
-    return res.status(HTTPStatus.ERROR).send({ ...error });
+    throw err;
   }
 };
 
-export const hasAuthority = async (req: Request, res: Response) => {
+export const hasAuthority = async ({ req }: ExpressContext) => {
   try {
     const { username, userId } = req.session;
 
-    if (!userId) return res.status(HTTPStatus.ERROR).send({ ...error });
+    if (!userId)
+      throw new APIError({
+        code: 'BAD_REQUEST',
+        message: 'No user',
+      });
 
-    const data = await AuthService.hasAuthority(userId, req.body.authority);
+    const hasAuthority = await AuthService.hasAuthority(
+      userId,
+      req.body.authority
+    );
 
     logger.info({
       createdBy: username,
@@ -121,11 +123,7 @@ export const hasAuthority = async (req: Request, res: Response) => {
       payload: req.body,
     });
 
-    return res.status(HTTPStatus.SUCCESS).send({
-      ...success,
-      message: 'You are not authorized for this action!',
-      data,
-    });
+    return hasAuthority;
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,
@@ -134,6 +132,6 @@ export const hasAuthority = async (req: Request, res: Response) => {
       error: err,
     });
 
-    return res.status(HTTPStatus.ERROR).send({ ...error });
+    throw err;
   }
 };

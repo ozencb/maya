@@ -12,7 +12,7 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import connectRedis from 'connect-redis';
 
-import routes from '@Routes';
+import addTrpcRouters from '@Routes';
 import { ONE_DAY_IN_MS, __PROD__ } from '@Constants';
 import { cache } from '@Lib';
 
@@ -80,7 +80,7 @@ const expressLoaders = (app: Application) => {
     })
   );
 
-  app.use('/api', routes);
+  addTrpcRouters(app);
 };
 
 export default expressLoaders;

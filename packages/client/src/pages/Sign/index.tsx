@@ -1,37 +1,46 @@
 import { useLocation, useNavigate } from 'react-router-dom';
+import classNames from 'classnames';
 
 import { SignForm } from '@Form';
-import { useLogin, useMe, useRegister } from '@Api';
 import { useEffect, useState } from 'react';
 import { Head } from '@UtilityComponents';
 import { Button } from '@Elements';
+import { trpc } from '@Lib';
 
 import styles from './styles.module.scss';
-import classNames from 'classnames';
 
 type Mode = 'login' | 'register';
 
 const SignPage = () => {
+  const cache = trpc.useContext();
+
   const [mode, setMode] = useState<Mode>('register');
 
-  let navigate = useNavigate();
-  let location = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const login = useLogin();
-  const register = useRegister();
-
-  const { data } = useMe();
+  const { data } = trpc.user.me.useQuery();
 
   const modes = {
     login: {
       title: 'Log In',
       question: "Don't have an account?",
-      method: login,
+      method: trpc.auth.login.useMutation({
+        onSuccess: () => {
+          cache.auth.invalidate();
+          cache.user.invalidate();
+        },
+      }),
     },
     register: {
       title: 'Sign Up',
       question: 'Already have an account?',
-      method: register,
+      method: trpc.auth.register.useMutation({
+        onSuccess: () => {
+          cache.auth.invalidate();
+          cache.user.invalidate();
+        },
+      }),
     },
   };
 
@@ -41,7 +50,7 @@ const SignPage = () => {
     if (data?.username) {
       navigate(from, { replace: true });
     }
-  }, [data]);
+  }, [data, from, navigate]);
 
   return (
     <>

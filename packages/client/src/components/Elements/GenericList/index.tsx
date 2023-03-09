@@ -6,7 +6,7 @@ type Props<T> = ElementBaseProps<HTMLDivElement> & {
   extractor: (item: T) => string | number;
 };
 
-const GenericList = <T extends unknown>({
+const GenericList = <T,>({
   data,
   renderItem,
   extractor,

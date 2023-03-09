@@ -11,7 +11,8 @@
     "pre-commit": "lint-staged",
     "pre-push": "yarn run type-check",
     "migrate:up": "ts-node -r tsconfig-paths/register src/migration.ts up",
-    "migrate:down": "ts-node -r tsconfig-paths/register src/migration.ts down"
+    "migrate:down": "ts-node -r tsconfig-paths/register src/migration.ts down",
+    "migrate:reset": "ts-node -r tsconfig-paths/register src/migration.ts reset"
   },
   "lint-staged": {
     "*.@(ts|js)": [
@@ -20,6 +21,7 @@
     ]
   },
   "dependencies": {
+    "@trpc/server": "^10.14.1",
     "@types/callsite": "^1.0.31",
     "bcryptjs": "^2.4.3",
     "callsite": "^1.0.0",
@@ -34,7 +36,6 @@
     "express-session": "^1.17.3",
     "helmet": "^4.6.0",
     "ioredis": "^4.28.0",
-    "maya-common": "1.0.0",
     "pg-promise": "^10.11.1",
     "reflect-metadata": "^0.1.13",
     "winston": "^3.3.3",

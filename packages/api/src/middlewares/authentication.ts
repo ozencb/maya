@@ -1,22 +1,20 @@
-import { NextFunction, Request, Response } from 'express';
-import { error, HTTPStatus } from '@Constants';
+import { APIError } from '@Utils';
+import { trpcMiddleware } from '@Lib';
 
-export default async (req: Request, res: Response, next: NextFunction) => {
+export default trpcMiddleware(({ ctx, next }) => {
   try {
-    const { username } = req.session;
+    const { username } = ctx.req.session;
 
     if (!username) {
-      req.session.destroy((_) => {});
-      res.clearCookie('sid');
-      return res.status(HTTPStatus.UNAUTHORIZED).send({ ...error });
+      ctx.req.session.destroy((_) => {});
+      ctx.res.clearCookie('sid');
+      throw new APIError({
+        code: 'UNAUTHORIZED',
+      });
     }
 
-    return next();
+    return next({ ctx });
   } catch (err) {
-    if (err.isJoi) console.log(err);
-
-    return res
-      .status(HTTPStatus.ERROR)
-      .send({ ...error, message: err.details });
+    throw err;
   }
-};
+});
