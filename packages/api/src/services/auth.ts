@@ -1,6 +1,6 @@
 import { compare, hash } from 'bcryptjs';
 
-import { AuthorityEnum } from '@Types';
+import { Authorities } from '@Types';
 import { db } from '@Lib';
 
 export const register = async ({
@@ -33,5 +33,5 @@ export const login = async ({
 
 export const hasAuthority = async (
   userId: number,
-  authority: AuthorityEnum
+  authority: Authorities
 ): Promise<boolean> => await db.authority.hasAuthority(userId, authority);

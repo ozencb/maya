@@ -1,4 +1,4 @@
-import { useHasAuthority, useMe } from '@Api';
+import { trpc } from '@Lib';
 
 import NoMatchPage from '@Pages/NoMatch';
 
@@ -9,8 +9,9 @@ const RequireAuthority = ({
   children: JSX.Element;
   requiredAuthority: string;
 }): JSX.Element => {
-  const loggedInUser = useMe();
-  const { data: hasAuthority } = useHasAuthority(requiredAuthority);
+  const { data: loggedInUser } = trpc.user.me.useQuery();
+  const { data: hasAuthority } =
+    trpc.auth.hasAuthority.useQuery(requiredAuthority);
 
   if (!loggedInUser) return <NoMatchPage />;
 

@@ -1,4 +1,4 @@
-import { ElementBaseProps, ElementSize, ElementSizeMap } from '@Types';
+import { ElementBaseProps, ElementSize } from '@Types';
 import classNames from 'classnames';
 
 import styles from './styles.module.scss';

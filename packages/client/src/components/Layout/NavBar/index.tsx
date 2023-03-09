@@ -1,16 +1,18 @@
 import { Link, useLocation } from 'react-router-dom';
 
-import { useHasAuthority, useLogout, useMe } from '@Api';
 import { Avatar, DropdownMenu } from '@Elements';
+import { trpc } from '@Lib';
 
 import styles from './styles.module.scss';
 
 const NavBar = (): JSX.Element => {
   const { pathname } = useLocation();
 
-  const logout = useLogout();
-  const { data: loggedInUser } = useMe();
-  const { data: hasAuthority } = useHasAuthority('Access Admin Panel');
+  const { mutate: logout } = trpc.auth.logout.useMutation();
+
+  const { data: loggedInUser } = trpc.user.me.useQuery();
+  const { data: hasAuthority } =
+    trpc.auth.hasAuthority.useQuery('ACCESS_ADMIN_PANEL');
 
   return (
     <nav className={styles.container}>
@@ -40,9 +42,7 @@ const NavBar = (): JSX.Element => {
                 <Link to="/admin">Admin Panel</Link>
               </DropdownMenu.Item>
             )}
-            <DropdownMenu.Item onClick={logout.mutate}>
-              Logout
-            </DropdownMenu.Item>
+            <DropdownMenu.Item onClick={logout}>Logout</DropdownMenu.Item>
           </DropdownMenu.Menu>
         ) : (
           pathname !== '/sign' && <Link to="/sign">Sign In</Link>

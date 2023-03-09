@@ -2,7 +2,6 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "@Api": ["api"],
       "@Elements": ["components/Elements"],
       "@Form": ["components/Form"],
       "@Layout": ["components/Layout"],

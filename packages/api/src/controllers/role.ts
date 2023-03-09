@@ -1,4 +1,3 @@
-import { success } from '@Constants';
 import { ExpressContext, logger } from '@Lib';
 import { RoleService } from '@Services';
 import { TRPCError } from '@trpc/server';
@@ -13,7 +12,7 @@ export const getAllRoles = async ({ req }: ExpressContext) => {
       payload: { username: req.body.username },
     });
 
-    return { ...success, data };
+    return data;
   } catch (err) {
     logger.warn({
       createdBy: req.session.username,
@@ -24,7 +23,6 @@ export const getAllRoles = async ({ req }: ExpressContext) => {
 
     throw new TRPCError({
       code: 'INTERNAL_SERVER_ERROR',
-      message: err,
     });
   }
 };
@@ -39,7 +37,7 @@ export const getUserRoles = async ({ req }: ExpressContext) => {
       payload: { username: req.body.username },
     });
 
-    return { ...success, data };
+    return data;
   } catch (err) {
     logger.warn({
       createdBy: req.session.username,
@@ -50,7 +48,6 @@ export const getUserRoles = async ({ req }: ExpressContext) => {
 
     throw new TRPCError({
       code: 'INTERNAL_SERVER_ERROR',
-      message: err,
     });
   }
 };

@@ -1,12 +1,9 @@
 import { AdminController } from '@Controllers';
 import { trpcRouter } from '@Lib';
 
-import { AuthorityEnum } from '@Types';
 import { requireAutharization } from '@Middlewares';
 
-const autharizationProcedure = requireAutharization(
-  AuthorityEnum['Access Admin Panel']
-);
+const autharizationProcedure = requireAutharization('ACCESS_ADMIN_PANEL');
 //const authenticationProcedure = requireAuthentication;
 
 //authenticationProcedure.use(autharizationProcedure);

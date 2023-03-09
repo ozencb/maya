@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import pgPromise, { IMain } from 'pg-promise';
-import { AuthorityEnum, RoleEnum } from '@Types';
+import { Authorities, Roles } from '@Types';
 
 /* Helper script for setting up a fresh db  */
 

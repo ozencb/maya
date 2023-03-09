@@ -1,3 +1,4 @@
+import { z } from 'zod';
 import { AuthController } from '@Controllers';
 import { trpcRouter, publicProcedure } from '@Lib';
 import schemas from '@Schemas';
@@ -10,7 +11,7 @@ export default trpcRouter({
     .input(schemas.login)
     .mutation(({ ctx }) => AuthController.login(ctx)),
   logout: publicProcedure.mutation(({ ctx }) => AuthController.logout(ctx)),
-  hasAuthority: publicProcedure.query(({ ctx }) =>
-    AuthController.hasAuthority(ctx)
-  ),
+  hasAuthority: publicProcedure
+    .input(z.string())
+    .query(({ ctx }) => AuthController.hasAuthority(ctx)),
 });

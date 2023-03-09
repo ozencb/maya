@@ -1,4 +1,3 @@
-import { success } from '@Constants';
 import { ExpressContext, logger } from '@Lib';
 import { AdminService } from '@Services';
 import { TRPCError } from '@trpc/server';
@@ -13,7 +12,7 @@ export const getUserCount = async ({ req }: ExpressContext) => {
       payload: { username: req.body.username },
     });
 
-    return { ...success, data };
+    return data;
   } catch (err) {
     logger.warn({
       createdBy: req.session.username,
@@ -24,7 +23,6 @@ export const getUserCount = async ({ req }: ExpressContext) => {
 
     throw new TRPCError({
       code: 'INTERNAL_SERVER_ERROR',
-      message: err,
     });
   }
 };

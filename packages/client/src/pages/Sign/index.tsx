@@ -11,13 +11,6 @@ import styles from './styles.module.scss';
 
 type Mode = 'login' | 'register';
 
-const useLogin = () =>
-  trpc.auth.login.useMutation({
-    onSuccess: () => {
-      inva;
-    },
-  });
-
 const SignPage = () => {
   const [mode, setMode] = useState<Mode>('register');
 

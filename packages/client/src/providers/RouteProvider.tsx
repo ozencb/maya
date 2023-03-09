@@ -2,8 +2,8 @@ import { RouteObject, useRoutes } from 'react-router-dom';
 
 import { MainLayout } from '@Layout';
 import React from 'react';
-import { useMe } from '@Api';
 import { RequireAuthority } from '@UtilityComponents';
+import { trpc } from '@Lib';
 
 const AdminPage = React.lazy(() => import('@Pages/Admin'));
 const HomePage = React.lazy(() => import('@Pages/Home'));
@@ -12,7 +12,7 @@ const NoMatch = React.lazy(() => import('@Pages/NoMatch'));
 const ProfilePage = React.lazy(() => import('@Pages/Profile'));
 
 const RouteProvider = () => {
-  const { data: loggedInUser } = useMe();
+  const { data: loggedInUser } = trpc.user.me.useQuery();
 
   const publicRoutes: RouteObject[] = [
     { path: '/', element: <HomePage /> },

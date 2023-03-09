@@ -1,9 +1,8 @@
 import { TRPCError } from '@trpc/server';
 
-import { success } from '@Constants';
 import { ExpressContext, logger } from '@Lib';
 import { AuthService, UserService } from '@Services';
-import { RoleEnum } from '@Types';
+import { APIError } from '@Utils';
 
 export const register = async ({ req }: ExpressContext) => {
   try {
@@ -12,13 +11,14 @@ export const register = async ({ req }: ExpressContext) => {
     const userExists = await UserService.userExists(username);
 
     if (userExists)
-      throw new TRPCError({
+      throw new APIError({
         code: 'CONFLICT',
         message: 'This username is taken.',
+        notifyClient: true,
       });
 
     const createdUser = await AuthService.register(req.body);
-    await UserService.addUserRole(createdUser.id, RoleEnum.User);
+    await UserService.addUserRole(createdUser.id, 'USER');
 
     const user = await AuthService.login(req.body);
 
@@ -31,7 +31,7 @@ export const register = async ({ req }: ExpressContext) => {
       payload: { username: req.body.username },
     });
 
-    return { ...success, message: 'Succesfully registered!' };
+    return 'Succesfully registered!';
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,
@@ -40,10 +40,7 @@ export const register = async ({ req }: ExpressContext) => {
       error: err,
     });
 
-    throw new TRPCError({
-      code: 'INTERNAL_SERVER_ERROR',
-      message: err,
-    });
+    throw err;
   }
 };
 
@@ -68,7 +65,7 @@ export const login = async ({ req }: ExpressContext) => {
       payload: { username: req.body.username },
     });
 
-    return { ...success, message: 'Successfully logged in!' };
+    return 'Successfully logged in!';
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,
@@ -79,7 +76,6 @@ export const login = async ({ req }: ExpressContext) => {
 
     throw new TRPCError({
       code: 'INTERNAL_SERVER_ERROR',
-      message: err,
     });
   }
 };
@@ -96,7 +92,9 @@ export const logout = async ({ req, res }: ExpressContext) => {
       payload: req.body,
     });
 
-    return { ...success, message: 'Successfully logged out!' };
+    console.log(req.body, 'eee');
+
+    return 'Successfully logged out!';
   } catch (err) {
     logger.warn({
       createdBy: username,
@@ -122,7 +120,10 @@ export const hasAuthority = async ({ req }: ExpressContext) => {
         message: 'No user',
       });
 
-    const data = await AuthService.hasAuthority(userId, req.body.authority);
+    const hasAuthority = await AuthService.hasAuthority(
+      userId,
+      req.body.authority
+    );
 
     logger.info({
       createdBy: username,
@@ -130,11 +131,7 @@ export const hasAuthority = async ({ req }: ExpressContext) => {
       payload: req.body,
     });
 
-    return {
-      ...success,
-      message: 'You are not authorized for this action!',
-      data,
-    };
+    return hasAuthority;
   } catch (err) {
     logger.warn({
       createdBy: req.body.username,

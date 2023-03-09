@@ -22,6 +22,9 @@ const addTrpcRouters = (app: Application) => {
     trpcExpress.createExpressMiddleware({
       router: appRouter,
       createContext,
+      batching: {
+        enabled: false,
+      },
     })
   );
 };

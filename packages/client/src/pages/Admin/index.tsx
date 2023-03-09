@@ -1,11 +1,10 @@
-import { useRoles, useUserCount, useUserRoles } from '@Api';
 import { GenericList } from '@Elements';
 import { trpc } from '@Lib';
 import { Head } from '@UtilityComponents';
 
 const AdminPage = (): JSX.Element => {
-  const { data: userCount } = useUserCount();
-  const { data: userRoles } = useUserRoles();
+  const { data: userCount } = trpc.admin.userCount.useQuery();
+  const { data: userRoles } = trpc.role.userRoles.useQuery();
 
   return (
     <>

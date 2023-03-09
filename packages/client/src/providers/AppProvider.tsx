@@ -1,41 +1,61 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { HelmetProvider } from 'react-helmet-async';
-import { QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { loggerLink } from '@trpc/client/links/loggerLink';
-import { httpBatchLink } from '@trpc/client/links/httpBatchLink';
+import { httpLink } from '@trpc/client';
 
 import { ErrorFallback, Notifications } from '@UtilityComponents';
-import { trpc, queryClient } from '@Lib';
-import { getFetch } from '@trpc/client';
+
+import { trpc } from '@Lib';
+import toast from 'react-hot-toast/headless';
 
 type Props = {
   children: ReactNode;
 };
 
 const AppProvider = ({ children }: Props) => {
-  const [trpcClient] = useState(() =>
-    trpc.createClient({
-      links: [
-        loggerLink(),
-        httpBatchLink({
-          url: 'http://localhost:4000/api/trpc',
-          fetch: async (input, init?) => {
-            console.log(input, init);
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnMount: false,
+        refetchOnWindowFocus: false,
+        onError: (err) => {
+          const { message } = (err as any).shape;
+          const { notifyClient } = (err as any).shape.data;
+          if (notifyClient && message) {
+            console.log('errrrrr');
+            toast.error(message);
+          }
+        },
+      },
+      mutations: {
+        onError: (err) => {
+          const { message } = (err as any).shape;
+          const { notifyClient } = (err as any).shape.data;
+          if (notifyClient && message) {
+            console.log('errrrrr');
+            toast.error(message);
+          }
+        },
+      },
+    },
+  });
 
-            const fetch = getFetch();
-            const res = fetch(input, {
-              ...init,
-              credentials: 'include',
-            });
-
-            return res;
-          },
-        }),
-      ],
-    })
-  );
+  const trpcClient = trpc.createClient({
+    links: [
+      // loggerLink(),
+      httpLink({
+        url: 'http://localhost:4000/api/trpc',
+        fetch(url, options) {
+          return fetch(url, {
+            ...options,
+            credentials: 'include',
+          });
+        },
+      }),
+    ],
+  });
 
   return (
     <React.Suspense fallback={<div>loading</div>}>

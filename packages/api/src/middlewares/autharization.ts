@@ -1,8 +1,8 @@
 import { TRPCError } from '@trpc/server';
-import { AuthorityEnum } from '@Types';
+import { Authorities } from '@Types';
 import { db, publicProcedure, trpcMiddleware } from '@Lib';
 
-export default (requiredAuth: AuthorityEnum) =>
+export default (requiredAuth: Authorities) =>
   publicProcedure.use(
     trpcMiddleware(async ({ ctx, next }) => {
       try {
