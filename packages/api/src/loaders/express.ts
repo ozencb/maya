@@ -12,9 +12,9 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import connectRedis from 'connect-redis';
 
-import addTrpcRouters from '@Routes';
 import { ONE_DAY_IN_MS, __PROD__ } from '@Constants';
 import { cache } from '@Lib';
+import routes from '@Routes';
 
 const SESSION_SECRET = process.env.SESSION_SECRET!;
 
@@ -80,7 +80,7 @@ const expressLoaders = (app: Application) => {
     })
   );
 
-  addTrpcRouters(app);
+  app.use('/api/trpc', routes);
 };
 
 export default expressLoaders;

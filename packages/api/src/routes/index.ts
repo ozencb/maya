@@ -1,4 +1,3 @@
-import { Application } from 'express';
 import * as trpcExpress from '@trpc/server/adapters/express';
 
 import { createContext, trpcRouter } from '@Lib';
@@ -16,17 +15,12 @@ const appRouter = trpcRouter({
 
 export type AppRouter = typeof appRouter;
 
-const addTrpcRouters = (app: Application) => {
-  app.use(
-    '/api/trpc',
-    trpcExpress.createExpressMiddleware({
-      router: appRouter,
-      createContext,
-      batching: {
-        enabled: false,
-      },
-    })
-  );
-};
+const routes = trpcExpress.createExpressMiddleware({
+  router: appRouter,
+  createContext,
+  batching: {
+    enabled: false,
+  },
+});
 
-export default addTrpcRouters;
+export default routes;
