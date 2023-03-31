@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - BUILD_APP=api
+        - BUILD_CONTEXT=api
+    ports:
+      - '4000:80'
+    volumes:
+      - .:/packages/api
+    depends_on:
+      - postgres
+      - redis
+  web:
+    container_name: web
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - BUILD_APP=web
+        - BUILD_CONTEXT=web
+    volumes:
+      - .:/packages/web
+    ports:
+      - '3000:80'
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=mayadb
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - 6379:6379

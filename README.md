@@ -19,6 +19,7 @@ This is a work in progress. Some of the approaches you will see might be up for 
 - PG-Promise
 - PostgreSQL
 - Vite
+- pnpm
 - Sessions
 - Helmet
 - Winston
@@ -29,6 +30,6 @@ This is a work in progress. Some of the approaches you will see might be up for 
 
 ## Get Started
 
-You must have Node, PostgreSQL, Redis, and Yarn installed. Use `dotenv.example` as a template to create a `.env` file and fill-in/change all the values.
+You must have Node, PostgreSQL, Redis, and pnpm installed. Use `dotenv.example` as a template to create a `.env` file and fill-in/change all the values.
 
-To install all the dependencies, run `yarn install-dependencies` on root folder. You can then run `yarn start` to start both the API server and client.
+To install all the dependencies, run `pnpm install` on root folder. You can then run `pnpm start` to start both the API server and client.

@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "A PERN + friends boilerplate app",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Ozencb/maya.git"
@@ -18,21 +15,23 @@
   },
   "homepage": "https://github.com/Ozencb/maya#readme",
   "scripts": {
-    "start": "concurrently \"wsrun -x maya-common --parallel start\"",
-    "install-dependencies": "yarn && cd packages/api && yarn && cd ../client && yarn",
-    "pre-commit": "cd packages/api && yarn pre-commit && cd ../../client && yarn pre-commit",
-    "pre-push": "cd packages/api && yarn pre-push && cd ../../client && yarn pre-push",
+    "start": "concurrently \"wsrun --parallel start\"",
+    "build": "pnpm -r run build",
+    "build:api": "pnpm run --filter api build",
+    "build:web": "pnpm run --filter web build",
+    "pre-commit": "pnpm run --filter api pre-commit && pnpm run --filter web pre-commit",
+    "pre-push": "pnpm run --filter api pre-push && pnpm run --filter web pre-push",
     "prepare": "husky install"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn pre-commit",
-      "pre-push": "yarn pre-push"
+      "pre-commit": "pnpm run pre-commit",
+      "pre-push": "pnpm run pre-push"
     }
   },
   "devDependencies": {
-    "concurrently": "^5.2.0",
-    "husky": "^7.0.4",
-    "wsrun": "^5.2.0"
+    "concurrently": "^8.0.1",
+    "husky": "^8.0.3",
+    "wsrun": "^5.2.4"
   }
 }

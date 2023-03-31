@@ -1,5 +1,6 @@
 {
   "extends": "./tsconfig.path.json",
+
   "compilerOptions": {
     "target": "es2017",
     "module": "commonjs",
@@ -23,7 +24,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
-    "typeRoots": ["./src/typing-stubs", "./node_modules/@types"]
+    "preserveSymlinks": true,
+    "typeRoots": ["./typings", "./node_modules/@types"]
   },
   "exclude": ["node_modules"],
   "include": ["./src/**/*.ts"]

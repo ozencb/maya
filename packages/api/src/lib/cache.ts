@@ -27,7 +27,7 @@ const options = {
     console.log(err.message);
     return true;
   },
-} as IORedis.RedisOptions;
+} as RedisOptions;
 
 export const redisClient = createRedisInstance(options);
 
@@ -65,7 +65,7 @@ export const deleteKey = (key: string) => redisClient.del(key);
 
 export const deleteKeyByWildCard = (key: string, callback?: () => {}) => {
   redisClient.keys(key, (_, rows) => {
-    rows.forEach((row) => {
+    rows?.forEach((row) => {
       redisClient.del(row);
     });
   });

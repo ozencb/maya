@@ -1,23 +1,23 @@
 {
-  "name": "maya-client",
+  "name": "web",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "start": "vite --open",
     "dev": "vite --open",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "type-check": "tsc --pretty --noEmit",
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --ext tsx --ext js",
     "pre-commit": "lint-staged",
-    "pre-push": "yarn run type-check"
+    "pre-push": "type-check"
   },
   "lint-staged": {
     "*.@(ts|tsx|js)": [
-      "yarn format",
-      "yarn lint"
+      "pnpm run format",
+      "pnpm run lint"
     ]
   },
   "dependencies": {

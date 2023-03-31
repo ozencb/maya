@@ -39,7 +39,7 @@ const initOptions: IInitOptions<IExtensions> = {
   query(e) {
     if (!__PROD__) console.log(chalk.cyan(e.query));
   },
-  receive(data, _result, _e) {
+  receive({ data }) {
     camelizeColumns(data);
   },
 };
